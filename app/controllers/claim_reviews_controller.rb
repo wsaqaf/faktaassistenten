@@ -3,7 +3,7 @@ class ClaimReviewsController < ApplicationController
   before_action :check_if_signed_in
 
   def index
-      @claim_reviews = ClaimReview.all.order("created_at DESC").where("claim_id=? AND ((review_sharing_mode=1 AND review_verdict IS NOT NULL) OR user_id=?)",@claim.id,current_user.id)
+      @claim_reviews = ClaimReview.all.order(Arel.sql("created_at DESC")).where("claim_id=? AND ((review_sharing_mode=1 AND review_verdict IS NOT NULL) OR user_id=?)",@claim.id,current_user.id)
   end
 
   def show
@@ -71,12 +71,6 @@ class ClaimReviewsController < ApplicationController
 
   def find_claim
     @claim = Claim.find(params[:claim_id])
-  end
-
-  def check_if_signed_in
-    if !user_signed_in?
-      redirect_to "/"
-    end
   end
 
   def claim_review_params

@@ -14,7 +14,7 @@
   <%= f.text_field :title, class: 'field-long', :autocomplete=>"off" %>
   </li>
   <li><%= t('assign_existing_tags') %>
-  <%= f.select(:tag_ids, options_for_select(Tag.order('lower(claim_name) ASC').map{ |t| [t.claim_name, t.id] }),{}, { :multiple => true }) %><br>
+  <%= f.select(:tag_ids, options_for_select(Tag.order(Arel.sql('lower(claim_name) ASC')).map{ |t| [t.claim_name, t.id] }),{}, { :multiple => true }) %><br>
   <a href="#new_tags" data-toggle="collapse" data-parent="#accordion1" style="text-decoration: none">
     <b><%= t('create_more_tags') %></b><span class="glyphicon glyphicon-plus"></span></a>
     <div class="panel-collapse collapse" id="new_tags">

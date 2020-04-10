@@ -19,7 +19,7 @@ class ResourcesController < ApplicationController
         @pagy, @resources = pagy(@tmp, items: 10)
         get_all_json
       else
-          @tmp=Resource.all.order("created_at DESC")
+          @tmp=Resource.all.order(Arel.sql("created_at DESC"))
           @total_count=@tmp.count
           @pagy, @resources = pagy(@tmp, items: 10)
           get_all_json
@@ -175,11 +175,5 @@ class ResourcesController < ApplicationController
       def find_resource
         @resource = Resource.find(params[:id])
       end
-
-        def check_if_signed_in
-          if !user_signed_in?
-            redirect_to "/"
-          end
-        end
 
   end

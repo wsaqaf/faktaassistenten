@@ -4,6 +4,7 @@ class ClaimReview::StepsController < ApplicationController
   before_action :find_claim
   before_action :check_if_signed_in
   helper_method :is_visible
+  skip_before_action :verify_authenticity_token
 
   steps *ClaimReview.form_steps
 
@@ -65,7 +66,7 @@ class ClaimReview::StepsController < ApplicationController
   end
 
   def build_claim_review_schema()
-    if (@claim_review.note_review_sharing_mode.blank?)
+#    if (@claim_review.note_review_sharing_mode.blank?)
       tmp_arr=[]
       if (@claim.has_image==1 || @claim.has_video==1)
         tmp_arr=tmp_arr+['visual']
@@ -190,12 +191,9 @@ class ClaimReview::StepsController < ApplicationController
               }]
           }
         }
-      claim_review_schema=JSON.pretty_generate(claim_review_schema)
-      @claim_review.note_review_sharing_mode=claim_review_schema
-      return claim_review_schema
-    else
+      @claim_review.note_review_sharing_mode=JSON.pretty_generate(claim_review_schema)
       return @claim_review.note_review_sharing_mode
-    end
+#      end
   end
 
   def show
@@ -245,7 +243,7 @@ class ClaimReview::StepsController < ApplicationController
       elsif step == "s12" and @claim_review.txt_review_started!=1 then jump_to(:s20) end
 
       if step=="s19" then @claim_review_score=get_score("claim") end
-      if step=="s22" then #claim_review_schema=build_claim_review_schema();
+      if step=="s22" then claim_review_schema=build_claim_review_schema();
         redirect_to claims_path
       else render_wizard @claim_review end
 ###Step conditions###
@@ -341,10 +339,4 @@ when "s22"
         return
       end
     end
-
-      def check_if_signed_in
-        if !user_signed_in?
-          redirect_to "/"
-        end
-      end
 end

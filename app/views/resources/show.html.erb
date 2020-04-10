@@ -49,7 +49,7 @@
     <h5><%= t('created_at') %>: <%= @resource.created_at %></h5>
     <h5><%= t('updated_at') %>: <%= @resource.updated_at %></h5>
     <br>
-    <%= link_to t('export_this_resource'), export_resource_path(@resource), method: :post %>
+     <%= link_to t('export_this_resource'), export_resource_path(@resource), method: :post %>
     <br><br>
     <%= link_to t('go_back'), resources_path %>
       <% if @resource.user_id == current_user.id or current_user.id==1 %>

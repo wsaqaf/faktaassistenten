@@ -35,7 +35,6 @@ class Claim < ApplicationRecord
   validates :has_image, presence: true
   validates :has_video, presence: true
   validates :has_text, presence: true
-  validates :sharing_mode, presence: true
 
   def medium_name
       medium.try(:name)

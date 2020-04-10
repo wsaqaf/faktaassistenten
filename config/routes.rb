@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :affiliations
   resources :resources
+  resources :claims
 
   devise_for :users
 
@@ -17,6 +18,9 @@ Rails.application.routes.draw do
   end
 
   resources :claims do
+    member do
+      post :export
+    end
     resources :claim_reviews do
       resources :steps, only: [:show, :update], controller: 'claim_review/steps'
     end

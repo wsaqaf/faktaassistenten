@@ -35,11 +35,11 @@ class MediaController < ApplicationController
         if (params[:sort]!="r")
           remove_unsure=" AND medium_reviews.medium_review_verdict!=0 "
         end
-        tmp=Medium.joins(:medium_reviews).where("(media.sharing_mode=1 OR media.user_id="+current_user.id.to_s+") AND media.id=medium_reviews.medium_id and medium_reviews.medium_review_sharing_mode=1 and medium_reviews.medium_review_verdict IS NOT NULL"+remove_unsure).group("media.id").order(sort_statement("medium",params[:sort]))
+        tmp=Medium.joins(:medium_reviews).where("(media.sharing_mode=1 OR media.user_id="+current_user.id.to_s+") AND media.id=medium_reviews.medium_id and medium_reviews.medium_review_sharing_mode=1 and medium_reviews.medium_review_verdict IS NOT NULL"+remove_unsure).group("media.id").order(Arel.sql(sort_statement("medium",params[:sort])))
         @total_count=tmp.count.length
       else
         if qry.nil? then qry="media.sharing_mode=1 OR media.user_id="+current_user.id.to_s; end
-        tmp=Medium.where(qry).order("created_at DESC")
+        tmp=Medium.where(qry).order(Arel.sql("created_at DESC"))
         @total_count=tmp.count
       end
        @pagy, @media = pagy(tmp, items: 10)
@@ -50,11 +50,11 @@ class MediaController < ApplicationController
      if (params[:sort]!="r")
        remove_unsure=" AND medium_reviews.medium_review_verdict!=0 "
      end
-     tmp=Medium.joins(:medium_reviews).where("(media.sharing_mode=1 OR media.user_id="+current_user.id.to_s+") AND media.id=medium_reviews.medium_id and medium_reviews.medium_review_sharing_mode=1 and medium_reviews.medium_review_verdict IS NOT NULL"+remove_unsure).group("media.id").order(sort_statement("medium",params[:sort]))
+     tmp=Medium.joins(:medium_reviews).where("(media.sharing_mode=1 OR media.user_id="+current_user.id.to_s+") AND media.id=medium_reviews.medium_id and medium_reviews.medium_review_sharing_mode=1 and medium_reviews.medium_review_verdict IS NOT NULL"+remove_unsure).group("media.id").order(Arel.sql(sort_statement("medium",params[:sort])))
      @total_count=tmp.count.length
    else
      if qry.nil? then qry="media.sharing_mode=1 OR media.user_id="+current_user.id.to_s; end
-     tmp=Medium.where(qry).order("created_at DESC")
+     tmp=Medium.where(qry).order(Arel.sql("created_at DESC"))
      @total_count=tmp.count
    end
    @pagy, @media = pagy(tmp, items: 10)
@@ -137,10 +137,4 @@ class MediaController < ApplicationController
       end
     end
 
-      def check_if_signed_in
-        if !user_signed_in?
-          redirect_to "/"
-          return
-        end
-      end
 end

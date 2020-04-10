@@ -3,6 +3,11 @@ class ClaimsController < ApplicationController
   before_action :find_claim, only: [:show, :edit, :update, :destroy]
 
   def index
+    if params[:import_note].present?
+      @import_note=params[:import_note]
+    else
+      @import_note=""
+    end
 
     order=""
 
@@ -58,7 +63,7 @@ class ClaimsController < ApplicationController
         render json: output;
     elsif (params[:refresh_tag_list].present?)
       output=''
-      Tag.order('lower(claim_name) ASC').each do |t|
+      Tag.order(Arel.sql('lower(claim_name) ASC')).each do |t|
           output=output+'<option value="'+t.id.to_s+'">'+t.claim_name+"</option>\n"
       end
       render json: output;
@@ -118,16 +123,16 @@ class ClaimsController < ApplicationController
           if (params[:sort]!="r")
             remove_unsure=" AND claim_reviews.review_verdict!=0 "
           end
-          tmp=Claim.joins(:claim_reviews).where("claims.id=claim_reviews.claim_id and (claims.sharing_mode=1 OR claims.user_id="+current_user.id.to_s+") and claim_reviews.review_sharing_mode=1 and claim_reviews.review_verdict IS NOT NULL"+remove_unsure).group("claims.id").order(sort_statement("claim",params[:sort]))
+          tmp=Claim.joins(:claim_reviews).where("claims.id=claim_reviews.claim_id and (claims.sharing_mode=1 OR claims.user_id="+current_user.id.to_s+") and claim_reviews.review_sharing_mode=1 and claim_reviews.review_verdict IS NOT NULL"+remove_unsure).group("claims.id").order(Arel.sql(sort_statement("claim",params[:sort])))
           @total_count=tmp.count.length
         elsif  (params[:sort]=="rt")
-          tmp=Claim.joins(:claim_reviews).where("claims.id=claim_reviews.claim_id and (claims.sharing_mode=1 OR claims.user_id="+current_user.id.to_s+") and claim_reviews.review_sharing_mode=1 and claim_reviews.review_verdict IS NOT NULL").group("claims.id,claim_reviews.updated_at,claim_reviews.created_at").order(sort_statement("claim",params[:sort]))
+          tmp=Claim.joins(:claim_reviews).where("claims.id=claim_reviews.claim_id and (claims.sharing_mode=1 OR claims.user_id="+current_user.id.to_s+") and claim_reviews.review_sharing_mode=1 and claim_reviews.review_verdict IS NOT NULL").group("claims.id,claim_reviews.updated_at,claim_reviews.created_at").order(Arel.sql(sort_statement("claim",params[:sort])))
           @total_count=tmp.count.length
         elsif !user_signed_in?
             return
         else
           if qry.nil? then qry="claims.sharing_mode=1 OR claims.user_id="+current_user.id.to_s; end
-          tmp=Claim.where(qry).order("created_at DESC")
+          tmp=Claim.where(qry).order(Arel.sql("created_at DESC"))
           @total_count=tmp.count
         end
         @pagy, @claims = pagy(tmp, items: 10)
@@ -141,16 +146,16 @@ class ClaimsController < ApplicationController
         if (params[:sort]!="r")
           remove_unsure=" AND src_reviews.src_review_verdict!=0 "
         end
-        tmp=Claim.joins(:claim_reviews).where("claims.id=claim_reviews.claim_id and (claims.sharing_mode=1 OR claims.user_id="+current_user.id.to_s+") and claim_reviews.review_sharing_mode=1 and claim_reviews.review_verdict IS NOT NULL"+remove_unsure).group("claims.id").order(sort_statement("claim",params[:sort]))
+        tmp=Claim.joins(:claim_reviews).where("claims.id=claim_reviews.claim_id and (claims.sharing_mode=1 OR claims.user_id="+current_user.id.to_s+") and claim_reviews.review_sharing_mode=1 and claim_reviews.review_verdict IS NOT NULL"+remove_unsure).group("claims.id").order(Arel.sql(sort_statement("claim",params[:sort])))
         @total_count=tmp.count.length
       elsif  (params[:sort]=="rt")
-        tmp=Claim.joins(:claim_reviews).where("claims.id=claim_reviews.claim_id and (claims.sharing_mode=1 OR claims.user_id="+current_user.id.to_s+") and claim_reviews.review_sharing_mode=1 and claim_reviews.review_verdict IS NOT NULL").group("claims.id,claim_reviews.updated_at,claim_reviews.created_at").order(sort_statement("claim",params[:sort]))
+        tmp=Claim.joins(:claim_reviews).where("claims.id=claim_reviews.claim_id and (claims.sharing_mode=1 OR claims.user_id="+current_user.id.to_s+") and claim_reviews.review_sharing_mode=1 and claim_reviews.review_verdict IS NOT NULL").group("claims.id,claim_reviews.updated_at,claim_reviews.created_at").order(Arel.sql(sort_statement("claim",params[:sort])))
         @total_count=tmp.count.length
       elsif !user_signed_in?
           return
       else
         if qry.nil? then qry="claims.sharing_mode=1 OR claims.user_id="+current_user.id.to_s; end
-        tmp=Claim.where(qry).order("created_at DESC")
+        tmp=Claim.where(qry).order(Arel.sql("created_at DESC"))
       end
       @total_count=tmp.count
       @pagy, @claims = pagy(tmp, items: 10)
@@ -172,11 +177,131 @@ class ClaimsController < ApplicationController
   end
 
   def create
-    @claim = current_user.claims.build(claim_params)
-    if @claim.save
-        redirect_to root_path
+    @import_note=""
+    if (params[:claims_json].present?)
+      massport
+    elsif (!params[:claim].nil? && (params[:claim][:url] || params[:claim][:file]))
+      if (params[:claim][:include_review].present?)
+        if (params[:claim][:file].present?)
+          myfile=params[:claim][:file]
+          file_contents=myfile.read
+        else
+          myfile=params[:claim][:url]
+          require 'open-uri'
+          begin
+            file_contents= open(myfile) {|f| f.read }
+          rescue
+            file_contents=""
+          end
+        end
+        if (!file_contents.nil?)
+         if (file_contents.length>0)
+            claim_list = JSON.parse(file_contents)
+            claim_list.each do |clm|
+              @claim = Claim.where("title= ?",clm['title']).first
+              if (!@claim.nil?)
+                if (params[:claim][:overwrite]=="1" && @claim.user_id==current_user.id)
+                  if (params[:claim][:include_review]=="1" && !clm['claim_review'].blank?)
+                    @claim_review = ClaimReview.where("claim_id=? AND user_id=?",@claim.id,current_user.id).first
+                    if (not @claim_review.blank?)
+                      @claim_review=ClaimReview.find(@claim_review.id)
+                      @claim_review.update(clm['claim_review'])
+                      @import_note=@import_note+clm['title']+t('claim_review_imported')+"<br>"
+                    else
+                      current_user.claim_reviews.build(clm['claim_review'])
+                    end
+                  else
+                    clm.delete('claim_review')
+                    if (@claim.update(clm))
+                      @import_note=@import_note+clm['title']+t('claim_imported')+"<br>"
+                    else
+                      @import_note=@import_note+clm['title']+t('claim_not_imported')+"<br>"
+                    end
+                  end
+                else
+                  @import_note=@import_note+clm['title']+t('claim_not_imported')+"<br>"
+                end
+              else
+                c_rev=clm['claim_review']
+                clm.delete('claim_review')
+                @claim = current_user.claims.build(clm)
+                if @claim.save
+                  @import_note=@import_note+clm['title']+t('claim_imported')+"<br>"
+                  if (!c_rev.blank?)
+                    c_rev["claim_id"]= { "claim_id" => @claim.id }
+                    @claim_review = ClaimReview.new
+                    @claim_review.claim_id=@claim.id
+                    @claim_review.user_id=current_user.id
+
+                    @claim_review.img_review_started= c_rev["img_review_started"]
+                    @claim_review.img_old= c_rev["img_old"]
+                    @claim_review.img_forensic_discrepency= c_rev["img_forensic_discrepency"]
+                    @claim_review.img_metadata_discrepency= c_rev["img_metadata_discrepency"]
+                    @claim_review.img_logical_discrepency= c_rev["img_logical_discrepency"]
+                    @claim_review.note_img_old= c_rev["note_img_old"]
+                    @claim_review.note_img_forensic_discrepency= c_rev["note_img_forensic_discrepency"]
+                    @claim_review.note_img_metadata_discrepency= c_rev["note_img_metadata_discrepency"]
+                    @claim_review.note_img_logical_discrepency= c_rev["note_img_logical_discrepency"]
+                    @claim_review.vid_review_started= c_rev["vid_review_started"]
+                    @claim_review.vid_old= c_rev["vid_old"]
+                    @claim_review.vid_forensic_discrepency= c_rev["vid_forensic_discrepency"]
+                    @claim_review.vid_metadata_discrepency= c_rev["vid_metadata_discrepency"]
+                    @claim_review.vid_audio_discrepency= c_rev["vid_audio_discrepency"]
+                    @claim_review.vid_logical_discrepency= c_rev["vid_logical_discrepency"]
+                    @claim_review.note_vid_old= c_rev["note_vid_old"]
+                    @claim_review.note_vid_forensic_discrepency= c_rev["note_vid_forensic_discrepency"]
+                    @claim_review.note_vid_metadata_discrepency= c_rev["note_vid_metadata_discrepency"]
+                    @claim_review.note_vid_audio_discrepency= c_rev["note_vid_audio_discrepency"]
+                    @claim_review.note_vid_logical_discrepency= c_rev["note_vid_logical_discrepency"]
+                    @claim_review.txt_review_started= c_rev["txt_review_started"]
+                    @claim_review.txt_unreliable_news_content= c_rev["txt_unreliable_news_content"]
+                    @claim_review.txt_insufficient_verifiable_srcs= c_rev["txt_insufficient_verifiable_srcs"]
+                    @claim_review.txt_has_clickbait= c_rev["txt_has_clickbait"]
+                    @claim_review.txt_poor_language= c_rev["txt_poor_language"]
+                    @claim_review.txt_crowds_distance_discrepency= c_rev["txt_crowds_distance_discrepency"]
+                    @claim_review.txt_author_offers_little_evidence= c_rev["txt_author_offers_little_evidence"]
+                    @claim_review.txt_reliable_sources_disapprove= c_rev["txt_reliable_sources_disapprove"]
+                    @claim_review.note_txt_unreliable_news_content= c_rev["note_txt_unreliable_news_content"]
+                    @claim_review.note_txt_insufficient_verifiable_srcs= c_rev["note_txt_insufficient_verifiable_srcs"]
+                    @claim_review.note_txt_has_clickbait= c_rev["note_txt_has_clickbait"]
+                    @claim_review.note_txt_poor_language= c_rev["note_txt_poor_language"]
+                    @claim_review.note_txt_crowds_distance_discrepency= c_rev["note_txt_crowds_distance_discrepency"]
+                    @claim_review.note_txt_author_offers_little_evidence= c_rev["note_txt_author_offers_little_evidence"]
+                    @claim_review.note_txt_reliable_sources_disapprove= c_rev["note_txt_reliable_sources_disapprove"]
+                    @claim_review.review_verdict= c_rev["review_verdict"]
+                    @claim_review.note_review_verdict= c_rev["note_review_verdict"]
+                    @claim_review.review_sharing_mode= c_rev["review_sharing_mode"]
+
+                    if (@claim_review.save)
+                      @import_note=@import_note+clm['title']+t('claim_review_imported')+"<br>"
+                    else
+                      @import_note=@import_note+clm['title']+t('claim_review_not_imported')+"<br>"
+                    end
+                  end
+                else
+                  @import_note=@import_note+clm['title']+t('claim_not_imported')+"<br>"
+                end
+              end
+            end
+         end
+         render 'show'
+        end
+      else
+        @claim = current_user.claims.build(claim_params)
+        if @claim.save
+            redirect_to claims_path
+        else
+            render 'new'
+        end
+      end
     else
-        render 'new'
+      puts("\n=====\n creating new through form \n=====\n")
+      @claim = current_user.claims.build(claim_params)
+      if @claim.save
+          redirect_to claims_path
+      else
+          render 'new'
+      end
     end
   end
 
@@ -203,7 +328,71 @@ class ClaimsController < ApplicationController
     Tagging.where("claim_id = ?",@claim.id).destroy_all
     Tag.where.not(id: Tagging.pluck(:tag_id).reject {|x| x.nil?}).destroy_all
     @claim.destroy
-    redirect_to root_path
+    redirect_to claims_path
+  end
+
+  def export
+      if (!params[:id].blank?)
+          clm=Claim.find(params[:id])
+          result_json=[]
+          claim_rev={}
+          clm_review = ClaimReview.where("claim_id=? AND user_id=?",clm.id,current_user.id).first
+          if (!clm_review.blank?)
+            claim_rev={
+                "img_review_started" => clm_review.img_review_started,
+                "img_old" => clm_review.img_old,
+                "img_forensic_discrepency" => clm_review.img_forensic_discrepency,
+                "img_metadata_discrepency" => clm_review.img_metadata_discrepency,
+                "img_logical_discrepency" => clm_review.img_logical_discrepency,
+                "note_img_old" => clm_review.note_img_old,
+                "note_img_forensic_discrepency" => clm_review.note_img_forensic_discrepency,
+                "note_img_metadata_discrepency" => clm_review.note_img_metadata_discrepency,
+                "note_img_logical_discrepency" => clm_review.note_img_logical_discrepency,
+                "vid_review_started" => clm_review.vid_review_started,
+                "vid_old" => clm_review.vid_old,
+                "vid_forensic_discrepency" => clm_review.vid_forensic_discrepency,
+                "vid_metadata_discrepency" => clm_review.vid_metadata_discrepency,
+                "vid_audio_discrepency" => clm_review.vid_audio_discrepency,
+                "vid_logical_discrepency" => clm_review.vid_logical_discrepency,
+                "note_vid_old" => clm_review.note_vid_old,
+                "note_vid_forensic_discrepency" => clm_review.note_vid_forensic_discrepency,
+                "note_vid_metadata_discrepency" => clm_review.note_vid_metadata_discrepency,
+                "note_vid_audio_discrepency" => clm_review.note_vid_audio_discrepency,
+                "note_vid_logical_discrepency" => clm_review.note_vid_logical_discrepency,
+                "txt_review_started" => clm_review.txt_review_started,
+                "txt_unreliable_news_content" => clm_review.txt_unreliable_news_content,
+                "txt_insufficient_verifiable_srcs" => clm_review.txt_insufficient_verifiable_srcs,
+                "txt_has_clickbait" => clm_review.txt_has_clickbait,
+                "txt_poor_language" => clm_review.txt_poor_language,
+                "txt_crowds_distance_discrepency" => clm_review.txt_crowds_distance_discrepency,
+                "txt_author_offers_little_evidence" => clm_review.txt_author_offers_little_evidence,
+                "txt_reliable_sources_disapprove" => clm_review.txt_reliable_sources_disapprove,
+                "note_txt_unreliable_news_content" => clm_review.note_txt_unreliable_news_content,
+                "note_txt_insufficient_verifiable_srcs" => clm_review.note_txt_insufficient_verifiable_srcs,
+                "note_txt_has_clickbait" => clm_review.note_txt_has_clickbait,
+                "note_txt_poor_language" => clm_review.note_txt_poor_language,
+                "note_txt_crowds_distance_discrepency" => clm_review.note_txt_crowds_distance_discrepency,
+                "note_txt_author_offers_little_evidence" => clm_review.note_txt_author_offers_little_evidence,
+                "note_txt_reliable_sources_disapprove" => clm_review.note_txt_reliable_sources_disapprove,
+                "review_verdict" => clm_review.review_verdict,
+                "note_review_verdict" => clm_review.note_review_verdict,
+                "review_sharing_mode" => clm_review.review_sharing_mode
+              }
+          end
+          claim_json = {
+            "title" => clm.title,
+            "description" => clm.description,
+            "has_image" => clm.has_image,
+            "has_video" => clm.has_video,
+            "has_text" => clm.has_text,
+            "claim_review" => claim_rev
+          }
+          result_json << claim_json
+          send_data result_json.to_json,
+            :type => 'text/json; charset=UTF-8;',
+            :disposition => "attachment; filename=claim"+params[:id].to_s+".json"
+
+     end
   end
 
   private
@@ -217,19 +406,39 @@ class ClaimsController < ApplicationController
       return false
     end
 
+    def massport
+      claims_json=params[:claims_json]
+      send_data claims_json,
+        :type => 'text/json; charset=UTF-8;',
+        :disposition => "attachment; filename=claims.json"
+    end
+
+    def get_all_json
+      @claims_json = []
+      @tmp.all.each do |clm|
+        clm_json = {
+          "description" => clm.description,
+          "has_image" => clm.has_image,
+          "has_video" => clm.has_video,
+          "has_text" => clm.has_text,
+          "sharing_mode" => 1,
+          "claim_review" => claim_rev
+        }
+        @claims_json << clm_json
+      end
+      @claims_json = @claims_json.to_json
+      @claims_json=@claims_json.to_s;
+    end
+
     def claim_params
-      params.require(:claim).permit(:id, :title, :medium_name, :src_name, :url, :description, :has_image, :has_video, :has_text, :sharing_mode, :url_preview, :tag_list, :tag, { tag_ids: [] }, :tag_ids)
+      if (!params[:overwrite].present?)
+        params.require(:claim).permit(:id, :title, :medium_name, :src_name, :url, :description, :has_image, :has_video, :has_text, :sharing_mode, :url_preview, :tag_list, :tag, { tag_ids: [] }, :tag_ids)
+#      else
+#        params.require(:claim).permit(:id, :title, :medium_name, :src_name, :url, :description, :has_image, :has_video, :has_text, :sharing_mode, :url_preview, :tag_list, :tag, { tag_ids: [] }, :tag_ids, :file, :include_review, :overwrite)
+      end
     end
 
     def find_claim
         @claim = Claim.where("id=? AND (claims.sharing_mode=1 OR claims.user_id="+current_user.id.to_s+")",params[:id]).first
     end
-
-    def check_if_signed_in
-      if !user_signed_in?
-        redirect_to "/"
-        return
-      end
-    end
-
 end

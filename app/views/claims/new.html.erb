@@ -14,7 +14,7 @@
     <%= f.text_field :title, class: 'field-long', :autocomplete=>"off" %>
     </li>
     <li><%= t('assign_existing_tags') %>
-    <%= f.select(:tag_ids, options_for_select(Tag.order('lower(claim_name) ASC').map{ |t| [t.claim_name, t.id] }),{}, { :multiple => true }) %><br>
+    <%= f.select(:tag_ids, options_for_select(Tag.order(Arel.sql('lower(claim_name) ASC')).map{ |t| [t.claim_name, t.id] }),{}, { :multiple => true }) %><br>
     <a href="#new_tags" data-toggle="collapse" data-parent="#accordion1" style="text-decoration: none">
       <b><%= t('create_more_tags') %></b><span class="glyphicon glyphicon-plus"></span></a>
       <div class="panel-collapse collapse" id="new_tags">
@@ -71,11 +71,24 @@
     <%= f.text_area(:description, size: '50x10', class: 'field-long field-textarea') %>
     </li>
     <li>
-      <%= f.submit t('submit'), :class => 'btn btn btn-primary' %>
+      <%= f.submit t('submit'), :class => 'btn btn btn-primary', id: "submit" %>
     </li>
   </ul>
   </fieldset>
   <% end %>
+  <div style="margin-left: 120px; bottom-margin: 120px;">
+  <hr><a href="#Import" data-toggle="collapse" data-parent="#accordion1" style="text-decoration: none">
+    <b><%= t('claim_import') %></b><span class="glyphicon glyphicon-plus"></span></a>
+    <div class="panel-collapse collapse" id="Import">
+         <br><b><big><%= t('claim_select_file') %></big></b><br><br>
+        <%= form_for(@claim, url: {action: "create"}, html: {multipart: true}) do |f| %>
+            <%= f.file_field :file %>
+            <%= t('claim_select_url') %> <br><%= f.text_field :url, :style => "padding: 1px 1px; line-height: 10px; width: 320px" %><br>
+            <%= f.check_box :include_review, :checked => true %> <%= t('claim_option_include_review') %> <br>
+            <%= f.check_box :overwrite, :checked => true %> <%= t('claim_option_overwrite') %> <br>
+            <%= f.submit 'Import', :class => 'btn btn btn-primary', id: "submit", :style => "float: left; padding: 5px 5px 5px 5px; line-height: 15px;" %><br><br>
+         <% end %>
+    </div>
   </div>
 
   <script>

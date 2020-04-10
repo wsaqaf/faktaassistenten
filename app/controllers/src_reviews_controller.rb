@@ -7,7 +7,7 @@ class SrcReviewsController < ApplicationController
       @src_reviews = SrcReview.order(:id).where("name like ?", "%#{params[:term]}%")
       render json: @src_reviews.map(&:name).uniq
     else
-      @src_reviews = SrcReview.all.order("created_at DESC").where("src_id=? AND ((src_review_sharing_mode=1 AND src_review_verdict IS NOT NULL) OR user_id=?)",@src.id,current_user.id)
+      @src_reviews = SrcReview.all.order(Arel.sql("created_at DESC")).where("src_id=? AND ((src_review_sharing_mode=1 AND src_review_verdict IS NOT NULL) OR user_id=?)",@src.id,current_user.id)
     end
   end
 
@@ -73,12 +73,6 @@ class SrcReviewsController < ApplicationController
   def find_src
     @src = Src.find(params[:src_id])
   end
-
-    def check_if_signed_in
-      if !user_signed_in?
-        redirect_to "/"
-      end
-    end
 
     def src_review_params
       params.require(:src_review).permit(:id, :src_lacks_proper_credentials, :note_src_lacks_proper_credentials, :src_failed_factcheck_before, :note_src_failed_factcheck_before, :src_has_poor_writing_history, :note_src_has_poor_writing_history, :src_supported_by_trolls, :note_src_supported_by_trolls, :src_difficult_to_locate, :note_src_difficult_to_locate, :src_other_problems, :note_src_other_problems, :src_review_verdict, :src_review_description, :note_src_review_description, :src_review_sharing_mode, :note_src_review_sharing_mode)
