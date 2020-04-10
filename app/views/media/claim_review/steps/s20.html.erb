@@ -1,0 +1,64 @@
+
+        <div class="form-claim">
+        <div class="sidenav">
+      <%= form_for @claim_review, method: :put, url: wizard_path do |f| %>
+        <big><%= t('claim') %> <%= t('review_steps') %>: </big><br>
+        <div class="divTable blueTable"><div class="divTableBody">
+         <% 
+          passed_step=false
+          @all_steps.each do |key,value| %>
+              <%= is_visible(key).html_safe %><div class="divTableCell">
+              <% if (step==File.basename(wizard_path(key)))
+                  passed_step=true %>
+                  <b>-&gt; <%== value %></b>
+              <% elsif passed_step %>
+                  <%= f.submit value, style: 'color:#FFFFFF;width:100%;text-align:left' %>
+              <% else %>
+                  <%= f.submit value, style: 'color:#C0C0C0;width:100%;text-align:left' %>
+              <% end %>
+              </div></div>
+         <% end %>
+      </div>
+      </div>
+      </div>
+      <div class="main">
+        <%= link_to t('del_review'), claim_claim_review_path(@claim.id,@claim_review), style: 'float:right', method: :delete, data: { confirm: t('warning_del') } %>
+        <h4><%= t('reviewing') %> claim:
+                   <%= link_to @claim.title, claim_path(@claim.id) %></h4>
+                <% if (not @claim.url.blank?) %>
+                   <%== "URL: <input type='text' id='url_link' value='"+@claim.url.to_s+"' style='background-color:lightgrey;width:75%'> <button onclick=copyToClipboard('#url_link')>"+t('copy_url')+"</button>" %>
+                <% else %>
+                   URL: <%= t('not_provided') %>
+                <% end %>
+              <br> 
+              <% if f.object.errors.any? %>
+              <div class="error_messages">
+                  <% f.object.errors.full_messages.each do |error| %>
+                    <p><%= error %></p>
+                  <% end %>
+              </div>
+              <% end %>
+              <fieldset>
+                <h5><strong>t('<%== t('calculating_score_claim_title') %>')</strong></h5>
+                  <ul>
+                      
+                  <li><big><b><font color=blue><%== t('calculated_score_q_long', review_score: @claim_review_score) %></font></b></big><br>
+                  <%= f.hidden_field :claim_review, :value => @claim_review %>
+                  
+                  <br>
+                  
+                  </li>
+          
+                    <li>
+                      
+                        <% if !@first_step.present? or @first_step!=step %>
+                            <%= f.submit t('previous_step'), :class => 'btn btn btn-primary' %>
+                        <% end %>
+                            <%= f.submit t('next_step'), :class => 'btn btn btn-primary' %>
+                  
+                    </li>
+                  </ul>
+              </fieldset>
+              <% end %>
+              </div>
+              

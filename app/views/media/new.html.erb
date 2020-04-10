@@ -1,0 +1,42 @@
+<div class="form-claim">
+  <fieldset>
+    <legend>&nbsp;<%= t('add_new_medium') %></legend>
+    <%= form_for @medium, :html => { :onsubmit => "do_submit('medium')" } do |f| %>
+      <% if f.object.errors.any? %>
+      <div class="error_messages">
+          <% f.object.errors.full_messages.each do |error| %>
+            <p><%= error %></p>
+          <% end %>
+      </div>
+      <% end %>
+    <ul>
+      <li><%= t('give_medium_title') %><span class='required'>*</span>
+      <%= f.text_field :name, :onchange => "NewMedium('"+config.relative_url_root.to_s+"',0,'medium','media','media')", class: 'field-long', :autocomplete=>"off" %>
+      </li>
+      <div id="medium_note"></div>
+      <li>
+      <%= t('medium_url') %>
+      <%= f.text_field :url, :onchange => "URLPreview('"+config.relative_url_root.to_s+"','medium')", class: 'field-long', :autocomplete=>"off" %>
+      </li>
+      <div id="url_preview_block"></div>
+      <%= f.hidden_field :url_preview %>
+      <li>
+      <%= t('medium_type') %>
+        <%= f.select :medium_type, options_for_select(@medium_types, :selected => @medium.medium_type) %>
+      </li>
+      <li>
+        <%= t('share_medium') %><br>
+          &nbsp;&nbsp;<b><%= f.radio_button :sharing_mode, '1', :checked => @medium.sharing_mode==1 || @medium.sharing_mode.nil? %> <%= t('yes_share') %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <%= f.radio_button :sharing_mode, '-1', :checked => @medium.sharing_mode==-1 %> <%= t('no_share') %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+      </li>
+      <li>
+      <br><%= t('more_notes_medium') %>
+      <%= f.text_area(:description, size: '50x10', class: 'field-long field-textarea') %>
+      </li>
+      <li>
+        <%= f.submit t('submit'), :class => 'btn btn btn-primary', id: "submit" %>
+      </li>
+    </ul>
+    <% end %>
+  </fieldset>
+  </div>

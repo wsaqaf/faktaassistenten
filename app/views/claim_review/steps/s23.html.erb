@@ -1,0 +1,51 @@
+
+              <h3>Reviewing claim:
+                "<% if (not @claim.url.blank?) %>
+                   <%= link_to @claim.title, claim_path(@claim.id) %>
+                <% else %>
+                  <%= @claim.title %>
+                <% end %>"
+              </h3> 
+              <div class="form-claim">
+              <h4><% all_steps=['s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8', 's9', 's10', 's11', 's12', 's13', 's14', 's15', 's16', 's17', 's18', 's19', 's20', 's21', 's22', 's23']; %>
+              <%  for i in 0 ... all_steps.size %>
+              <% if (step==File.basename(wizard_path(all_steps[i]))) %>
+              <font size=20>Step <%= (i+1) %></font>
+              <% else %>
+              <%= link_to (i+1).to_s+' ', wizard_path(all_steps[i]) %>
+              <% end %>
+              <% end %>
+              </h4>
+              <hr>
+
+              <%= form_for @claim_review, method: :put, url: wizard_path do |f| %>
+              <% if f.object.errors.any? %>
+              <div class="error_messages">
+                  <% f.object.errors.full_messages.each do |error| %>
+                    <p><%= error %></p>
+                  <% end %>
+              </div>
+              <% end %>
+              <fieldset>
+                <legend>5) Sharing your claim review</legend>
+                  <ul>
+                      
+              <ul>
+                  <li>If you publish this claim based on this analysis, provide a link to it here:
+                  <%= f.text_field :review_published_url, class: 'field-long' %>
+              </ul>
+          
+              <ul>
+                  <li>Optional note
+                  <%= f.text_area(:note_review_published_url, size: '50x10', class: 'field-long field-textarea') %>
+              </ul>
+          
+                    <li>
+                      <%= link_to 'Previous Step',previous_wizard_path,:class=>'btn btn btn-primary' %>
+            <%= f.submit 'Finish', :class => 'btn btn btn-primary' %>
+                    </li>
+                  </ul>
+              </fieldset>
+              <% end %>
+              </div>
+              

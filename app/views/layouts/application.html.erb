@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= t('website_title') %></title>
+    <%= csrf_meta_tags %>
+
+    <%= favicon_link_tag 'favicon.ico', :rel => 'icon', :type => "image/x-icon" %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body data-no-turbolink="<%= @no_turbolinks %>">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <%= link_to image_tag('logo.png', alt: t('website_title'), title: t('website_title')), root_path %>&nbsp;&nbsp;&nbsp;
+          <b>| <%== Rails.configuration.institution.to_s %></b>&nbsp;&nbsp;&nbsp;
+        </div>
+
+        <ul class="nav navbar-nav">
+          <% if user_signed_in? %>
+            <li style="border-left:1px solid black;height:50px; left-padding:5px;"></li>
+            <% if !request.fullpath.include? "claim" then %><li><%= link_to t('claims'), claims_path %></li>
+            <% else %><li><%= link_to t('claims'), claims_path, style: 'color:#0A076D;font-weight:bold;' %></li><% end %>
+            <% if !request.fullpath.include? "medi" then %><li><%= link_to t('media'), media_path %></li>
+            <% else %><li><%= link_to t('media'), media_path, style: 'color:#0A076D;font-weight:bold;' %></li><% end %>
+            <% if !request.fullpath.include? "src" then %><li><%= link_to t('sources'), srcs_path %></li>
+            <% else %><li><%= link_to t('sources'), srcs_path, style: 'color:#0A076D;font-weight:bold;' %></li><% end %>
+            <% if !request.fullpath.include? "resource" then %><li><%= link_to " | "+ t('resources_for_verification')+" | ", resources_path %></li>
+            <% else %><li><%= link_to " | "+ t('resources_for_verification')+" | ", resources_path, style: 'color:#0A076D;font-weight:bold;' %></li><% end %>
+          <% end %>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-left">
+            <li><%= link_to t('video_tutorial'), "https://www.youtube.com/playlist?list=PLlUC5-5Z5z2uGN-yqC9w9IvslWwhlb_zX" %></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <li><%= link_to t('sign_out'), destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to t('sign_up'), new_user_registration_path %></li>
+            <li><%= link_to t('sign_in'), new_user_session_path %></li>
+          <% end %>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <div class="btn-group" style="margin:auto;width:10%;padding-top:5px;">
+                <button type="button" data-toggle="dropdown">
+                <%= I18n.locale %> &#9660;
+              </button>
+              <div class="dropdown-menu">
+                <% Claim.language_options.each do |language, locale| %>
+                  <%= link_to language, url_for(locale: locale), action: "set_lcale", class: 'dropdown-item' %><br>
+                <% end %>
+              </div>
+            </div>
+
+
+          <% if user_signed_in? %>
+            <li><%= link_to t('edit_profile'), edit_user_registration_path %></li>
+          <% end %>
+        </ul>
+
+      </div>
+    </nav>
+    <p><%= notice %></p>
+    <p><%= alert %></p>
+
+    <%= yield %>
+  </body>
+</html>

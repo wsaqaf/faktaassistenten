@@ -1,0 +1,35 @@
+<div class="container">
+<div class="row"><div class="columnl"><%= link_to t('add')+" "+t('or')+" "+t('import')+" "+t('resource'), new_resource_path,:class=>'btn btn btn-primary',:style=>'color:white; background-color:#4B99AD' %>
+</div><div class="columnr">
+<%= form_tag(resources_path, method: :get) do %>
+  <%= text_field_tag :q, params[:q] %>
+  <%= submit_tag t('search'), name: nil, :class => 'btn btn btn-primary' %>
+<% end %></div></div>
+<hr>
+<% if (@resources.size==0) %>
+    <%= t('no_results') %>
+<% else %>
+  <div style='float:right'>
+    <%= form_tag(resources_path, method: :post) do %>
+        <%= hidden_field_tag :resources_json, params[:resources_json], value: @resources_json %>
+      <%= submit_tag t('export')+" "+t('all'), name:nil, :class => 'btn btn btn-primary' %>
+    <% end %>
+  </div>
+<% end %>
+  <ul>
+  <% @resources.each do |resource| %>
+    <h4>
+     <li><%= link_to resource.name, resource_path(resource) %>
+       <%
+          @my_entry = Resource.where("id=? and (user_id=? or ?=1)",resource.id,current_user.id,current_user.id).first
+          if (not @my_entry.blank?) %>
+            <small>(<%= link_to t('edit'), edit_resource_path(@my_entry) %> | <%= link_to t('delete'), resource_path(@my_entry), method: :delete, data: { confirm: "Are you sure?"} %>) - <%= link_to "Export", export_resource_path(resource), method: :post %></small>
+         <% end %>
+         <% if resource.url_preview.present? %>
+           <br><%== resource.url_preview.gsub('\"','"').gsub("\\'", "'") %>
+         <% end %>
+     </li></h4>
+  <% end %>
+  </ul>
+  <% if @total_count>10 then %> <%== pagy_bootstrap_nav(@pagy) %> <% end %>
+</div>
