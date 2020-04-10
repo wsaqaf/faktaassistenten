@@ -62,7 +62,7 @@ en:
   edit: "Edit"
   delete: "Delete"
   show: "Show"
-  add_review: "Add Review"
+  add_review: "Add review"
   latest: "Latest"
   confirm_del_q: "Are you sure?"
   warning_msg1: "Are you sure you want to go ahead and delete this %{type}?"
@@ -236,6 +236,7 @@ en:
   for: "for"
   new: "New"
   update: "Update"
+  show_reviews: "Show %{reviews} reviews"
 
 # Controllers
 #common for controllers:

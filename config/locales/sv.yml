@@ -86,7 +86,7 @@ sv:
   edit: "Redigera"
   delete: "Radera"
   show: "Visa"
-  add_review: "Lägg till Faktagranskning"
+  add_review: "Lägg till faktagranskning"
   latest: "Senaste"
   confirm_del_q: "Är du säker?"
   warning_msg1: "Är du säker på att du vill gå vidare och ta bort %{type}?"
@@ -264,6 +264,7 @@ sv:
   for: "för"
   new: "Ny"
   update: "Uppdatera"
+  show_reviews: "Visa %{reviews} faktagranskningar"
 
 # Controllers
 #common for controllers:

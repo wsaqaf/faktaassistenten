@@ -109,6 +109,17 @@
           </ul>
       </fieldset>
       <% end %>
+      <div><hr>
+        <b><big><%= t('claim_import') %></big></b>
+             <br><b><%= t('claim_select_file') %></b><br><br>
+            <%= form_for(@claim, url: {action: "create"}, html: {multipart: true}) do |f| %>
+                <%= f.file_field :file %>
+                <%= t('claim_select_url') %> <br><%= f.text_field :url, :style => "padding: 1px 1px; line-height: 10px; width: 320px" %><br>
+                <%= f.check_box :include_review, :checked => true %> <%= t('claim_option_include_review') %> <br>
+                <%= f.check_box :overwrite, :checked => true %> <%= t('claim_option_overwrite') %> <br>
+                <%= f.submit 'Import', :class => 'btn btn btn-primary', id: "submit", :style => "float: left; padding: 5px 5px 5px 5px; line-height: 15px;" %><br><br>
+             <% end %>
+      </div>
     </div>
   </div>
 </div>

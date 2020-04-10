@@ -36,7 +36,6 @@
 <div class="container">
   <div class="row">
     <div class="offset-1" style="width:900px">
-      <p class="uppercase m-0">Claim </p>
       <p class="uppercase m-0" style="font-size: 10px"><% if claim.user_id == current_user.id || current_user.id==1
         dependent_reviews=ClaimReview.where("claim_id = ?",claim.id).count("id")
         if (dependent_reviews>0)
@@ -46,25 +45,23 @@
           warning_msg=t('warning_msg1',type: t('the_claim'))
         end
       %>
-        <%= link_to t('edit'), edit_claim_path(claim) %> -
-        <%= link_to t('delete'), claim_path(claim), method: :delete, data: { confirm: warning_msg } %>
         <% end %> </p>
 
       <h4 class="mt-0 no-link-style"><%= link_to claim.title, claim_path(claim) %></h4>
-      <small><%= t('tags') %>:
-        <%= raw claim.tags.map(&:claim_name).map { |t| link_to t, tag_path(t) }.join(', ') %> | <%= t('updated_at') %>:
-        <%= claim.created_at.strftime("%Y-%m-%d") %></small>
+      <small><%= link_to t('edit'), edit_claim_path(claim) %> -
+      <%= link_to t('delete'), claim_path(claim), method: :delete, data: { confirm: warning_msg } %></small>
+      <% if !claim.tags.empty? %>
+        <%= t('tags') %>:
+          <small>
+          <%= raw claim.tags.map(&:claim_name).map { |t| link_to t, tag_path(t) }.join(', ') %> | <%= t('updated_at') %>:
+          <%= claim.created_at.strftime("%Y-%m-%d") %></small>
+      <% end %>
       <div class="mt-2">
-        <%
+      <%
       @my_review = ClaimReview.where("claim_id=? AND user_id=?",claim.id,current_user.id).first
-      if (@my_review.blank?)
-          revtype ="Add" %>
-        <b><%= link_to t('add_review'), claim_claim_reviews_path(claim.id), method: :create %></b>
-        <% else
-          revtype ="Edit" %>
-        <b><%= link_to t('edit_review'), claim_claim_reviews_path(claim.id), method: :create %></b>
-        <%= link_to t('del_review'), claim_claim_review_path(claim.id,@my_review), method: :delete, data: { confirm: t('confirm_del_q')} %>
-        <% end %>
+      @rev_menu=""
+      if (@my_review.blank?) then @revtype ="Add" else @revtype ="Edit"
+      end %>
       </div>
       <div class="mt-2">
         <%
@@ -92,10 +89,10 @@
             end
         end
       end %>
-        <%= link_to @total_reviews, claim_claim_reviews_path(claim.id) %>
         <% if (@total_reviews>0) %>
         <% if !result1.empty? %>
-        <%= result1 %> count
+          <%= result1 %>
+          <%= link_to "(" + t('show_reviews', reviews: @total_reviews)+ ")", claim_claim_reviews_path(claim.id) %>
         <% end %>
         <% end %>
       </div>
@@ -109,18 +106,24 @@
       url_prev=url_prev+'<div style="text-align: left"><img src="'+config.relative_url_root.to_s+'assets/claim.png" id="cimg" height=75 />'
       if (!claim.url.nil?) then url=claim.url; else url=""; end
       if (!claim.description.nil?) then description=claim.description; else description=""; end
-      url_prev=url_prev+"\n<h4><a href=\""+url+"\" target=_blank>"+claim.title+"</a></h4><p class=\"text\">"+description+"</p><br></div></div>"
+      url_prev=url_prev+"\n<h4><a href=\""+url+"\" target=_blank>"+claim.title+"</a></h4><p class=\"text\">"+description+"</p><br></div>"
    else
      url_prev=claim.url_preview.delete('\\\\"')
    end
-   if @total_reviews>0
+   if @total_reviews>0 then
             url_prev=url_prev.gsub('\"','"').gsub("\\'", "'")
-            url_prev=url_prev.sub("</h4>","<div style='float: right'>"+@result2+"</td><td><a rel='nofollow' data-method='create' href='"+config.relative_url_root.to_s+"/claims/"+claim.id.to_s+"/claim_reviews'><img src='"+config.relative_url_root.to_s+"/"+revtype+".png' height=50 alt='"+t(revtype.downcase)+" "+t('review')+"' title='"+t(revtype.downcase)+" "+t('review')+"'><br><br><br><small><b><center>"+t(revtype.downcase)+" "+t('review')+"</center></b></small></a></td></tr></table></div></h4>")
-          else
+            url_prev=url_prev.sub("</h4>","<div style='float: right'>"+@result2+"</td></tr></table></div></h4>")
+   else
             url_prev=url_prev.gsub('\"','"').gsub("\\'", "'")
-            url_prev=url_prev.sub("</h4>","<div style='float: right'><a rel='nofollow' data-method='create' href='"+config.relative_url_root.to_s+"/claims/"+claim.id.to_s+"/claim_reviews'><img src='"+config.relative_url_root.to_s+"/Add.png' height=50 alt='" + t('add_review') + "' title='" + t('add_review') + "'><br><br><br><small><small><b><center>" + t('add_review') + "</center></b></small></small></a></div></h4>")
    end %>
   <%== url_prev %>
+  <div style='float: right'>
+  <% if @revtype == "Add" %>
+    <b><%= link_to t('add_review'), claim_claim_reviews_path(claim.id), method: :create %></b>
+  <% else %>
+    <b><%= link_to t('edit_review'), claim_claim_reviews_path(claim.id), method: :create %> |
+    <%= link_to t('del_review'), claim_claim_review_path(claim.id,@my_review), method: :delete, data: { confirm: t('confirm_del_q')} %></b>
+  <% end %>
 
       </div>
 
@@ -154,11 +157,9 @@
           else
             url_prev=claim.url_preview
           end
-          if @total_reviews>0 %>
-
-<%
+          if @total_reviews>0
               url_prev=url_prev.gsub('\"','"').gsub("\\'", "'")
-              url_prev=url_prev.sub("</h4>","<div style='float: right'>"+@result2+"</td><td><a rel='nofollow' data-method='create' href='"+config.relative_url_root.to_s+"/claims/"+claim.id.to_s+"/claim_reviews'><img src='"+config.relative_url_root.to_s+"/"+revtype+".png' height=50 alt='"+t(revtype.downcase)+" "+t('review')+"' title='"+t(revtype.downcase)+" "+t('review')+"'><br><br><br><small><b><center>"+t(revtype.downcase)+" "+t('review')+"</center></b></small></a></td></tr></table></div></h4>")
+              url_prev=url_prev.sub("</h4>","<div style='float: right'>"+@result2+"</td><td></td></tr></table></div></h4>")
             else
               url_prev=url_prev.gsub('\"','"').gsub("\\'", "'")
               url_prev=url_prev.sub("</h4>","<div style='float: right'><a rel='nofollow' data-method='create' href='"+config.relative_url_root.to_s+"/claims/"+claim.id.to_s+"/claim_reviews'><img src='"+config.relative_url_root.to_s+"/Add.png' height=50 alt='" + t('add_review') + "' title='" + t('add_review') + "'><br><br><br><small><small><b><center>" + t('add_review') + "</center></b></small></small></a></div></h4>")
@@ -181,7 +182,6 @@
   <% end %>
 </div>
 
-</div>
 <hr>
 <div class="container text-center p2">
   <%= link_to t('add your own ')+" "+t('Claim'), new_claim_path,:class=>'btn btn btn-secondary',:style=>'' %>
