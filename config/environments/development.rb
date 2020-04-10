@@ -63,6 +63,9 @@ Rails.application.configure do
 
   config.institution = "Test Server"
 
+   # Automatically inject JavaScript needed for LiveReload
+   config.middleware.insert_after(ActionDispatch::Static, Rack::LiveReload)
+
   # ActionMailer Config
   config.action_mailer.default_url_options = {
       :host => "localhost",

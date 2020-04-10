@@ -10,7 +10,8 @@ gem 'pg'
 gem 'puma', '~> 3.12.2'
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form', '~> 5.0'
-gem 'bootstrap-sass', '~> 3.4.1'
+#gem 'bootstrap-sass', '~> 3.4.1'
+gem 'bootstrap', '~> 4.4.1'
 gem 'devise', '~> 4.5'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
@@ -28,6 +29,10 @@ gem 'pagy'
 gem 'onebox'
 gem 'jquery-turbolinks'
 gem 'rails-i18n'
+gem 'htmlbeautifier'
+gem 'prettier'
+gem 'popper_js'
+gem 'react-rails'
 
 gem 'spring', '>= 2.1.0'
 
@@ -43,7 +48,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-gem 'popper_js', '~> 1.11.1'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
@@ -53,4 +57,11 @@ end
 
 group :development do
   gem "capistrano", "~> 3.11", require: false
+end
+
+group :development do
+  gem "guard", ">= 2.2.2", :require => false
+  gem "guard-livereload",  :require => false
+  gem "rack-livereload"
+  gem "rb-fsevent",        :require => false
 end

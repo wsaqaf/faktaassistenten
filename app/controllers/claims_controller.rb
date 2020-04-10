@@ -174,7 +174,7 @@ class ClaimsController < ApplicationController
   def create
     @claim = current_user.claims.build(claim_params)
     if @claim.save
-        redirect_to root_path
+        redirect_to claims_path
     else
         render 'new'
     end

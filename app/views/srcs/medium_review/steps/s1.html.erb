@@ -1,98 +1,119 @@
-
-        <div class="form-claim">
-        <div class="sidenav">
-      <%= form_for @medium_review, method: :put, url: wizard_path do |f| %>
-        <big><%= t('medium') %> <%= t('review_steps') %>: </big><br>
-        <div class="divTable blueTable"><div class="divTableBody">
-         <% 
+<div class="form-claim">
+  <div class="sidenav">
+    <%= form_for @medium_review, method: :put, url: wizard_path do |f| %>
+    <big><%= t('medium') %> <%= t('review_steps') %>: </big><br>
+    <div class="divTable blueTable">
+      <div class="divTableBody">
+        <% 
           passed_step=false
           @all_steps.each do |key,value| %>
-              <%= is_visible(key).html_safe %><div class="divTableCell">
-              <% if (step==File.basename(wizard_path(key)))
+        <%= is_visible(key).html_safe %><div class="divTableCell">
+          <% if (step==File.basename(wizard_path(key)))
                   passed_step=true %>
-                  <b>-&gt; <%== value %></b>
-              <% elsif passed_step %>
-                  <%= f.submit value, style: 'color:#FFFFFF;width:100%;text-align:left' %>
-              <% else %>
-                  <%= f.submit value, style: 'color:#C0C0C0;width:100%;text-align:left' %>
-              <% end %>
-              </div></div>
-         <% end %>
+          <b>-&gt; <%== value %></b>
+          <% elsif passed_step %>
+          <%= f.submit value, style: 'color:#FFFFFF;width:100%;text-align:left' %>
+          <% else %>
+          <%= f.submit value, style: 'color:#C0C0C0;width:100%;text-align:left' %>
+          <% end %>
+        </div>
       </div>
-      </div>
-      </div>
-      <div class="main">
-        <%= link_to t('del_review'), medium_medium_review_path(@medium.id,@medium_review), style: 'float:right', method: :delete, data: { confirm: t('warning_del') } %>
-        <h4><%= t('reviewing') %> medium:
-                   <%= link_to @medium.name, medium_path(@medium.id) %></h4>
-                <% if (not @medium.url.blank?) %>
-                   <%== "URL: <input type='text' id='url_link' value='"+@medium.url.to_s+"' style='background-color:lightgrey;width:75%'> <button onclick=copyToClipboard('#url_link')>"+t('copy_url')+"</button>" %>
-                <% else %>
-                   URL: <%= t('not_provided') %>
-                <% end %>
-              <br> 
-              <% if f.object.errors.any? %>
-              <div class="error_messages">
-                  <% f.object.errors.full_messages.each do |error| %>
-                    <p><%= error %></p>
-                  <% end %>
-              </div>
-              <% end %>
-              <fieldset>
-                <h5><strong><%== t('reviewing_the_medium_title') %></strong></h5>
-                  <ul>
-                      
-                  <li><big><b><font color=blue><%== t('medium_is_blacklisted_q_long') %></font></b></big><br>
-                  <br><%= f.radio_button :medium_is_blacklisted, '-1', :checked => (!@medium_review.medium_is_blacklisted.blank? && @medium_review.medium_is_blacklisted==-1) %> <%== t('medium_is_blacklisted_options_yes') %><br><%= f.radio_button :medium_is_blacklisted, '1', :checked => (!@medium_review.medium_is_blacklisted.blank? && @medium_review.medium_is_blacklisted==1) %> <%== t('medium_is_blacklisted_options_no') %><br><%= f.radio_button :medium_is_blacklisted, '0', :checked => (!@medium_review.medium_is_blacklisted.blank? && @medium_review.medium_is_blacklisted==0) %> <%== t('not_sure') %><br><br><%= f.radio_button :medium_is_blacklisted, '', :checked => (@medium_review.medium_is_blacklisted.blank?) %> <%= t('skip_question') %><br>
-                  <br><div style='border:2px solid black;margin:auto;width:70%;padding:10px;background-color:lightblue;'><b><big><%= t('note') %>: </big></b><%== t('not_all_qs_needed', page:'medium') %></div><br>
-                  <br>
-                  
-                  <br>
-                  <%
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="main">
+  <%= link_to t('del_review'), medium_medium_review_path(@medium.id,@medium_review), style: 'float:right', method: :delete, data: { confirm: t('warning_del') } %>
+  <h4><%= t('reviewing') %> medium:
+    <%= link_to @medium.name, medium_path(@medium.id) %></h4>
+  <% if (not @medium.url.blank?) %>
+  <%== "URL: <input type='text' id='url_link' value='"+@medium.url.to_s+"' style='background-color:lightgrey;width:75%'> <button onclick=copyToClipboard('#url_link')>"+t('copy_url')+"</button>" %>
+  <% else %>
+  URL: <%= t('not_provided') %>
+  <% end %>
+  <br>
+  <% if f.object.errors.any? %>
+  <div class="error_messages">
+    <% f.object.errors.full_messages.each do |error| %>
+    <p><%= error %></p>
+    <% end %>
+  </div>
+  <% end %>
+  <fieldset>
+    <h5><strong><%== t('reviewing_the_medium_title') %></strong></h5>
+    <ul>
+
+      <li><big><b>
+            <font color=blue><%== t('medium_is_blacklisted_q_long') %></font>
+          </b></big><br>
+        <br><%= f.radio_button :medium_is_blacklisted, '-1', :checked => (!@medium_review.medium_is_blacklisted.blank? && @medium_review.medium_is_blacklisted==-1) %>
+        <%== t('medium_is_blacklisted_options_yes') %><br><%= f.radio_button :medium_is_blacklisted, '1', :checked => (!@medium_review.medium_is_blacklisted.blank? && @medium_review.medium_is_blacklisted==1) %>
+        <%== t('medium_is_blacklisted_options_no') %><br><%= f.radio_button :medium_is_blacklisted, '0', :checked => (!@medium_review.medium_is_blacklisted.blank? && @medium_review.medium_is_blacklisted==0) %>
+        <%== t('not_sure') %><br><br><%= f.radio_button :medium_is_blacklisted, '', :checked => (@medium_review.medium_is_blacklisted.blank?) %>
+        <%= t('skip_question') %><br>
+        <br>
+        <div class='alert alert-success'><b><big><%= t('note') %>:
+            </big></b><%== t('not_all_qs_needed', page:'medium') %></div><br>
+        <br>
+
+        <br>
+        <%
                     require 'digest/sha1';
                     current_code=Digest::SHA1.base64digest("@medium_review."+"medium_is_blacklisted")
                     has_resources=Resource.where("used_for_qs like ?", "%"+current_code+"%")
                   %>
-                  <div class="panel-group" id="accordion1">
-                  	<div class="panel panel-default">
-                      	<div class="panel-heading">
-                              	<a href="#Resources" data-toggle="collapse" data-parent="#accordion1" style="text-decoration: none">
-                                  <b><%= t('resources') %> (<%= has_resources.size.to_s %>)</b> &nbsp; <span class="glyphicon glyphicon-plus"></span></a>
-                          </div>
-                          <div class="panel-collapse collapse" id="Resources">
-                          	<div class="panel-body">
-                            <% if not has_resources.blank? %>
-                                  <ul>
-                                  <% has_resources.each do |r| %>
-                                  <li><h5>- <%== try_resource(r.name,'medium') %><%= link_to r.name, resource_path(r.id), target: "_blank" %></h5></li>
-                                <% end %>
-                              </ul>
-                              <hr><p>- <%= link_to t('add_additional_resource'), new_resource_path(ref: current_code), target: "_blank" %><br><br>
-                              <small>- <%= t('check_current_resources1') %><b><%= link_to t('resources'), resources_path(), target: "_blank" %></b><%= t('check_current_resources2') %> <b><%= current_code %></b></small></p>
-                          <% else %>
-                              <p><b><% t('no_associated_resource') %></b></p>
-                              <hr><p>- <%= link_to t('add_resource_to_q'), new_resource_path(ref: current_code), target: "_blank" %><br><br>
-                              <small>- <% t('associate_to_q') %> <% t('this_resource') %>: <b><%= current_code %></b></small></p>
-                          <% end %>
-                          </div>
-                       </div>
-                  </div>
-                  <hr>
-             
+        <div class="panel-group" id="accordion1">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <a href="#Resources" data-toggle="collapse" data-parent="#accordion1" style="text-decoration: none">
+                <b><%= t('resources') %> (<%= has_resources.size.to_s %>)</b> &nbsp; <span
+                  class="glyphicon glyphicon-plus"></span></a>
+            </div>
+            <div class="panel-collapse collapse" id="Resources">
+              <div class="panel-body">
+                <% if not has_resources.blank? %>
+                <ul>
+                  <% has_resources.each do |r| %>
+                  <li>
+                    <h5>-
+                      <%== try_resource(r.name,'medium') %><%= link_to r.name, resource_path(r.id), target: "_blank" %>
+                    </h5>
                   </li>
-          
-                  <li><big><b><font color=blue><%== t('optional_note') %></font></b></big><br>
-                  <%= f.text_area(:note_medium_is_blacklisted, size: '50x10', class: 'field-long field-textarea') %>
-                  
-                  <br>
-                  
-                  </li>
-          
-                    <li>
-                      <%= f.submit t('next_step'), :class => 'btn btn btn-primary' %>
-                    </li>
-                  </ul>
-              </fieldset>
-              <% end %>
+                  <% end %>
+                </ul>
+                <hr>
+                <p>-
+                  <%= link_to t('add_additional_resource'), new_resource_path(ref: current_code), target: "_blank" %><br><br>
+                  <small>-
+                    <%= t('check_current_resources1') %><b><%= link_to t('resources'), resources_path(), target: "_blank" %></b><%= t('check_current_resources2') %>
+                    <b><%= current_code %></b></small></p>
+                <% else %>
+                <p><b><% t('no_associated_resource') %></b></p>
+                <hr>
+                <p>-
+                  <%= link_to t('add_resource_to_q'), new_resource_path(ref: current_code), target: "_blank" %><br><br>
+                  <small>- <% t('associate_to_q') %> <% t('this_resource') %>: <b><%= current_code %></b></small></p>
+                <% end %>
               </div>
-              
+            </div>
+          </div>
+          <hr>
+
+      </li>
+
+      <li><big><b>
+            <font color=blue><%== t('optional_note') %></font>
+          </b></big><br>
+        <%= f.text_area(:note_medium_is_blacklisted, size: '50x10', class: 'field-long field-textarea') %>
+
+        <br>
+
+      </li>
+
+      <li>
+        <%= f.submit t('next_step'), :class => 'btn btn btn-primary' %>
+      </li>
+    </ul>
+  </fieldset>
+  <% end %>
+</div>

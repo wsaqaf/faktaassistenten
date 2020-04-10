@@ -37,7 +37,8 @@ class ApplicationController < ActionController::Base
         f.each do |key, value|
             if key==filter_option then f[key]="selected"; end
         end
-        return "<select id='filter'><option value='"+page1+"' "+f['a']+">"+t('all')+" "+t(page2.downcase)+"</option><option value='?filter=m' "+f['m']+">"+t(page2.downcase)+t('you_created')+"</option><option value='?filter=r' "+f['r']+">"+t(page2.downcase)+t('been_reviewed')+"</option><option value='?filter=u' "+f['u']+">"+t(page2.downcase)+t('you_reviewed')+"</option><option value='?filter=n' "+f['n']+">"+t(page2.downcase)+t('with_no_reviews')+"</option></select>\n<script>$(function(){$('#filter').on('change',function(){{window.location=$(this).val();}return false;});});</script>"
+        return "<div class='form-group'>
+        <label for=''>Filter</label><select class='form-control' id='filter'><option value='"+page1+"' "+f['a']+">"+t('all')+" "+t(page2.downcase)+"</option><option value='?filter=m' "+f['m']+">"+t(page2.downcase)+t('you_created')+"</option><option value='?filter=r' "+f['r']+">"+t(page2.downcase)+t('been_reviewed')+"</option><option value='?filter=u' "+f['u']+">"+t(page2.downcase)+t('you_reviewed')+"</option><option value='?filter=n' "+f['n']+">"+t(page2.downcase)+t('with_no_reviews')+"</option></select></div>\n<script>$(function(){$('#filter').on('change',function(){{window.location=$(this).val();}return false;});});</script>"
       end
 
       def sort_statement(page,sorting)
@@ -67,8 +68,9 @@ class ApplicationController < ActionController::Base
         s.each do |key, value|
             if key==sort_option then s[key]="selected"; end
         end
-        return t('sort_by')+": <select id='sort'><option value='?sort=td' "+s['td']+">"+t('sort_by_time')+"</option><option value='?sort=rt' "+s['rt']+">"+t('sort_by_review_time')+"</option><option value='?sort=r' "+s['r']+">"+t('sort_by_reviews')+"</option><option value='?sort=rp' "+s['rp']+">"+t('sort_by_pos_reviews')+"</option><option value='?sort=rn' "+s['rn']+">"+t('sort_by_neg_reviews')+
-        "</option><select>\n<script>$(function(){$('#sort').on('change',function(){{window.location=$(this).val();}return false;});});</script>"
+        return "<div class='form-group'>
+        <label for=''>Sort by</label><select class='form-control' id='sort'><option value='?sort=td' "+s['td']+">"+t('sort_by_time')+"</option><option value='?sort=rt' "+s['rt']+">"+t('sort_by_review_time')+"</option><option value='?sort=r' "+s['r']+">"+t('sort_by_reviews')+"</option><option value='?sort=rp' "+s['rp']+">"+t('sort_by_pos_reviews')+"</option><option value='?sort=rn' "+s['rn']+">"+t('sort_by_neg_reviews')+
+        "</option><select></div>\n<script>$(function(){$('#sort').on('change',function(){{window.location=$(this).val();}return false;});});</script>"
       end
 
     def linkpreview

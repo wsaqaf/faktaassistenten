@@ -1,6 +1,6 @@
 en:
 # Views common
-  website_title: "Fact Check Assistant"
+  website_title: "Galileo – The Fact Check Assistant"
   claims: "Claims"
   media: "Media"
   sources: "Sources"
@@ -15,11 +15,12 @@ en:
   required: "Required"
   welcome: "Welcome"
   hello: "Hello"
-  welcome_msg: "Welcome to Fact Check Assistant!"
+  welcome_msg: "Welcome to Galileo – The Fact Check Assistant."
   go_sign_in_part1: "To use the service, please"
   go_sign_up_part1: "If you don't have an account, you can"
   submit: "Submit"
   video_tutorial: "Video tutorial"
+
 
 # Claims/index
 
@@ -155,6 +156,7 @@ en:
   rate_somewhat_untrustworthy: "Somewhat untrustworthy"
   rate_mostly_trustworthy: "Mostly trustworthy"
   rate_totally_trustworthy: "Totally trustworthy"
+  
 
 #Resource/new
 
@@ -212,6 +214,14 @@ en:
   for: "for"
   new: "New"
   update: "Update"
+  rate_totally_unreliable: "Totally unreliable"
+  rate_mostly_unreliable: "Mostly unreliable"
+  rate_somewhat_unreliable: "Somewhat unreliable"
+  rate_somewhat_false: "Somewhat false"
+  rate_mostly_reliable: "Mostly reliable"
+  rate_totally_reliable: "Totally_reliable"
+  rate_no_answer: "No answer/not applicable"
+  rate_not_measurable: "Not measurable"
 
 # Controllers
 #common for controllers:
