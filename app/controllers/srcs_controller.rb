@@ -34,11 +34,11 @@ class SrcsController < ApplicationController
         if (params[:sort]!="r")
           remove_unsure=" AND src_reviews.src_review_verdict!=0 "
         end
-        tmp=Src.joins(:src_reviews).where("(srcs.sharing_mode=1 OR srcs.user_id="+current_user.id.to_s+") AND srcs.id=src_reviews.src_id and src_reviews.src_review_sharing_mode=1 and src_reviews.src_review_verdict IS NOT NULL"+remove_unsure).group("srcs.id").order(sort_statement("src",params[:sort]))
+        tmp=Src.joins(:src_reviews).where("(srcs.sharing_mode=1 OR srcs.user_id="+current_user.id.to_s+") AND srcs.id=src_reviews.src_id and src_reviews.src_review_sharing_mode=1 and src_reviews.src_review_verdict IS NOT NULL"+remove_unsure).group("srcs.id").order(Arel.sql(sort_statement("src",params[:sort])))
         @total_count=tmp.count.length
       else
         if qry.nil? then qry="srcs.sharing_mode=1 OR srcs.user_id="+current_user.id.to_s; end
-        tmp=Src.where(qry).order("created_at DESC")
+        tmp=Src.where(qry).order(Arel.sql("created_at DESC"))
         @total_count=tmp.count
       end
        @pagy, @srcs = pagy(tmp, items: 10)
@@ -49,11 +49,11 @@ class SrcsController < ApplicationController
      if (params[:sort]!="r")
        remove_unsure=" AND src_reviews.src_review_verdict!=0 "
      end
-     tmp=Src.joins(:src_reviews).where("(srcs.sharing_mode=1 OR srcs.user_id="+current_user.id.to_s+") AND srcs.id=src_reviews.src_id and src_reviews.src_review_sharing_mode=1 and src_reviews.src_review_verdict IS NOT NULL"+remove_unsure).group("srcs.id").order(sort_statement("src",params[:sort]))
+     tmp=Src.joins(:src_reviews).where("(srcs.sharing_mode=1 OR srcs.user_id="+current_user.id.to_s+") AND srcs.id=src_reviews.src_id and src_reviews.src_review_sharing_mode=1 and src_reviews.src_review_verdict IS NOT NULL"+remove_unsure).group("srcs.id").order(Arel.sql(sort_statement("src",params[:sort])))
      @total_count=tmp.count.length
    else
      if qry.nil? then qry="srcs.sharing_mode=1 OR srcs.user_id="+current_user.id.to_s; end
-     tmp=Src.where(qry).order("created_at DESC")
+     tmp=Src.where(qry).order(Arel.sql("created_at DESC"))
      @total_count=tmp.count
    end
      @pagy, @srcs = pagy(tmp, items: 10)
@@ -135,11 +135,5 @@ class SrcsController < ApplicationController
         @src_types.push([value,key])
       end
     end
-
-      def check_if_signed_in
-        if !user_signed_in?
-          redirect_to "/"
-        end
-      end
 
 end

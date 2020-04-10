@@ -73,7 +73,6 @@ sv:
   tag_cloud: "Tag Cloud"
   show_all: "[Visa alla]"
   tags: "Taggar"
-  updated_at: "Uppdaterad vid"
   reviews: "Faktagranskningar"
   rate_false: "Falskt"
   rate_mostly_false: "Mestadels falskt"
@@ -88,8 +87,6 @@ sv:
   delete: "Radera"
   show: "Visa"
   add_review: "Lägg till Faktagranskning"
-  edit_review: "Redigera faktagranskning"
-  del_review: "Radera faktagranskning"
   latest: "Senaste"
   confirm_del_q: "Är du säker?"
   warning_msg1: "Är du säker på att du vill gå vidare och ta bort %{type}?"
@@ -102,8 +99,9 @@ sv:
   assign_existing_tags: "Taggar"
   add_tags: "Lägg till taggar"
   create_more_tags: "Skapa fler taggar"
-  typ_new_tags: "Skriv in nya taggar separerade med komma"
-  claim_url: "URL till källan för påståendet (om tillgängligt)"
+  type_new_tags: "Skriv in nya taggar separerade med komma"
+  tag_exists: "taggen finns redan"
+  claim_url: "URL till var påståendet finns (om tillgängligt)"
   claim_url_note: "* Obs! Om påståendet är en bild, använd den länken som URL (t.ex. http://website.com/image.jpg)"
   medium_claim: "Vad var mediet där påstående publicerades (t.ex. Twitter, Facebook, New York Times, etc.)? Lämna tomt om det är okänt eller osäkert."
   src_claim: "Vem är källan (skapare, författare, författare) som producerade påståendet? Lämna tomt om det är okänt eller osäker."
@@ -118,6 +116,11 @@ sv:
   share_claim: "Vill du dela detta publikt?"
   yes_share: "Ja, dela med alla"
   no_share: "Nej, håll det privat för mig"
+  claim_import: "Importera påstående"
+  claim_select_file: "Välj json-fil och klicka sedan på import:"
+  claim_select_url: "eller importera från URL:"
+  claim_option_include_review: "Inkludera den senaste associerade faktagranskningen automatiskt"
+  claim_option_overwrite: "Skriv över tidigare anspråk med samma titlar"
 
 #Claim/edit
   edit_a_claim: "Redigera ett påstående"
@@ -216,7 +219,7 @@ sv:
   resource_select_file: "Välj json-fil och klicka sedan på import:"
   resource_select_url: "eller importera från URL:"
   resource_option_add_qs: "Kopplade resurser till frågor automatiskt"
-  resource_option_overwrite: "Kopplade resurser till frågor automatiskt"
+  resource_option_overwrite: "Skriv över dem tidigare resurserna med samma titlar"
   resource_note_imports: "Obs: Du kan hitta filer att importera på"
   resource_fca_page: "Faktaasisstentens sida för faktakontroll av resurser"
   resource_fca_page_url: "https://faktaassistenten.sh.se/?page_id=179&lang=sv"
@@ -226,6 +229,9 @@ sv:
   go_back_to_resources: "Återgå till resurssidan"
   tutorial: "Tutorial"
   export_this_resource: "Exportera den här resursen"
+  export_this_claim: "Exportera det här påståendet"
+  export_this_medium: "Exportera det här mediet"
+  export_this_source: "Exportera den här källan"
 
 #within helper:
   reverse_image_search: "Omvänd bildsökning"
@@ -296,7 +302,6 @@ sv:
   sort_by_reviews: "faktagranskningar (mest faktagranskade först)"
   sort_by_pos_reviews: "positiva faktagranskningar"
   sort_by_neg_reviews: "negativa faktagranskningar"
-
   been_reviewed: " som har faktagranskats"
   you_reviewed: " att du har faktagranskat"
   with_no_reviews: " med inga faktagranskningar ännu"
@@ -309,6 +314,12 @@ sv:
   tag_added: " tillagd med framgång."
   tag_exist: " har redan lagts till och finns i DB!"
   tag_could_not_add: "Kunde inte lägga till "
+
+  claim_imported_successly: " importerat lyckades."
+  claim_imported: " importerat och ersatt äldre påstående med samma titel."
+  claim_not_imported: " inte importerad (påstående med samma titel finns redan eller skapats av en annan användare)."
+  claim_review_imported: " faktagranskning importerade och uppdaterade alla tidigare recensioner."
+  claim_review_not_imported: " faktagranskning har inte importerats av någon anledning."
 
 #medium_controller.rb
 
@@ -330,7 +341,7 @@ sv:
 # resources_controller.rb
 
   rsrc_imported: "importerad och ersatt äldre resurs med samma namn."
-  rsrc_imported_successfully: " importerat framgångsrikt."
+  rsrc_imported_successfully: " importerat lyckades."
   rsrc_not_imported: " inte importerad (resurs med samma namn finns redan)."
 
 #X_review/steps

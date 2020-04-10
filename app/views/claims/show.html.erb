@@ -54,6 +54,8 @@
 <p><%= t('added_by') %>: <%= User.find(@claim.user_id).name %>
 <br><%= t('created_at') %>: <%= @claim.created_at %>
 <br><%= t('updated_at') %>: <%= @claim.updated_at %></p>
+<br>
+<%= link_to t('export_this_claim'), export_claim_path(@claim), method: :post %>
 
 <br><br>
 <h5>
@@ -66,8 +68,8 @@
          <hr><%= link_to t('check_reviews')+" "+t('this_claim'), claim_claim_reviews_path(@claim.id) %>
          <%= link_to t('review').capitalize+" "+t('this_claim'), claim_claim_reviews_path(@claim.id), method: :create %>
      <% else %>
-         <%= link_to t('edit_review')+" "+t('this_claim'), claim_claim_reviews_path(@claim.id), method: :create %> |
-         <%= link_to t('del_review')+" "+t('this_claim'), claim_claim_review_path(@claim.id,@my_review), method: :delete, data: { confirm: t('warning_msg')} %>
+     <%= link_to t('edit')+" "+t('this_claim'), edit_claim_path(@claim) %> |
+     <%= link_to t('delete')+" "+t('this_claim'), claim_path(@claim), method: :delete, data: { confirm: @warning_msg } %>
          <% if @total_reviews>1 %>
             <hr> <%= link_to t('check_other_reviews') +" "+t('this_claim'), claim_claim_reviews_path(@claim.id) %><br>
         <% end %>
