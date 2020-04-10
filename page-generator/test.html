@@ -1,0 +1,58 @@
+<!-- Heading -->
+<div class="text-center mb-5">
+  <div class="col-12 col-md-10 col-lg-8 mx-auto">
+    <h4>You’re fact-checking a claim</h4>
+    <h2 class="text-primary"> <%= @claim.title %></h2>
+  </div>
+</div>
+<!-- Heading -->
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <%= form_for @{p}_review, method: :put, url: wizard_path do |f| %>
+
+      <div class="">
+        <% 
+            passed_step=false
+            @all_steps.each do |key,value| %>
+        <%= is_visible(key).html_safe %><div class="">
+          <% if (step==File.basename(wizard_path(key)))
+                    passed_step=true %>
+          <b><%== value %></b>
+          <% elsif passed_step %>
+          <%= f.submit value, style: '', class: 'no-style' %>
+          <% else %>
+          <%= f.submit value, style: '', class: 'no-style' %>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-9">
+
+
+    <% if (not @{p}.url.blank?) %>
+
+    <% else %>
+    URL: <%= t('not_provided') %>
+    <% end %>
+    <br>
+    <% if f.object.errors.any? %>
+    <div class="error_messages">
+      <% f.object.errors.full_messages.each do |error| %>
+      <p><%= error %></p>
+      <% end %>
+    </div>
+    <% end %>
+    <fieldset>
+      <h5><strong>{st}</strong></h5>
+
+      {qs}
+      {b}
+
+    </fieldset>
+    <%= link_to t('del_review'), {p}_{p}_review_path(@{p}.id,@{p}_review), style: '', method: :delete, data: {{ confirm: t('warning_del') }} %>
+    <% end %>
+  </div>
+</div>

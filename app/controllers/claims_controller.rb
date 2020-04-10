@@ -295,7 +295,6 @@ class ClaimsController < ApplicationController
         end
       end
     else
-      puts("\n=====\n creating new through form \n=====\n")
       @claim = current_user.claims.build(claim_params)
       if @claim.save
           redirect_to claims_path

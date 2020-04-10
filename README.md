@@ -1,4 +1,4 @@
 # Fact Check Assistant
 
-Work in progress
-
+bundle exec guard
+rails server
