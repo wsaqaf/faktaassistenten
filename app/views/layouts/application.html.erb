@@ -40,7 +40,7 @@
             </li>
             <% end %>
 
-            <!-- <% if !request.fullpath.include? "medi" then %>
+            <% if !request.fullpath.include? "medi" then %>
         <li class="nav-item"><%= link_to t('media'), media_path %></li>
         <% else %>
         <li class="nav-item"><%= link_to t('media'), media_path, style: 'text-decoration:underline' %></li>
@@ -49,7 +49,7 @@
         <li class="nav-item"><%= link_to t('sources'), srcs_path %></li>
         <% else %>
         <li class="nav-item"><%= link_to t('sources'), srcs_path, style: 'text-decoration:underline' %></li>
-        <% end %> -->
+        <% end %>
             <% if !request.fullpath.include? "resource" then %>
             <li class="nav-item">
               <%= link_to t('resources_for_verification'), resources_path %></li>
