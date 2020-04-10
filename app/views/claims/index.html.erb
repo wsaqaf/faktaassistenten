@@ -111,7 +111,7 @@
       if (!claim.description.nil?) then description=claim.description; else description=""; end
       url_prev=url_prev+"\n<h4><a href=\""+url+"\" target=_blank>"+claim.title+"</a></h4><p class=\"text\">"+description+"</p><br></div></div>"
    else
-     url_prev=claim.url_preview
+     url_prev=claim.url_preview.url_preview.delete('\\\\"')
    end
    %>
 
