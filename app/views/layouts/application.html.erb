@@ -15,7 +15,7 @@
     <div class="row">
 
       <nav class="navbar navbar-expand-lg navbar-light bg-white w-100">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href="<%= config.relative_url_root.to_s+"/" %>">
           <img src="<%= asset_path('logo.svg') %>" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -34,9 +34,9 @@
             <% end %>
 
             <% if !request.fullpath.include? "claims/new" then %>
-            <li class="nav-item"><%= link_to t('add_new'), "/claims/new" %></li>
+            <li class="nav-item"><%= link_to t('add_new'), new_claim_path %></li>
             <% else %>
-            <li class="nav-item"><%= link_to t('add_new'), "/claims/new", style: 'text-decoration:underline' %>
+            <li class="nav-item"><%= link_to t('add_new'), new_claim_path, style: 'text-decoration:underline' %>
             </li>
             <% end %>
 
