@@ -10,7 +10,7 @@ sv:
   step_3: "3. Publicera säkert på blockkedjan"
   step_3_d: "När en faktragranskning delats på blockkedjan, kan ingen mixtra med den."
   get_started: "Gör en faktagranskning!"
-  or_browse: "Eller utforska hela databasen" 
+  or_browse: "Eller utforska hela databasen"
   claim_t: "Du lägger till ett påstående"
   claim_d: "Tack för att du bidrar till en faktabaserad värld"
   tools_t: "Vi har samlat några av de bästa verktygen"
@@ -305,8 +305,8 @@ sv:
   been_reviewed: " som har faktagranskats"
   you_reviewed: " att du har faktagranskat"
   with_no_reviews: " med inga faktagranskningar ännu"
-  reviewed_by: "Faktagranskats av"
-  showing_reviews_for: "Visar faktagranskning för"
+  reviewed_by: "Faktagranskats av "
+  showing_reviews_for: "Visar faktagranskning för "
 
 #claims_controller.rb
 

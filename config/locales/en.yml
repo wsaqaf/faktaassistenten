@@ -10,7 +10,7 @@ en:
   step_3: "3. Publish on the blockchain"
   step_3_d: "Use our checklists and tools to make your fact checking more robust."
   get_started: "Get started fact-checking"
-  or_browse: "Or browse our database" 
+  or_browse: "Or browse our database"
   claim_t: "You're adding a claim"
   claim_d: "Thanks for contributing to a fact-based world"
   tools_t: "We collected some of the best fact-checking tools"
@@ -278,8 +278,8 @@ en:
   been_reviewed: " that have been reviewed"
   you_reviewed: " that you reviewed"
   with_no_reviews: " with no reviews yet"
-  reviewed_by: "Reviewed by"
-  showing_reviews_for: "Showing review for"
+  reviewed_by: "Reviewed by "
+  showing_reviews_for: "Showing review for "
 
 #claims_controller.rb
 

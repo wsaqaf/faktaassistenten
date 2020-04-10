@@ -35,7 +35,7 @@
 <!-- Claim Card -->
 <div class="container">
   <div class="row">
-    <div class="offset-2 col-6">
+    <div class="offset-1" style="width:900px">
       <p class="uppercase m-0">Claim </p>
       <p class="uppercase m-0" style="font-size: 10px"><% if claim.user_id == current_user.id || current_user.id==1
         dependent_reviews=ClaimReview.where("claim_id = ?",claim.id).count("id")
@@ -113,19 +113,25 @@
    else
      url_prev=claim.url_preview.delete('\\\\"')
    end
-   %>
+   if @total_reviews>0
+            url_prev=url_prev.gsub('\"','"').gsub("\\'", "'")
+            url_prev=url_prev.sub("</h4>","<div style='float: right'>"+@result2+"</td><td><a rel='nofollow' data-method='create' href='"+config.relative_url_root.to_s+"/claims/"+claim.id.to_s+"/claim_reviews'><img src='"+config.relative_url_root.to_s+"/"+revtype+".png' height=50 alt='"+t(revtype.downcase)+" "+t('review')+"' title='"+t(revtype.downcase)+" "+t('review')+"'><br><br><br><small><b><center>"+t(revtype.downcase)+" "+t('review')+"</center></b></small></a></td></tr></table></div></h4>")
+          else
+            url_prev=url_prev.gsub('\"','"').gsub("\\'", "'")
+            url_prev=url_prev.sub("</h4>","<div style='float: right'><a rel='nofollow' data-method='create' href='"+config.relative_url_root.to_s+"/claims/"+claim.id.to_s+"/claim_reviews'><img src='"+config.relative_url_root.to_s+"/Add.png' height=50 alt='" + t('add_review') + "' title='" + t('add_review') + "'><br><br><br><small><small><b><center>" + t('add_review') + "</center></b></small></small></a></div></h4>")
+   end %>
+  <%== url_prev %>
 
-        <%== url_prev %>
       </div>
 
 
     </div>
+    <!-- For the future, could preview media or type here
     <div class="col-2">
-      <!-- For the future, could preview media or type here -->
-      <!-- <div class="media">
+      <div class="media">
         <img style="border-radius:100%" src="https://via.placeholder.com/80" class="mr-3 mt-4" alt="...">
-      </div> -->
-    </div>
+      </div>
+    </div> -->
   </div>
 
 

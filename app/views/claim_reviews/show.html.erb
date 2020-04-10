@@ -1,10 +1,10 @@
 <div class="form-claim">
-    <h3><%= t('showing_reviews_for') %>claim:
+    <h6><%= t('showing_reviews_for') %>claim:
         <%= link_to @claim.title, claim_path(@claim.id) %>
         <hr>
-        <p><%= t('reviewed_by') %>: <%= User.find(@claim_review.user_id).name %>
-            <br><%= t('created_at') %>: <%= @claim_review.created_at %>
-            <br><%= t('updated_at') %>: <%= @claim_review.updated_at %>
+        <p><%= t('reviewed_by') %>: <%= User.find(@claim_review.user_id).name %><br>
+            <br><%= t('created_at') %>: <br><%= @claim_review.created_at %><br>
+            <br><%= t('updated_at') %>: <br><%= @claim_review.updated_at %>
 
             <% if @claim_review.user_id == current_user.id || current_user.id==1  %>
             <br><br><%= link_to t('edit_review'), claim_claim_reviews_path(@claim.id), method: :create %> -
@@ -12,7 +12,7 @@
             <% end %>
 
         </p>
-    </h3>
+    </h6>
 
     <%= form_for @claim_review, method: :put, url: claim_claim_review_path(@claim,@claim_review) do |f| %>
     <% if f.object.errors.any? %>
