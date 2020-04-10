@@ -31,7 +31,6 @@ en:
   tag_cloud: "Tag Cloud"
   show_all: "[ Show all ]"
   tags: "Tags"
-  updated_at: "Updated at"
   reviews: "Reviews"
   rate_false: "False"
   rate_mostly_false: "Mostly false"
@@ -46,8 +45,6 @@ en:
   delete: "Delete"
   show: "Show"
   add_review: "Add Review"
-  edit_review: "Edit Review"
-  del_review: "Delete Review"
   latest: "Latest"
   confirm_del_q: "Are you sure?"
   warning_msg1: "Are you sure you want to go ahead and delete this %{type}?"
@@ -60,7 +57,8 @@ en:
   assign_existing_tags: "Assign existing tags"
   add_tags: "Add tags"
   create_more_tags: "Create more tags"
-  type_new_tags: "Type in new tags seperated by commas"
+  type_new_tags: "Type in new tags separated by commas"
+  tag_exists: "Tag already exists"
   claim_url: "URL of where the claim is found (if available)"
   claim_url_note: "* Note: If the claim is an image, use that link as the URL (e.g., http://website.com/image.jpg)"
   medium_claim: "What was the medium where the claim was published (e.g., Twitter, Facebook, New York Times, etc.)? Leave blank if unknown or unsure."
@@ -76,6 +74,11 @@ en:
   share_claim: "Do you want to share this claim with other members?"
   yes_share: "Yes share with everyone"
   no_share: "No keep it private to me only"
+  claim_import: "Import claims(s)"
+  claim_select_file: "Select json file and then click import:"
+  claim_select_url: "or import from URL:"
+  claim_option_include_review: "Include the last associated review automatically"
+  claim_option_overwrite: "Overwrite earlier claims with the same titles"
 
 #Claim/show
   title_claim: "Title"
@@ -170,7 +173,7 @@ en:
   resource_select_file: "Select json file and then click import:"
   resource_select_url: "or import from URL:"
   resource_option_add_qs: "Associated resources to questions automatically"
-  resource_option_overwrite: "Associated resources to questions automatically"
+  resource_option_overwrite: "Overwrite earlier resources with the same name"
   resource_note_imports: "Note: You can find files to import at"
   resource_fca_page: "Faktaasisstenten's fact-checking resources page"
   resource_fca_page_url: "https://faktaassistenten.sh.se/?page_id=145"
@@ -180,6 +183,9 @@ en:
   go_back_to_resources: "Return to the Resources page"
   tutorial: "Tutorial"
   export_this_resource: "Export this resource"
+  export_this_claim: "Export this claim"
+  export_this_medium: "Export this medium"
+  export_this_source: "Export this source"
 
 #within helper:
   reverse_image_search: "Reverse image search"
@@ -263,6 +269,11 @@ en:
   tag_added: " added successfully."
   tag_exist: " added already and exists in the DB!"
   tag_could_not_add: "Could not add "
+  claim_imported_successfully: " imported successfully."
+  claim_imported: " imported and replaced older claim with the same name."
+  claim_not_imported: " not imported (claim with the same name already exists or created by another user)."
+  claim_review_imported: " review imported and updated any earlier reviews."
+  claim_review_not_imported: " review not imported for some reason."
 
 #medium_controller.rb
 

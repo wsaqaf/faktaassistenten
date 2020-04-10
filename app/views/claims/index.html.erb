@@ -16,7 +16,7 @@
           <%= t('tag_cloud') %> &nbsp; <span class="glyphicon glyphicon-plus"></span></a>
         <div class="panel-collapse collapse" id="Resources">
                <div id="tag_cloud">
-                 <% Tagging.group(:tag_id).order('count(claim_id) DESC').count.each do |tag|
+                 <% Tagging.group(:tag_id).order(Arel.sql('count(claim_id) DESC')).count.each do |tag|
                       name=Tag.find(tag[0]).claim_name
                       sz=tag[1]*2
                       if (tag[1]>15) then sz=30
