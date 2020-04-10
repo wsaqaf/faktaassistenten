@@ -39,8 +39,8 @@
             <li class="nav-item"><%= link_to t('add_new'), new_claim_path, style: 'text-decoration:underline' %>
             </li>
             <% end %>
-
-            <% if !request.fullpath.include? "medi" then %>
+<!-- To be activated when review steps are fixed
+        <% if !request.fullpath.include? "medi" then %>
         <li class="nav-item"><%= link_to t('media'), media_path %></li>
         <% else %>
         <li class="nav-item"><%= link_to t('media'), media_path, style: 'text-decoration:underline' %></li>
@@ -50,15 +50,17 @@
         <% else %>
         <li class="nav-item"><%= link_to t('sources'), srcs_path, style: 'text-decoration:underline' %></li>
         <% end %>
-            <% if !request.fullpath.include? "resource" then %>
-            <li class="nav-item">
-              <%= link_to t('resources_for_verification'), resources_path %></li>
-            <% else %>
-            <li class="nav-item">
-              <%= link_to t('resources_for_verification'), resources_path, style: 'text-decoration:underline' %>
-            </li>
+        <% if !request.fullpath.include? "resource" then %>
+        <li class="nav-item">
+        <%= link_to t('resources_for_verification'), resources_path %></li>
+        <% else %>
+        <li class="nav-item">
+        <%= link_to t('resources_for_verification'), resources_path, style: 'text-decoration:underline' %>
+        </li>
+        <% end %>
+-->
             <% end %>
-            <% end %>
+
             <!-- Languages -->
             <!-- Edit profiles -->
             <% if user_signed_in? %>
@@ -103,18 +105,10 @@
           <h4>Galileo</h4>
           <p>Galileo started as a research project called “the fact check assistant” and is developed in cooperation
             between "Future Journalism" and Södertörn University. <span style="color:white !important">
-
               <%= link_to t("read more"), about_index_path, style: "color:white" %> </span>
-
-
-
           </p>
-
-
           <br>
-
         </div>
-
         <div class="offset-2 col-md-4">
           <h5>Our partners</h5>
           <h6><b>Södertörn University</b> </h6>
