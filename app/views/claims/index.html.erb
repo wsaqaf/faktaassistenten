@@ -5,7 +5,7 @@
   </div>
 </div>
 <div class="container">
-  <% if user_signed_in? %>
+<% if user_signed_in? %>
   <div class="form-row">
     <div class="col-md-4">
       <!-- Filter -->
@@ -99,14 +99,14 @@
 
       <!-- URL PREVIEW -->
 
-      <div>
+    <div>
         <%
     if !claim.url_preview.present?
       url_prev='<br><div id="final_url_preview" class="fragment">'
       url_prev=url_prev+'<div style="text-align: left"><img src="'+config.relative_url_root.to_s+'assets/claim.png" id="cimg" height=75 />'
       if (!claim.url.nil?) then url=claim.url; else url=""; end
       if (!claim.description.nil?) then description=claim.description; else description=""; end
-      url_prev=url_prev+"\n<h4><a href=\""+url+"\" target=_blank>"+claim.title+"</a></h4><p class=\"text\">"+description+"</p><br></div>"
+      url_prev=url_prev+"\n<h4><a href=\""+url+"\" target=_blank>"+claim.title+"</a></h4><p class=\"text\">"+description+"</p><br></div></div>"
    else
      url_prev=claim.url_preview.delete('\\\\"')
    end
@@ -125,47 +125,22 @@
     <%= link_to t('del_review'), claim_claim_review_path(claim.id,@my_review), method: :delete, data: { confirm: t('confirm_del_q')} %></b>
   <% end %>
 
-      </div>
+  </div>
 
+  </div>
 
     </div>
     <!-- For the future, could preview media or type here
     <div class="col-2">
       <div class="media">
         <img style="border-radius:100%" src="https://via.placeholder.com/80" class="mr-3 mt-4" alt="...">
-      </div>
-    </div> -->
+      </div> -->
+
   </div>
-
-
-
-
   <hr>
 </div>
-
-
-<!-- OLD CODE  -->
-
-
-<%
-           if !claim.url_preview.present?
-             url_prev='<br><div id="final_url_preview" class="fragment">'
-             url_prev=url_prev+'<div style="text-align: left"><img src="'+config.relative_url_root.to_s+'/claim.png" id="cimg" height=75 />'
-             if (!claim.url.nil?) then url=claim.url; else url=""; end
-             if (!claim.description.nil?) then description=claim.description; else description=""; end
-             url_prev=url_prev+"\n<h4><a href=\""+url+"\" target=_blank>"+claim.title+"</a></h4><p class=\"text\">"+description+"</p><br></div></div>"
-          else
-            url_prev=claim.url_preview
-          end
-          if @total_reviews>0
-              url_prev=url_prev.gsub('\"','"').gsub("\\'", "'")
-              url_prev=url_prev.sub("</h4>","<div style='float: right'>"+@result2+"</td><td></td></tr></table></div></h4>")
-            else
-              url_prev=url_prev.gsub('\"','"').gsub("\\'", "'")
-              url_prev=url_prev.sub("</h4>","<div style='float: right'><a rel='nofollow' data-method='create' href='"+config.relative_url_root.to_s+"/claims/"+claim.id.to_s+"/claim_reviews'><img src='"+config.relative_url_root.to_s+"/Add.png' height=50 alt='" + t('add_review') + "' title='" + t('add_review') + "'><br><br><br><small><small><b><center>" + t('add_review') + "</center></b></small></small></a></div></h4>")
-           end %>
-
 <% end %>
+
 <div class="container">
 
 
