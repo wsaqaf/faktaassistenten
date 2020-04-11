@@ -6,7 +6,7 @@ lock "~> 3.11.0"
 set :application, "fca"
 set :stages, ["production"]
 set :default_stage, "production"
-set :repo_url, "https://github.com/wsaqaf/fca.git"
+set :repo_url, "https://github.com/wsaqaf/faktaassistenten.git"
 set :user, "wsaqaf"
 set :deploy_to, "/var/www/faktaassistenten/test"
 
