@@ -96,18 +96,22 @@
             end
         end
       end %>
+    <small>
         <% if (@total_reviews>0) %>
           <% if !result1.empty? %>
             <%= result1 %>
-            <small><%= link_to "(" + t('show_reviews', reviews: @total_reviews), claim_claim_reviews_path(claim.id) %> |
+            <%= link_to "(" + t('show_reviews', reviews: @total_reviews), claim_claim_reviews_path(claim.id) %> |
             <% if @revtype == "Add" %>
-                <%= link_to t('add_review'), claim_claim_reviews_path(claim.id), method: :create %> )</small>
+                <%= link_to t('add_review'), claim_claim_reviews_path(claim.id), method: :create %> )
             <% else %>
                 <%= link_to t('edit_review'), claim_claim_reviews_path(claim.id), method: :create %> |
-                <%= link_to t('del_review'), claim_claim_review_path(claim.id,@my_review), method: :delete, data: { confirm: t('confirm_del_q')} %> )</small>
+                <%= link_to t('del_review'), claim_claim_review_path(claim.id,@my_review), method: :delete, data: { confirm: t('confirm_del_q')} %> )
             <% end %>
           <% end %>
+        <% else %>
+            <div  style='float:right'><%= link_to t('add_review'), claim_claim_reviews_path(claim.id), method: :create %></div><br>
         <% end %>
+    </small>
       </div>
 
       <!-- URL PREVIEW -->

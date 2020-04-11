@@ -335,11 +335,7 @@ class ClaimsController < ApplicationController
           clm=Claim.find(params[:id])
           result_json=[]
           claim_rev={}
-          if (current_user.id==1)
-            clm_review = ClaimReview.where("claim_id=1 AND review_sharing_mode=1",clm.id,current_user.id).first
-          else
-            clm_review = ClaimReview.where("claim_id=? AND review_sharing_mode=1 AND user_id=?",clm.id,current_user.id).first            
-          end
+          clm_review = ClaimReview.where("claim_id=? AND review_sharing_mode=1",clm.id).first
           if (!clm_review.blank?)
             claim_rev={
                 "img_review_started" => clm_review.img_review_started,
