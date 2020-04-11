@@ -66,8 +66,8 @@ sv:
 # Claims/index
 
   or: "eller"
-  import: "importera"
-  export: "exportera"
+  import: "Importera"
+  export: "Exportera"
   search: "Sök"
   no_results: "Inga resultat."
   tag_cloud: "Tag Cloud"

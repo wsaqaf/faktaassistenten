@@ -42,8 +42,8 @@ en:
 # Claims/index
 
   or: "or"
-  import: "import"
-  export: "export"
+  import: "Import"
+  export: "Export"
   search: "Search"
   no_results: "No results were returned."
   tag_cloud: "Tag Cloud"
