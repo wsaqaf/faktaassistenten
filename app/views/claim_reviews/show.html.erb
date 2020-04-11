@@ -1,5 +1,5 @@
 <div class="form-claim">
-    <h6><%= t('showing_reviews_for') %>claim:
+    <h6><%= t('showing_reviews_for') %>claim:<br>
         <%= link_to @claim.title, claim_path(@claim.id) %>
         <hr>
         <p><%= t('reviewed_by') %>: <%= User.find(@claim_review.user_id).name %><br>
