@@ -380,6 +380,8 @@ class ClaimsController < ApplicationController
           end
           claim_json = {
             "title" => clm.title,
+            "url" => clm.url,
+            "url_preview" => clm.url_preview,
             "description" => clm.description,
             "has_image" => clm.has_image,
             "has_video" => clm.has_video,
