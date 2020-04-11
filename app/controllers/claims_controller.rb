@@ -335,7 +335,7 @@ class ClaimsController < ApplicationController
           clm=Claim.find(params[:id])
           result_json=[]
           claim_rev={}
-          clm_review = ClaimReview.where("claim_id=? AND user_id=?",clm.id,current_user.id).first
+          clm_review = ClaimReview.where("claim_id=? (AND user_id=? OR user_id=1)",clm.id,current_user.id).first
           if (!clm_review.blank?)
             claim_rev={
                 "img_review_started" => clm_review.img_review_started,
