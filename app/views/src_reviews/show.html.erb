@@ -1,6 +1,6 @@
 
               <div class="form-claim">
-              <h3><%= t('showing_reviews_for') %>src:
+              <h6><%= t('showing_reviews_for') %>src:<br>
                    <%= link_to @src.name, src_path(@src.id) %>
                    <hr><p><%= t('reviewed_by') %>: <%= User.find(@src_review.user_id).name %>
 <br><%= t('created_at') %>: <%= @src_review.created_at %>
@@ -12,7 +12,7 @@
                     <% end %>
 
                    </p>
-              </h3> 
+              </h6> 
 
               <%= form_for @src_review, method: :put, url: src_src_review_path(@src,@src_review) do |f| %>
               <% if f.object.errors.any? %>
@@ -124,7 +124,7 @@
                   <% end %>
               
                   <% if (@src_review.user_id==current_user.id or @src_review.src_review_sharing_mode==1) and !@src_review.note_src_review_description.blank? %>
-                      <li><b>*</b> <%== t('optional_note') %>
+                      <li><b>*</b> <%== t('references') %>
                       <br><b><%= f.text_area(:note_src_review_description, size: '50x10', class: 'field-long field-textarea', value:@src_review.note_src_review_description, disabled: @src_review.user_id!=current_user.id) %></b>
                       <br><hr>
                       </li>

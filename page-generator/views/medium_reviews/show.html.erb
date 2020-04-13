@@ -1,6 +1,6 @@
 
               <div class="form-claim">
-              <h3><%= t('showing_reviews_for') %>medium:
+              <h6><%= t('showing_reviews_for') %>medium:<br>
                    <%= link_to @medium.name, medium_path(@medium.id) %>
                    <hr><p><%= t('reviewed_by') %>: <%= User.find(@medium_review.user_id).name %>
 <br><%= t('created_at') %>: <%= @medium_review.created_at %>
@@ -12,7 +12,7 @@
                     <% end %>
 
                    </p>
-              </h3> 
+              </h6> 
 
               <%= form_for @medium_review, method: :put, url: medium_medium_review_path(@medium,@medium_review) do |f| %>
               <% if f.object.errors.any? %>
@@ -180,7 +180,7 @@
                   <% end %>
               
                   <% if (@medium_review.user_id==current_user.id or @medium_review.medium_review_sharing_mode==1) and !@medium_review.note_medium_review_description.blank? %>
-                      <li><b>*</b> <%== t('optional_note') %>
+                      <li><b>*</b> <%== t('references') %>
                       <br><b><%= f.text_area(:note_medium_review_description, size: '50x10', class: 'field-long field-textarea', value:@medium_review.note_medium_review_description, disabled: @medium_review.user_id!=current_user.id) %></b>
                       <br><hr>
                       </li>
