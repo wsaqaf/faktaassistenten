@@ -37,6 +37,6 @@ s_index,sec_number,stage_number,stage_title,q_short,q_title,first_in_sec,is_requ
 20,s20,4,calculating_score_claim_title,calculated_score_q_short,calculated_score_q_long,1,0,,,,,,
 21,s21,5,assessing_claim_rel_title,review_verdict_q_short,review_verdict_q_long,1,1,review_verdict,radio,"rate_false,rate_mostly_false,rate_mixed,rate_mostly_true,rate_true,rate_no_decision",1 2 3 4 5 0,,
 21,s21,5,assessing_claim_rel_title,review_description_q_short,review_description_q_long,,0,review_description,textarea,,,,
-21,s21,5,assessing_claim_rel_title,,optional_note,,0,note_review_description,textarea,,,,
+21,s21,5,assessing_claim_rel_title,,references,,0,note_review_description,textarea,,,,
 22,s22,6,share_setting,share_setting_brief,review_sharing_mode_q_long,1,1,review_sharing_mode,radio,"yes_share,no_share",1 -1,,
 22,s22,6,share_setting,,claim_review_field,,0,note_review_sharing_mode,textarea,,,,

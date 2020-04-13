@@ -1,42 +1,51 @@
-<div class="form-claim">
-  <fieldset>
-    <legend>&nbsp;<%= t('add_new_medium') %></legend>
-    <%= form_for @medium, :html => { :onsubmit => "do_submit('medium')" } do |f| %>
-      <% if f.object.errors.any? %>
-      <div class="error_messages">
-          <% f.object.errors.full_messages.each do |error| %>
-            <p><%= error %></p>
-          <% end %>
-      </div>
-      <% end %>
-    <ul>
-      <li><%= t('give_medium_title') %><span class='required'>*</span>
-      <%= f.text_field :name, :onchange => "NewMedium('"+config.relative_url_root.to_s+"',0,'medium','media','media')", class: 'field-long', :autocomplete=>"off" %>
-      </li>
-      <div id="medium_note"></div>
-      <li>
-      <%= t('medium_url') %>
-      <%= f.text_field :url, :onchange => "URLPreview('"+config.relative_url_root.to_s+"','medium')", class: 'field-long', :autocomplete=>"off" %>
-      </li>
-      <div id="url_preview_block"></div>
-      <%= f.hidden_field :url_preview %>
-      <li>
-      <%= t('medium_type') %>
-        <%= f.select :medium_type, options_for_select(@medium_types, :selected => @medium.medium_type) %>
-      </li>
-      <li>
-        <%= t('share_medium') %><br>
-          &nbsp;&nbsp;<b><%= f.radio_button :sharing_mode, '1', :checked => @medium.sharing_mode==1 || @medium.sharing_mode.nil? %> <%= t('yes_share') %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <%= f.radio_button :sharing_mode, '-1', :checked => @medium.sharing_mode==-1 %> <%= t('no_share') %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
-      </li>
-      <li>
-      <br><%= t('more_notes_medium') %>
-      <%= f.text_area(:description, size: '50x10', class: 'field-long field-textarea') %>
-      </li>
-      <li>
-        <%= f.submit t('submit'), :class => 'btn btn btn-primary', id: "submit" %>
-      </li>
-    </ul>
-    <% end %>
-  </fieldset>
+<div class="text-center mb-5">
+  <div class="col-12 col-md-10 col-lg-8 mx-auto">
+    <h1><%= t('medium_t') %></h1>
+    <p><%= t('claim_d') %></p>
   </div>
+</div>
+ <div class="container">
+  <div class="row">
+    <div class="col-12 col-md-8 offset-md-2">
+      <fieldset>
+        <legend>&nbsp;<%= t('add_new_medium') %></legend>
+        <%= form_for @medium, :html => { :onsubmit => "do_submit('medium')" } do |f| %>
+          <% if f.object.errors.any? %>
+          <div class="error_messages">
+              <% f.object.errors.full_messages.each do |error| %>
+                <p><%= error %></p>
+              <% end %>
+          </div>
+          <% end %>
+        <ul>
+          <li><%= t('give_medium_title') %><span class='required'>*</span>
+          <%= f.text_field :name, :onchange => "NewMedium('"+config.relative_url_root.to_s+"',0,'medium','media','media')", class: 'field-long', :autocomplete=>"off" %><br>
+          </li>
+          <div id="medium_note"></div><br>
+          <li>
+          <%= t('medium_url') %>
+          <%= f.text_field :url, :onchange => "URLPreview('"+config.relative_url_root.to_s+"','medium')", class: 'field-long', :autocomplete=>"off" %><br>
+          </li>
+          <div id="url_preview_block"></div><br>
+          <%= f.hidden_field :url_preview %>
+          <li>
+          <%= t('medium_type') %>
+            <%= f.select :medium_type, options_for_select(@medium_types, :selected => @medium.medium_type) %><br><br>
+          </li>
+          <li>
+            <%= t('share_medium') %><br>
+              &nbsp;&nbsp;<b><%= f.radio_button :sharing_mode, '1', :checked => @medium.sharing_mode==1 || @medium.sharing_mode.nil? %> <%= t('yes_share') %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <%= f.radio_button :sharing_mode, '-1', :checked => @medium.sharing_mode==-1 %> <%= t('no_share') %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b><br><br>
+          </li>
+          <li>
+          <%= t('more_notes_medium') %><br>
+          <%= f.text_area(:description, size: '50x10', class: 'field-long field-textarea') %><br>
+          </li>
+            <%= f.submit t('submit'), :class => 'btn btn btn-primary', id: "submit" %>
+        </ul>
+        <% end %>
+      </fieldset>
+      <hr>
+    </div>
+  </div>
+</div>

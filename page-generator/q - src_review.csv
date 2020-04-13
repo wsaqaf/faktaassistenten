@@ -14,6 +14,6 @@ s_index,sec_number,stage_number,stage_title,q_short,q_title,first_in_sec,is_requ
 7,s7,1,reviewing_the_src_title,calculated_score_q_short,calculated_score_q_long,1,0,,,,,src_known==1 and src_review_started==1,"s23,s31"
 8,s8,2,assessing_src_rel_title,review_verdict_q_short,review_verdict_q_long,1,1,src_review_verdict,radio,"rate_totally_untrustworthy,rate_mostly_untrustworthy,rate_somewhat_untrustworthy,rate_mostly_trustworthy,rate_totally_trustworthy,rate_no_answer",1 2 3 4 5 0,src_known==1 and src_review_started==1,"s23,s31"
 8,s8,2,assessing_src_rel_title,review_description_q_short,review_description_q_long,,0,src_review_description,textarea,,,src_known==1 and src_review_started==1,"s23,s31"
-8,s8,2,assessing_src_rel_title,,optional_note,,0,note_src_review_description,textarea,,,src_known==1 and src_review_started==1,"s23,s31"
+8,s8,2,assessing_src_rel_title,,references,,0,note_src_review_description,textarea,,,src_known==1 and src_review_started==1,"s23,s31"
 9,s9,3,share_setting,share_setting_brief,review_sharing_mode_q_long,1,1,src_review_sharing_mode,radio,"yes_share,no_share",1 -1,src_known==1 and src_review_started==1,"s23,s31"
 9,s9,3,share_setting,,optional_note,,0,note_src_review_sharing_mode,textarea,,,src_known==1 and src_review_started==1,"s23,s31"

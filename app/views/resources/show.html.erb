@@ -20,14 +20,14 @@
         <% else %>
           <small><%= t('not_provided') %></small>
         <% end %></p>
-      <h5><%= t('description') %>:
+      <h6><%= t('description') %>:
         <% if @resource.description.present? %>
           <%= @resource.description %>
         <% else %>
           <%= t('not_provided') %>
         <% end %>
-      </h5>
-      <h5><%= t('tutorial') %>:
+      </h6>
+      <h6><%= t('tutorial') %>:
         <% if (!@resource.tutorial.blank?) %>
           <% if ((@resource.tutorial.include? "youtube.com" or @resource.tutorial.include? "youtu.be")) %>
             <%= link_to @resource.tutorial,@resource.tutorial %>
@@ -45,10 +45,10 @@
         <% else %>
           <%= t('not_provided') %>
         <% end %>
-      </h5>
-      <h5><%= t('added_by') %>: <%= User.find(@resource.user_id).name %></h5>
-      <h5><%= t('created_at') %>: <%= @resource.created_at %></h5>
-      <h5><%= t('updated_at') %>: <%= @resource.updated_at %></h5>
+      </h6>
+      <h6><%= t('added_by') %>: <%= User.find(@resource.user_id).name %></h6>
+      <h6><%= t('created_at') %>: <%= @resource.created_at %></h6>
+      <h6><%= t('updated_at') %>: <%= @resource.updated_at %></h6>
       <br>
       <%= link_to t('export_this_resource'), export_resource_path(@resource), method: :post %>
       <br>

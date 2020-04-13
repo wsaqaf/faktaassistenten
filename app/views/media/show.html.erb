@@ -1,6 +1,6 @@
 <div class="container">
-<h2><%= t('title_claim') %>: <%= @medium.name %></h2>
-<h5><%= t('url') %>:
+<h3><%= t('title_claim') %>: <%= @medium.name %></h3>
+<h6><%= t('url') %>:
   <% if @medium.url.present? %>
     <%= link_to @medium.url,@medium.url %>
     <% if @medium.url_preview.present? %>
@@ -9,36 +9,36 @@
   <% else %>
   <%= t('not_provided') %>
   <% end %>
-</h5>
-<h5><%= t('share_setting') %>?
+</h6>
+<h6><%= t('share_setting') %>?
   <% if @medium.sharing_mode==1 %>
     <%= t('is_shared') %>
   <% else %>
       <%= t('is_private') %>
   <% end %>
-</h5>
-<h5><%= t('description') %>:
+</h6>
+<h6><%= t('description') %>:
   <% if @medium.description.present? %>
     <%= @medium.description %>
   <% else %>
       <%= t('not_provided') %>
   <% end %>
-</h5>
-<h5>
+</h6>
+<h6>
   <%= t('medium_type') %>
   <% if @medium_type.present? %>
      <%= @medium_type %>
   <% else %>
      <%= t('not_provided') %>
   <% end %>
-</h5>
+</h6>
 <p><%= t('added_by') %>: <%= User.find(@medium.user_id).name %>
 <br><%= t('created_at') %>: <%= @medium.created_at %>
 <br><%= t('updated_at') %>: <%= @medium.updated_at %></p>
 
 <hr><%= link_to t('claims_connected')+" "+t('this_medium'), claims_path(:m => @medium.id) %>
 <br><br>
-<h5>
+<h6>
   <%
     @reviews = MediumReview.where("medium_id=? AND (medium_review_sharing_mode=1 OR user_id=?)",@medium.id,current_user.id)
     if (@reviews.blank?) then @total_reviews=0 else @total_reviews=@reviews.size end %>
@@ -58,7 +58,7 @@
        <%= link_to t('review').capitalize+" "+t('this_medium'), medium_medium_reviews_path(@medium.id), method: :create %>
  <% end %>
 
-</h5>
+</h6>
 <br><br>
 
 <%= link_to t('go_back'), media_path %>

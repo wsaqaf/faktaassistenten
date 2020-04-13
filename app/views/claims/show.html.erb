@@ -1,10 +1,10 @@
 <div class="container">
-<h2><%= t('title_claim') %>: <%= @claim.title %></h2>
+<h3><%= t('title_claim') %>: <%= @claim.title %></h3>
 <% if @claim.tag_list.size>0 %>
     <%= t('tags_claim') %>: <%= raw @claim.tags.map(&:claim_name).map { |t| link_to t, tag_path(t) }.join(', ') %>
 <% end %>
 
-<h5><%= t('url') %>:
+<h6><%= t('url') %>:
 <% if @claim.url.present? %>
   <%= link_to @claim.url,@claim.url %>
   <% if @claim.url_preview.present? %>
@@ -13,8 +13,8 @@
 <% else %>
   <%= t('not_provided') %>
 <% end %>
-</h5>
-<h5><%= t('medium').capitalize %>:
+</h6>
+<h6><%= t('medium').capitalize %>:
 <% if @claim.medium_id.present? %>
   <% begin %>
     <% @medium = Medium.find @claim.medium_id %>
@@ -24,8 +24,8 @@
 <% else %>
     <%= t('not_provided') %>
 <% end %>
-</h5>
-<h5><%= t('source').capitalize %>:
+</h6>
+<h6><%= t('source').capitalize %>:
   <% if @claim.src_id.present? %>
   <% begin %>
     <% @src = Src.find @claim.src_id %>
@@ -35,21 +35,21 @@
  <% else %>
      <%= t('not_provided') %>
  <% end %>
-</h5>
-<h5><%= t('share_setting') %>?
+</h6>
+<h6><%= t('share_setting') %>?
   <% if @claim.sharing_mode==1 %>
     <%= t('is_shared') %>
   <% else %>
       <%= t('is_private') %>
   <% end %>
-</h5>
-<h5><%= t('description') %>:
+</h6>
+<h6><%= t('description') %>:
   <% if @claim.description.present? %>
     <%= @claim.description %>
   <% else %>
       <%= t('not_provided') %>
   <% end %>
-</h5>
+</h6>
 <hr>
 <p><%= t('added_by') %>: <%= User.find(@claim.user_id).name %>
 <br><%= t('created_at') %>: <%= @claim.created_at %>
@@ -58,27 +58,25 @@
 <%= link_to t('export_this_claim'), export_claim_path(@claim), method: :post %>
 
 <br><br>
-<h5>
-  <%
-    @reviews = ClaimReview.where("claim_id=? AND (review_sharing_mode=1 OR user_id=?)",@claim.id,current_user.id)
-    if (@reviews.blank?) then @total_reviews=0 else @total_reviews=@reviews.size end %>
- <% if (@total_reviews>0) %>
-    <%  @my_review = ClaimReview.where(claim_id: @claim.id, user_id: current_user.id)
+<h6>
+ <% @reviews = ClaimReview.where("claim_id=? AND (review_sharing_mode=1 OR user_id=?)",@claim.id,current_user.id)
+    if (@reviews.blank?) then @total_reviews=0 else @total_reviews=@reviews.size end
+    if (@total_reviews>0)
+       @my_review = ClaimReview.where(claim_id: @claim.id, user_id: current_user.id).first
       if (@my_review.blank?) %>
          <hr><%= link_to t('check_reviews')+" "+t('this_claim'), claim_claim_reviews_path(@claim.id) %>
          <%= link_to t('review').capitalize+" "+t('this_claim'), claim_claim_reviews_path(@claim.id), method: :create %>
      <% else %>
-     <%= link_to t('edit')+" "+t('this_claim'), edit_claim_path(@claim) %> |
-     <%= link_to t('delete')+" "+t('this_claim'), claim_path(@claim), method: :delete, data: { confirm: @warning_msg } %>
-         <% if @total_reviews>1 %>
-            <hr> <%= link_to t('check_other_reviews') +" "+t('this_claim'), claim_claim_reviews_path(@claim.id) %><br>
-        <% end %>
-    <% end %>
- <% else %>
-       <%= link_to t('review').capitalize+" "+t('this_claim'), claim_claim_reviews_path(@claim.id), method: :create %>
+        <%= link_to t('see_your_review') +" "+t('this_claim'), claim_claim_review_path(@claim.id,@my_review.id) %>
+       <% if @total_reviews>1 %>
+          <hr> <%= link_to t('check_other_reviews') +" "+t('this_claim'), claim_claim_reviews_path(@claim.id) %><br>
+       <% end
+     end
+  else %>
+    <br><%= link_to t('review').capitalize+" "+t('this_claim'), claim_claim_reviews_path(@claim.id), method: :create %>
  <% end %>
 
-</h5>
+</h6>
 <br><br>
 <%= link_to t('go_back'), claims_path %>
 

@@ -1,42 +1,50 @@
-<div class="form-claim">
-  <fieldset>
-    <legend>&nbsp;<%= t('add_new_src') %></legend>
-    <%= form_for @src, :html => { :onsubmit => "do_submit('source')" } do |f| %>
-      <% if f.object.errors.any? %>
-      <div class="error_messages">
-          <% f.object.errors.full_messages.each do |error| %>
-            <p><%= error %></p>
+  <div class="text-center mb-5">
+    <div class="col-12 col-md-10 col-lg-8 mx-auto">
+      <h1><%= t('src_t') %></h1>
+      <p><%= t('claim_d') %></p>
+    </div>
+  </div>
+   <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-8 offset-md-2">
+        <fieldset>
+          <legend>&nbsp;<%= t('add_new_src') %></legend>
+          <%= form_for @src, :html => { :onsubmit => "do_submit('source')" } do |f| %>
+            <% if f.object.errors.any? %>
+            <div class="error_messages">
+                <% f.object.errors.full_messages.each do |error| %>
+                  <p><%= error %></p>
+                <% end %>
+            </div>
+            <% end %>
+          <ul>
+            <li><%= t('give_src_title') %><span class='required'>*</span>
+            <%= f.text_field :name, class: 'field-long', :onchange => "NewMedium('"+config.relative_url_root.to_s+"',0,'src','srcs','source')", class: 'field-long', :autocomplete=>"off" %><br><br>
+            </li>
+            <div id="src_note"></div>
+            <li>
+            <%= t('src_url') %>
+            <%= f.text_field :url, :onchange => "URLPreview('"+config.relative_url_root.to_s+"','src')", class: 'field-long', :autocomplete=>"off" %><br><br>
+            </li>
+            <div id="url_preview_block"></div>
+            <%= f.hidden_field :url_preview %>
+            <li>
+            <%= t('src_type') %>
+            <%= f.select :src_type, options_for_select(@src_types, :selected => @src.src_type) %><br><br>
+            </li>
+            <li>
+              <%= t('share_src') %><br>
+              &nbsp;&nbsp;<b><%= f.radio_button :sharing_mode, '1', :checked => @src.sharing_mode==1 || @src.sharing_mode.nil? %> <%= t('yes_share') %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <%= f.radio_button :sharing_mode, '-1', :checked => @src.sharing_mode==-1 %> <%= t('no_share') %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b><br><br>
+          </li>
+          <li><%= t('more_notes_src') %>
+            <%= f.text_area(:description, size: '50x10', class: 'field-long field-textarea') %>
+            </li>
+              <%= f.submit t('submit'), :class => 'btn btn btn-primary', id: 'submit' %>
+          </ul>
           <% end %>
+        </fieldset>
+        <hr>
       </div>
-      <% end %>
-    <ul>
-      <li><%= t('give_src_title') %><span class='required'>*</span>
-      <%= f.text_field :name, class: 'field-long', :onchange => "NewMedium('"+config.relative_url_root.to_s+"',0,'src','srcs','source')", class: 'field-long', :autocomplete=>"off" %>
-      </li>
-      <div id="src_note"></div>
-      <li>
-      <%= t('src_url') %>
-      <%= f.text_field :url, :onchange => "URLPreview('"+config.relative_url_root.to_s+"','src')", class: 'field-long', :autocomplete=>"off" %>
-      </li>
-      <div id="url_preview_block"></div>
-      <%= f.hidden_field :url_preview %>
-      <li>
-      <%= t('src_type') %>
-      <%= f.select :src_type, options_for_select(@src_types, :selected => @src.src_type) %>
-      </li>
-      <li>
-        <%= t('share_src') %><br>
-        &nbsp;&nbsp;<b><%= f.radio_button :sharing_mode, '1', :checked => @src.sharing_mode==1 || @src.sharing_mode.nil? %> <%= t('yes_share') %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <%= f.radio_button :sharing_mode, '-1', :checked => @src.sharing_mode==-1 %> <%= t('no_share') %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
-    </li>
-    <li>
-    <br><%= t('more_notes_src') %>
-      <%= f.text_area(:description, size: '50x10', class: 'field-long field-textarea') %>
-      </li>
-      <li>
-        <%= f.submit t('submit'), :class => 'btn btn btn-primary', id: 'submit' %>
-      </li>
-    </ul>
-    <% end %>
-  </fieldset>
+    </div>
   </div>

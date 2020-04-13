@@ -6,13 +6,10 @@
 </div>
 
 <div class="container">
-  <div class="row" style="padding: 30px">
+  <div class="row" style="padding: 30px;">
     <div class="columnl">
-      <%= link_to t('add')+" "+t('or')+" "+t('import')+" "+t('resource'), new_resource_path,:class=>'btn btn btn-primary',:style=>'' %>
-    </div>
-    <div class="columnr">
       <%= form_tag(resources_path, method: :get, class: "form-inline") do %>
-      <%= text_field_tag :q, params[:q], class: "form-control" %>
+      <%= text_field_tag :q, params[:q], class: "form-control" %>&nbsp;
       <%= submit_tag t('search'), name: nil, :class => 'btn btn btn-primary' %>
       <% end %></div>
   </div>
@@ -32,12 +29,14 @@
 
       <% @resources.each do |resource| %>
 
-      <div class="card">
+      <div class="card" style="background-color: #D9FBFB">
         <!-- <img class="card-img-top" src="" alt="Card"> -->
         <div class="card-body">
-          <h5 class="card-title"><%= link_to resource.name, resource_path(resource) %></h5>
+          <h5 class="card-title" style="text-align: center;><%= link_to resource.name, resource_path(resource) %></h5>
           <p class="card-text">
-
+            <% if !resource.icon.blank? %>
+             <div style="text-align: center"><img src='<%= resource.icon %>' width=150></div>
+            <% end %>
             <%= resource.description %>
             <h4>
 
@@ -55,7 +54,7 @@
           if (not @my_entry.blank?) %>
           <small>
             <%= link_to t('edit'), edit_resource_path(@my_entry) %> |
-            <%= link_to t('delete'), resource_path(@my_entry), method: :delete, data: { confirm: "Are you sure?"} %>
+            <%= link_to t('delete'), resource_path(@my_entry), method: :delete, data: { confirm: t('warning_msg1', type: 'resource') } %>
             <!-- -
             <%= link_to "Export", export_resource_path(resource), method: :post %> -->
 
@@ -68,8 +67,8 @@
       <% end %>
     </div>
   </div>
-  <!-- <% if @total_count>10 then %> <%== pagy_bootstrap_nav(@pagy) %> <% end %> -->
+  <% if @total_count>10 then %> <%== pagy_bootstrap_nav(@pagy) %> <% end %>
 </div>
-<div class="container text-center p2">
-  <%= link_to t('add_new_resource'), new_resource_path, :class=>'btn btn btn-secondary', :style=>'' %>
+<div class="container text-left p2">
+  <%= link_to t('add')+" "+t('or')+" "+t('import')+" "+t('resource'), new_resource_path,:class=>'btn btn btn-secondary',:style=>'' %>
 </div>

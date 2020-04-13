@@ -177,6 +177,11 @@ class ClaimsController < ApplicationController
   end
 
   def create
+    start_review=0
+    if (!params[:claim].nil?)
+      start_review=params[:claim][:start_review]
+      params[:claim].delete(:start_review)
+    end
     @import_note=""
     if (params[:claims_json].present?)
       massport
@@ -289,7 +294,15 @@ class ClaimsController < ApplicationController
       else
         @claim = current_user.claims.build(claim_params)
         if @claim.save
-            redirect_to claims_path
+            if start_review=="1"
+              @claim_review = ClaimReview.new
+              @claim_review.claim_id=@claim.id
+              @claim_review.user_id=current_user.id
+              @claim_review.save(validate: false)
+              redirect_to claim_claim_review_step_path(@claim,@claim_review, ClaimReview.form_steps.first)
+            else
+              redirect_to claims_path
+            end
         else
             render 'new'
         end
@@ -297,7 +310,15 @@ class ClaimsController < ApplicationController
     else
       @claim = current_user.claims.build(claim_params)
       if @claim.save
+        if start_review==1
+          @claim_review = ClaimReview.new
+          @claim_review.claim_id=@claim.id
+          @claim_review.user_id=current_user.id
+          @claim_review.save(validate: false)
+          redirect_to claim_claim_review_step_path(@claim,@claim_review, ClaimReview.form_steps.first)
+        else
           redirect_to claims_path
+        end
       else
           render 'new'
       end
@@ -433,7 +454,7 @@ class ClaimsController < ApplicationController
 
     def claim_params
       if (!params[:overwrite].present?)
-        params.require(:claim).permit(:id, :title, :medium_name, :src_name, :url, :description, :has_image, :has_video, :has_text, :sharing_mode, :url_preview, :tag_list, :tag, { tag_ids: [] }, :tag_ids)
+        params.require(:claim).permit(:id, :title, :medium_name, :src_name, :url, :description, :has_image, :has_video, :has_text, :sharing_mode, :url_preview, :tag_list, :tag, { tag_ids: [] }, :tag_ids, :start_review)
 #      else
 #        params.require(:claim).permit(:id, :title, :medium_name, :src_name, :url, :description, :has_image, :has_video, :has_text, :sharing_mode, :url_preview, :tag_list, :tag, { tag_ids: [] }, :tag_ids, :file, :include_review, :overwrite)
       end

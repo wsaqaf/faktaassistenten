@@ -26,7 +26,7 @@
           <ul class="nav navbar-nav ml-auto">
             <% if user_signed_in? %>
             <li class="nav-item">
-              <% if !request.fullpath.include? "claims/ind" then %>
+              <% if !request.fullpath.include? "claims" or request.fullpath.include? "claims/new" then %>
             <li class="nav-item"><%= link_to t('claims'), claims_path %></li>
             <% else %>
             <li class="nav-item"><%= link_to t('claims'), claims_path, style: 'text-decoration:underline' %></li>
@@ -39,7 +39,7 @@
             <li class="nav-item"><%= link_to t('add_new'), new_claim_path, style: 'text-decoration:underline' %>
             </li>
             <% end %>
-<!-- To be activated when review steps are fixed
+
         <% if !request.fullpath.include? "medi" then %>
         <li class="nav-item"><%= link_to t('media'), media_path %></li>
         <% else %>
@@ -58,7 +58,6 @@
         <%= link_to t('resources_for_verification'), resources_path, style: 'text-decoration:underline' %>
         </li>
         <% end %>
--->
             <% end %>
 
             <!-- Languages -->

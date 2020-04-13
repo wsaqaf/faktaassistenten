@@ -1,5 +1,5 @@
 sv:
-
+# Views common
   add_new: "Lägg till"
   home_t: "Med Galileo blir du en expert på att faktagranska!"
   home_d: "Vetenskapliga metoder och effektiva checklistor för media och journalister"
@@ -12,12 +12,15 @@ sv:
   get_started: "Gör en faktagranskning!"
   or_browse: "Eller utforska hela databasen"
   claim_t: "Du lägger till ett påstående"
+  resource_t: "Du lägger till en resurs"
+  claim_r: "Du faktagranskar påståendet"
+  medium_r: "Du faktagranskar mediet"
+  source_r: "Du faktagranskar källan"
   claim_d: "Tack för att du bidrar till en faktabaserad värld"
   tools_t: "Vi har samlat några av de bästa verktygen"
   tools_d: "Har vi missat några? Skicka en länk så lägger vi till verktyget här."
   db_t: "Utforska alla påståenden och faktakollar"
   db_d: "Här ser du tidigare faktakollar. Du kan också lägga till ett eget påstående som vem som helst kan hjälpa till att faktagranska."
-
 
 #specific for pagy (this section is not needed for en.yml):
   pagy:
@@ -60,6 +63,7 @@ sv:
   welcome_msg: "Välkommen till Galileo – din faktaassistent!"
   go_sign_in_part1: "För att använda tjänsten, kan du"
   go_sign_up_part1: "Om du inte har ett konto kan du"
+  start_review: "Börja faktagranska direkt efter inlämning"
   submit: "Skicka in"
   video_tutorial: "Videohandledning"
 
@@ -116,11 +120,13 @@ sv:
   share_claim: "Vill du dela detta publikt?"
   yes_share: "Ja, dela med alla"
   no_share: "Nej, håll det privat för mig"
-  claim_import: "Importera påstående"
+  claim_import: "Importera ett påstående"
+  claim_import_note: "Här kan du ladda upp en json-fil för ett påstående som tidigare exporterades via den 'exportera påstående' funktionen"
   claim_select_file: "Välj json-fil och klicka sedan på import:"
   claim_select_url: "eller importera från URL:"
   claim_option_include_review: "Inkludera den senaste associerade faktagranskningen automatiskt"
-  claim_option_overwrite: "Skriv över tidigare anspråk med samma titlar"
+  claim_option_overwrite: "Skriv över tidigare påstående med samma titel"
+  advanced_options: "avancerade alternativ"
 
 #Claim/edit
   edit_a_claim: "Redigera ett påstående"
@@ -139,6 +145,7 @@ sv:
   created_at: "Skapad på"
   updated_at: "Uppdaterad vid"
   check_reviews: "Kontrollera granskningarna av "
+  see_your_review: "Kontrollera din granskningen av "
   edit_review: "Redigera granskning "
   del_review: "Radera granskning "
   check_other_reviews: "Kontrollera andra granskningarna av "
@@ -216,6 +223,7 @@ sv:
   resource_reference1: "Referenskod (er) för steg (er) som denna resurs är kopplad till:"
   resource_reference2: "(Använd kommatecken eller mellanslag för att lägga till flera referenser)"
   resource_import: "Importera resurs (er)"
+  resource_import_note: "Här kan du ladda upp en json-fil för en resurs som tidigare exporterades via den 'exportera' funktionen"
   resource_select_file: "Välj json-fil och klicka sedan på import:"
   resource_select_url: "eller importera från URL:"
   resource_option_add_qs: "Kopplade resurser till frågor automatiskt"
@@ -245,7 +253,7 @@ sv:
   search_desc:  "Sökbeskrivning"
   check_blacklisted:  "Kontrollera om %{type} är svartlistad"
   check_rating:  "Kontrollera betyg på %{type}"
-  check_factchecked:  "Kontrollera om anspråk faktiskt kontrollerades"
+  check_factchecked:  "Kontrollera om påstående faktiskt kontrollerades"
   check_reputation:  "Kontrollera webbplatsens rykte"
   check_whois:  "Få domänens WHOIS-detaljer"
   check_domain_ranking:  "Få domänens ranking"
@@ -363,7 +371,7 @@ sv:
   finish: "Avsluta"
   reviewing: "Faktagranskning av"
   copy_url: "Kopiera URL"
-  optional_note: "Valfri anteckning"
+  optional_note: "Motivera och förklara ditt svar (valfritt)"
   calculated_score: "Beräknad poäng"
   calculated_score_q_short: "Beräknad poäng"
   review_verdict_q_short: "Granskningsbedömning"
@@ -374,6 +382,7 @@ sv:
   review_sharing_mode_q_long: "Vill du dela din granskning?"
   claim_review_field: "ClaimReview-schema (inbäddat i offentlig artikel)"
   published_article_url: "Byt ut \"url \" -värdet under claimReviewed: raden nedan (om ännu inte angiven) med rätt URL till den offentliga artikeln!<br>Om koden är trasig kan du alltid uppdatera den genom att ta bort hela innehållet nedan och skicka igen."
+  references: "Referenser till stöd för din slutsats (valfritt)"
 
 #medium_review/steps
   reviewing_the_medium_title: "Faktagranska mediet"
@@ -495,13 +504,13 @@ sv:
   claim_vid_audio_discrepency_q_long: "Har videon genomgått någon ljudmanipulation? Finns det avvikelser i rösterna / ljudet i videon (t.ex. missanpassning mellan karaktär och hans röst)?"
   claim_vid_logical_discrepency_q_long: "Finns det några andra problem eller tecken som inte läggs upp (t.ex. ledtrådar i landskapet, gator, landmärken eller röster i bakgrunden som indikerar en viss skillnad i fråga om tid, plats eller identitet för de inblandade individerna)?"
   claim_txt_review_started_q_long: "Påståendet innehåller text, vill du granska den?"
-  claim_txt_unreliable_news_content_q_long: "Är anspråket kanske en del av satire, åsikt, marknadsföring, parodi eller annan osynlig typ av innehåll?"
+  claim_txt_unreliable_news_content_q_long: "Är påståendet kanske en del av satire, åsikt, marknadsföring, parodi eller annan osynlig typ av innehåll?"
   claim_txt_insufficient_verifiable_srcs_q_long: "Misslyckades påståendet faktakontroller eftersom det saknar tillräckliga verifierbara källor eller innehåller dis / felinformation?"
   claim_txt_has_clickbait_q_long: "Använder artikeln en clickbait-titel?"
   claim_txt_poor_language_q_long: "Har texten dåligt språk eftersom det är språkligt inkoherent eller innehåller grammatiska / stavfel?"
   claim_txt_crowds_distance_discrepency_q_long: "Inkluderar påståendet ett falskt uttalande om publikstorlekar eller avstånd, eller statistik, namn eller annan information som bara är sakligen fel?"
   claim_txt_author_offers_little_evidence_q_long: "Misslyckades författaren / producenten av detta påstående att tillhandahålla tillräckliga bevis för att bevisa det?"
-  claim_txt_reliable_sources_disapprove_q_long: "Lider anspråket av andra problem?"
+  claim_txt_reliable_sources_disapprove_q_long: "Lider påståendet av andra problem?"
 
   claim_img_review_started_q_options_yes: "<b>Ja!</b> Jag vill granska det"
   claim_img_old_q_options_yes: "<b>Ja!</b> Det har använts i ett annat sammanhang tidigare"

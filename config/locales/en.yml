@@ -12,9 +12,15 @@ en:
   get_started: "Get started fact-checking"
   or_browse: "Or browse our database"
   claim_t: "You're adding a claim"
+  medium_t: "You're adding a medium"
+  src_t: "You're adding a source"
+  resource_t: "You're adding a resource"
+  claim_r: "You're reviewing the claim"
+  medium_r: "You're reviwing the medium"
+  source_r: "You're reviewing the source"
   claim_d: "Thanks for contributing to a fact-based world"
   tools_t: "We collected some of the best fact-checking tools"
-  tools_d: "Did we miss any? Feel free to send us a link and we’ll include it here."
+  tools_d: "Did we miss any? Feel free to add or import a resource through the button at the end of this page."
   db_t: "Browse the existing fact-checks"
   db_d: "Here you can see previous fact-checks by the community. You can also add your own claim that anyone can fact-check."
 
@@ -37,6 +43,7 @@ en:
   go_sign_in_part1: "To use the service, please"
   go_sign_up_part1: "If you don't have an account, you can"
   submit: "Submit"
+  start_review: "Start reviewing directly after submission"
   video_tutorial: "Video tutorial"
 
 # Claims/index
@@ -92,11 +99,13 @@ en:
   share_claim: "Do you want to share this claim with other members?"
   yes_share: "Yes share with everyone"
   no_share: "No keep it private to me only"
-  claim_import: "Import claims(s)"
+  claim_import: "Import a claim"
+  claim_import_note: "Here you can upload a json file of a claim that was exported previously via the 'export claim' feature"
   claim_select_file: "Select json file and then click import:"
   claim_select_url: "or import from URL:"
   claim_option_include_review: "Include the last associated review automatically"
-  claim_option_overwrite: "Overwrite earlier claims with the same titles"
+  claim_option_overwrite: "Overwrite any earlier claim with the same title"
+  advanced_options: "advanced options"
 
 #Claim/show
   title_claim: "Title"
@@ -112,6 +121,7 @@ en:
   created_at: "Created at"
   updated_at: "Updated at"
   check_reviews: "Check the reviews of "
+  see_your_review: "See your review of "
   edit_review: "Edit review "
   del_review: "Delete review "
   check_other_reviews: "Check the other reviews of "
@@ -188,12 +198,13 @@ en:
   resource_reference1: "Reference code(s) of the step(s) which this resource is associated to:"
   resource_reference2: "(Use commas or spaces to add multiple references)"
   resource_import: "Import resource(s)"
+  resource_import_note: "Here you can upload a json file of a resource that was exported previously via the 'export' feature"
   resource_select_file: "Select json file and then click import:"
   resource_select_url: "or import from URL:"
   resource_option_add_qs: "Associated resources to questions automatically"
   resource_option_overwrite: "Overwrite earlier resources with the same name"
   resource_note_imports: "Note: You can find files to import at"
-  resource_fca_page: "Faktaasisstenten's fact-checking resources page"
+  resource_fca_page: "Fact-checking resources page"
   resource_fca_page_url: "https://faktaassistenten.sh.se/?page_id=145"
 
 #Resource/show
@@ -335,7 +346,7 @@ en:
   finish: "Finish"
   reviewing: "Reviewing"
   copy_url: "Copy URL"
-  optional_note: "Optional note"
+  optional_note: "Justify/explain your answer (optional)"
   calculated_score: "Calculated score"
   calculated_score_q_short:	"Calculated score"
   review_verdict_q_short:	"Reviewer assessment"
@@ -346,7 +357,7 @@ en:
   review_sharing_mode_q_long:	"Do you wish to share this review?"
   claim_review_field: "ClaimReview schema (embeddable to public article)"
   published_article_url: "Replace the \"url\" value under the claimReviewed: row below (if not yet set) with the correct URL to the public article!<br>If the code is broken, you can always refresh it by deleting the full content below and resubmit."
-
+  references: "References to support your conclusion (optional)"
 #medium_review/steps
   reviewing_the_medium_title: "Reviewing the medium"
   assessing_medium_rel_title: "Assessing the medium's reliability"
