@@ -407,6 +407,7 @@ class ClaimsController < ApplicationController
             "has_image" => clm.has_image,
             "has_video" => clm.has_video,
             "has_text" => clm.has_text,
+            "sharing_mode" => clm.sharing_mode,
             "claim_review" => claim_rev
           }
           result_json << claim_json
