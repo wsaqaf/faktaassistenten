@@ -44,7 +44,7 @@ en:
   go_sign_up_part1: "If you don't have an account, you can"
   submit: "Submit"
   start_review: "Start reviewing directly after submission"
-  video_tutorial: "Video tutorial"
+  video_tutorial: "Also, check out our <a href='https://www.youtube.com/playlist?list=PLlUC5-5Z5z2uGN-yqC9w9IvslWwhlb_zX' target=_blank>video tutorials</a>"
 
 # Claims/index
 
