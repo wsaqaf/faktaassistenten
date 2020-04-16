@@ -403,9 +403,9 @@ sv:
   medium_lacks_flagging_means_q_short: "Brist på flaggning betyder"
   medium_other_problems_q_short: "Andra problem"
   
-  medium_is_blacklisted_q_long: "Är mediet på någon offentlig lista med falska nyhetswebbplatser?"
+  medium_is_blacklisted_q_long: "Finns mediet på någon offentlig lista med falska nyhetswebbplatser?"
   medium_failed_factcheck_before_q_long: "Har mediet misslyckats med en faktakontroll tidigare?"
-  medium_has_poor_security_q_long: "Har mediet dåliga tekniska säkerhets- / säkerhetsstandarder (innehåller virus, bedrägerier, skadlig programvara etc.) och saknar krypterad kommunikation (SSL-certifikat)?"
+  medium_has_poor_security_q_long: "Har mediet dåliga tekniska säkerhets- / säkerhetsstandarder (innehåller virus, bedrägerier, skadlig programvara etc.) eller saknar krypterad kommunikation (SSL-certifikat)?"
   medium_whois_info_discrepency_q_long: "Är informationen i Whois-posten (inklusive företagsnamn, fysisk adress, företagsstatus osv.) oroande?"
   medium_hosting_discrepency_q_long: "Finns det en oro för den plats där fysisk data lagras och företaget som hanterar sin fysiska infrastruktur och om det är värd tillsammans med andra mindre webbplatser?"
   medium_is_biased_q_long: "Är mediet känt för att ha partiskhet (politiskt, socialt, religiöst, etc.)?"
