@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "code",
-   "execution_count": 5,
+   "execution_count": 25,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -120,22 +120,19 @@
     "                                  <b><%= t('resources') %> (<%= has_resources.size.to_s %>)</b> &nbsp; <span class=\"glyphicon glyphicon-plus\"></span></a>\n",
     "                          </div>\n",
     "                          <div class=\"panel-collapse collapse\" id=\"Resources\">\n",
-    "                          \t<div class=\"panel-body\"><br>\n",
+    "                          \t<div class=\"panel-body\">\n",
     "                            <% if not has_resources.blank? %>\n",
     "                                  <ul>\n",
     "                                  <% has_resources.each do |r| %>\n",
     "                                  <li><h6>- <%== try_resource(r.name,'{p}') %><%= link_to r.name, resource_path(r.id), target: \"_blank\" %></h6></li>\n",
     "                                <% end %>\n",
-    "                                <% if (not @{p}.url.blank?) %>\n",
-    "                                      <hr><small><%== t('{p}')[0].upcase+t('{p}')[1..-1]+\" URL: <input type='text' id='url_link' value='\"+@{p}.url.to_s+\"' style='background-color:lightgrey;width:75%'> <button onclick=copyToClipboard('#url_link')>\"+t('copy_url')+\"</button>\" %></small>\n",
-    "                                <% end %>\n",
     "                              </ul>\n",
+    "                            <% if (not @{p}.url.blank?) %>\n",
+    "                              <hr><small><%== t('{p}')[0].upcase+t('{p}')[1..-1]+\" URL: <input type='text' id='url_link' value='\"+@{p}.url.to_s+\"' style='background-color:lightgrey;width:75%'> <button onclick=copyToClipboard('#url_link')>\"+t('copy_url')+\"</button>\" %></small><br>\n",
+    "                            <% end %>                            \n",
     "                              <hr><p>- <%= link_to t('add_additional_resource'), new_resource_path(ref: current_code), target: \"_blank\" %><br><br>\n",
     "                              <small>- <%= t('check_current_resources1') %><b><%= link_to t('resources'), resources_path(), target: \"_blank\" %></b><%= t('check_current_resources2') %> <b><%= current_code %></b></small></p>\n",
     "                          <% else %>\n",
-    "                              <% if (not @{p}.url.blank?) %>\n",
-    "                                   <hr><small><%== t('{p}')[0].upcase+t('{p}')[1..-1]+\" URL: <input type='text' id='url_link' value='\"+@{p}.url.to_s+\"' style='background-color:lightgrey;width:75%'> <button onclick=copyToClipboard('#url_link')>\"+t('copy_url')+\"</button>\" %></small>\n",
-    "                              <% end %>\n",
     "                              <p><b><% t('no_associated_resource') %></b></p>\n",
     "                              <hr><p>- <%= link_to t('add_resource_to_q'), new_resource_path(ref: current_code), target: \"_blank\" %><br><br>\n",
     "                              <small>- <% t('associate_to_q') %> <% t('this_resource') %>: <b><%= current_code %></b></small></p>\n",
@@ -233,7 +230,7 @@
     "              vrs=vrs.lstrip(\", \")\n",
     "              if (vrs):\n",
     "                  controller_steps=controller_steps+\"\\n\\t\\twhen \\\"\"+row['sec_number']+\"\\\"\\n\\t\\t\\t[\"+vrs+\"]\"\n",
-    "              with io.open(\"views/\"+page+\"_review/steps/\"+row['sec_number']+\".html.erb\", 'w', encoding='utf8') as f:\n",
+    "              with io.open(\"../app/views/\"+page+\"_review/steps/\"+row['sec_number']+\".html.erb\", 'w', encoding='utf8') as f:\n",
     "                  f.write(file_content.decode('utf-8'))\n",
     "\n",
     "      params=params.rstrip(\",\")\n",
@@ -248,7 +245,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 6,
+   "execution_count": 26,
    "metadata": {},
    "outputs": [
     {
@@ -335,7 +332,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 7,
+   "execution_count": 27,
    "metadata": {},
    "outputs": [
     {
@@ -404,7 +401,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 8,
+   "execution_count": 28,
    "metadata": {
     "scrolled": true
    },

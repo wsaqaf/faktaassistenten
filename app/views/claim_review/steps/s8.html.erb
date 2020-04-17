@@ -42,7 +42,7 @@
       <br><h6><strong><%== t('reviewing_vid_claim_title') %></strong></h6>
 
       
-                  <b><font color=blue><%== t('claim_vid_forensic_discrepency_q_long') %></font></b><br>
+                  <li><big><b><font color=blue><%== t('claim_vid_forensic_discrepency_q_long') %></font></b></big><br>
                   <br><%= f.radio_button :vid_forensic_discrepency, '-1', :checked => (!@claim_review.vid_forensic_discrepency.blank? && @claim_review.vid_forensic_discrepency==-1) %> <%== t('claim_vid_forensic_discrepency_q_options_yes') %><br><%= f.radio_button :vid_forensic_discrepency, '1', :checked => (!@claim_review.vid_forensic_discrepency.blank? && @claim_review.vid_forensic_discrepency==1) %> <%== t('claim_vid_forensic_discrepency_q_options_no') %><br><%= f.radio_button :vid_forensic_discrepency, '0', :checked => (!@claim_review.vid_forensic_discrepency.blank? && @claim_review.vid_forensic_discrepency==0) %> <%== t('not_sure') %><br><br><%= f.radio_button :vid_forensic_discrepency, '', :checked => (@claim_review.vid_forensic_discrepency.blank?) %> <%= t('skip_question') %><br>
                   
                   <br>
@@ -60,19 +60,22 @@
                                   <b><%= t('resources') %> (<%= has_resources.size.to_s %>)</b> &nbsp; <span class="glyphicon glyphicon-plus"></span></a>
                           </div>
                           <div class="panel-collapse collapse" id="Resources">
-                          	<div class="panel-body">
-                            <% if (not @claim.url.blank?) %>
-                              <small><%== t('claim')[0].upcase+t('claim')[1..-1]+" URL: <input type='text' id='url_link' value='"+@claim.url.to_s+"' style='background-color:lightgrey;width:75%'> <button onclick=copyToClipboard('#url_link')>"+t('copy_url')+"</button>" %></small><br>
-                            <% end %>                            
+                          	<div class="panel-body"><br>
                             <% if not has_resources.blank? %>
                                   <ul>
                                   <% has_resources.each do |r| %>
                                   <li><h6>- <%== try_resource(r.name,'claim') %><%= link_to r.name, resource_path(r.id), target: "_blank" %></h6></li>
                                 <% end %>
+                                <% if (not @claim.url.blank?) %>
+                                      <hr><small><%== t('claim')[0].upcase+t('claim')[1..-1]+" URL: <input type='text' id='url_link' value='"+@claim.url.to_s+"' style='background-color:lightgrey;width:75%'> <button onclick=copyToClipboard('#url_link')>"+t('copy_url')+"</button>" %></small>
+                                <% end %>
                               </ul>
                               <hr><p>- <%= link_to t('add_additional_resource'), new_resource_path(ref: current_code), target: "_blank" %><br><br>
                               <small>- <%= t('check_current_resources1') %><b><%= link_to t('resources'), resources_path(), target: "_blank" %></b><%= t('check_current_resources2') %> <b><%= current_code %></b></small></p>
                           <% else %>
+                              <% if (not @claim.url.blank?) %>
+                                   <hr><small><%== t('claim')[0].upcase+t('claim')[1..-1]+" URL: <input type='text' id='url_link' value='"+@claim.url.to_s+"' style='background-color:lightgrey;width:75%'> <button onclick=copyToClipboard('#url_link')>"+t('copy_url')+"</button>" %></small>
+                              <% end %>
                               <p><b><% t('no_associated_resource') %></b></p>
                               <hr><p>- <%= link_to t('add_resource_to_q'), new_resource_path(ref: current_code), target: "_blank" %><br><br>
                               <small>- <% t('associate_to_q') %> <% t('this_resource') %>: <b><%= current_code %></b></small></p>
@@ -82,12 +85,14 @@
                   </div>
                   <hr>
              
+                  </li>
           
-                  <b><font color=blue><%== t('optional_note') %></font></b><br>
+                  <li><big><b><font color=blue><%== t('optional_note') %></font></b></big><br>
                   <%= f.text_area(:note_vid_forensic_discrepency, size: '50x10', class: 'field-long field-textarea') %>
                   
                   <br>
                   
+                  </li>
           
       
                         <% if !@first_step.present? or @first_step!=step %>
@@ -100,6 +105,5 @@
     <div style='float:right'><%= link_to t('del_review'), claim_claim_review_path(@claim.id,@claim_review), style: '', method: :delete, data: { confirm: t('warning_del') } %></div>
     <% end %>
   </div>
-</div>
 </div>
               

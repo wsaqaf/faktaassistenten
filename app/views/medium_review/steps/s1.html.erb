@@ -60,19 +60,22 @@
                                   <b><%= t('resources') %> (<%= has_resources.size.to_s %>)</b> &nbsp; <span class="glyphicon glyphicon-plus"></span></a>
                           </div>
                           <div class="panel-collapse collapse" id="Resources">
-                          	<div class="panel-body">
-                            <% if (not @medium.url.blank?) %>
-                              <small><%== t('medium')[0].upcase+t('medium')[1..-1]+" URL: <input type='text' id='url_link' value='"+@medium.url.to_s+"' style='background-color:lightgrey;width:75%'> <button onclick=copyToClipboard('#url_link')>"+t('copy_url')+"</button>" %></small><br>
-                            <% end %>                            
+                          	<div class="panel-body"><br>
                             <% if not has_resources.blank? %>
                                   <ul>
                                   <% has_resources.each do |r| %>
                                   <li><h6>- <%== try_resource(r.name,'medium') %><%= link_to r.name, resource_path(r.id), target: "_blank" %></h6></li>
                                 <% end %>
+                                <% if (not @medium.url.blank?) %>
+                                      <hr><small><%== t('medium')[0].upcase+t('medium')[1..-1]+" URL: <input type='text' id='url_link' value='"+@medium.url.to_s+"' style='background-color:lightgrey;width:75%'> <button onclick=copyToClipboard('#url_link')>"+t('copy_url')+"</button>" %></small>
+                                <% end %>
                               </ul>
                               <hr><p>- <%= link_to t('add_additional_resource'), new_resource_path(ref: current_code), target: "_blank" %><br><br>
                               <small>- <%= t('check_current_resources1') %><b><%= link_to t('resources'), resources_path(), target: "_blank" %></b><%= t('check_current_resources2') %> <b><%= current_code %></b></small></p>
                           <% else %>
+                              <% if (not @medium.url.blank?) %>
+                                   <hr><small><%== t('medium')[0].upcase+t('medium')[1..-1]+" URL: <input type='text' id='url_link' value='"+@medium.url.to_s+"' style='background-color:lightgrey;width:75%'> <button onclick=copyToClipboard('#url_link')>"+t('copy_url')+"</button>" %></small>
+                              <% end %>
                               <p><b><% t('no_associated_resource') %></b></p>
                               <hr><p>- <%= link_to t('add_resource_to_q'), new_resource_path(ref: current_code), target: "_blank" %><br><br>
                               <small>- <% t('associate_to_q') %> <% t('this_resource') %>: <b><%= current_code %></b></small></p>
