@@ -1,5 +1,5 @@
 en:
-# Views common
+  # Views common
   add_new: "Add new claim"
   home_t: "Galileo helps you separate facts from fiction"
   home_d: "Science-backed tools and efficient checklists for media and journalists"
@@ -46,7 +46,7 @@ en:
   start_review: "Start reviewing directly after submission"
   video_tutorial: "Also, check out our <a href='https://www.youtube.com/playlist?list=PLlUC5-5Z5z2uGN-yqC9w9IvslWwhlb_zX' target=_blank>video tutorials</a>"
 
-# Claims/index
+  # Claims/index
 
   or: "or"
   import: "Import"
@@ -58,9 +58,13 @@ en:
   tags: "Tags"
   reviews: "Reviews"
   rate_false: "False"
+  rate_totally_false: "Totally false"
   rate_mostly_false: "Mostly false"
+  rate_somewhat_false: "Somewhat false"
   rate_mixed: "Mixed"
+  rate_totally_true: "Totally true"
   rate_mostly_true: "Mostly true"
+  rate_somewhat_true: "Somewhat true"
   rate_true: "True"
   true: "True"
   false: "False"
@@ -75,7 +79,7 @@ en:
   warning_msg1: "Are you sure you want to go ahead and delete this %{type}?"
   warning_msg2: "Are you sure you want to go ahead and delete this  %{type} and all its reviews?"
 
-#Claim/new
+  #Claim/new
 
   add_new_claim: "Add a new claim"
   give_claim_title: "Give a brief title for the claim"
@@ -107,7 +111,7 @@ en:
   claim_option_overwrite: "Overwrite any earlier claim with the same title"
   advanced_options: "advanced options"
 
-#Claim/show
+  #Claim/show
   title_claim: "Title"
   tags_claim: "Tags"
   url: "URL"
@@ -127,8 +131,8 @@ en:
   check_other_reviews: "Check the other reviews of "
   go_back: "Go back"
 
-#medium view:
-#Media/index
+  #medium view:
+  #Media/index
 
   rate_totally_unreliable: "Totally unreliable"
   rate_mostly_unreliable: "Mostly unreliable"
@@ -159,7 +163,7 @@ en:
   most: "Most "
   assessment_of: "Assessment of "
 
-#Medium/new
+  #Medium/new
 
   add_new_medium: "Add a new medium"
   give_medium_title: "What is the name of the medium"
@@ -168,10 +172,10 @@ en:
   share_medium: "Do you want to share this medium with others?"
   more_notes_medium: "Provide more details about this medium (especially if you mentioned 'Other' as the type)"
 
-#Medium/show
+  #Medium/show
   claims_connected: "Claims connected to "
 
-#Src/new
+  #Src/new
 
   add_new_src: "Add a new source"
   give_src_title: "What is the name of the source"
@@ -180,14 +184,14 @@ en:
   share_src: "Do you want to share this source with other members?"
   more_notes_src: "Provide more details about this source (especially if you mentioned 'Other' as the type)"
 
-#Src/index
+  #Src/index
   rate_totally_untrustworthy: "Totally untrustworthy"
   rate_mostly_untrustworthy: "Mostly untrustworthy"
   rate_somewhat_untrustworthy: "Somewhat untrustworthy"
   rate_mostly_trustworthy: "Mostly trustworthy"
   rate_totally_trustworthy: "Totally trustworthy"
 
-#Resource/new
+  #Resource/new
 
   add_new_resource: "Add a new resource"
   give_resource_title: "What is the name of the resource"
@@ -207,7 +211,7 @@ en:
   resource_fca_page: "Fact-checking resources page"
   resource_fca_page_url: "https://faktaassistenten.sh.se/?page_id=145"
 
-#Resource/show
+  #Resource/show
 
   go_back_to_resources: "Return to the Resources page"
   tutorial: "Tutorial"
@@ -216,7 +220,7 @@ en:
   export_this_medium: "Export this medium"
   export_this_source: "Export this source"
 
-#within helper:
+  #within helper:
   reverse_image_search: "Reverse image search"
   reverse_video_search: "Reverse search the video"
   using: " using "
@@ -238,7 +242,7 @@ en:
   check_if_satire: "See if %{type} is satire or real"
   read_tips: "Read tips"
 
-#Claim_reviews
+  #Claim_reviews
   assessment: "Assessment"
   not_assessed: "Not not_assessed"
   reviewer: "Reviewer"
@@ -249,8 +253,8 @@ en:
   update: "Update"
   show_reviews: "Show %{reviews} reviews"
 
-# Controllers
-#common for controllers:
+  # Controllers
+  #common for controllers:
 
   claim: "claim"
   medium: "medium"
@@ -276,7 +280,7 @@ en:
     other: "Deleting this will also delete %{count} dependent reviews."
   warning_del: "Are you sure you want to go ahead and delete it?"
 
-#application_controller.rb
+  #application_controller.rb
 
   all: "All"
   you_created: " that you created"
@@ -293,7 +297,7 @@ en:
   reviewed_by: "Reviewed by "
   showing_reviews_for: "Showing review for "
 
-#claims_controller.rb
+  #claims_controller.rb
 
   tags_added: "Tags added."
   tag_added: " added successfully."
@@ -305,7 +309,7 @@ en:
   claim_review_imported: " review imported and updated any earlier reviews."
   claim_review_not_imported: " review not imported for some reason."
 
-#medium_controller.rb
+  #medium_controller.rb
 
   medium_type_social_media: "Social Media/network"
   medium_type_news: "News website"
@@ -314,7 +318,7 @@ en:
   medium_type_blog: "Blogging platform"
   medium_type_other: "Other"
 
-#src_controller.rb
+  #src_controller.rb
 
   src_type_social_person: "Person"
   src_type_establishment: "Establishment/Entity"
@@ -322,15 +326,15 @@ en:
   src_type_other: "Other"
   src_type_not_sure: "Not sure"
 
-#resources_controller.rb
+  #resources_controller.rb
 
   rsrc_imported: " imported and replaced older resource with the same name."
   rsrc_imported_successfully: " imported successfully."
   rsrc_not_imported: " not imported (resource with the same name already exists)."
 
-#X_review/steps
+  #X_review/steps
 
-#general
+  #general
   note: "Note"
   note_provide_rationale: "It is highly recommended (but not required) that you provide a rationale for your assessment in the box below."
   not_all_qs_needed: "You don't need to answer all questions!<br>If you are ready to assess the %{page}, simply jump to the [Reviewer Assessment] step to the left (one before the last) and mark your verdict."
@@ -348,82 +352,82 @@ en:
   copy_url: "Copy URL"
   optional_note: "Justify/explain your answer (optional)"
   calculated_score: "Calculated score"
-  calculated_score_q_short:	"Calculated score"
-  review_verdict_q_short:	"Reviewer assessment"
-  review_description_q_short:	"Assessment rationale"
-  calculated_score_q_long:	"%{review_score}"
-  review_verdict_q_long:	"Considering the given score, what is your final assessment?"
-  review_description_q_long:	"Explain your rationale to why you have given this assessment."
-  review_sharing_mode_q_long:	"Do you wish to share this review?"
+  calculated_score_q_short: "Calculated score"
+  review_verdict_q_short: "Reviewer assessment"
+  review_description_q_short: "Assessment rationale"
+  calculated_score_q_long: "%{review_score}"
+  review_verdict_q_long: "Considering the given score, what is your final assessment?"
+  review_description_q_long: "Explain your rationale to why you have given this assessment."
+  review_sharing_mode_q_long: "Do you wish to share this review?"
   claim_review_field: "ClaimReview schema (embeddable to public article)"
-  published_article_url: "Replace the \"url\" value under the claimReviewed: row below (if not yet set) with the correct URL to the public article!<br>If the code is broken, you can always refresh it by deleting the full content below and resubmit."
+  published_article_url: 'Replace the "url" value under the claimReviewed: row below (if not yet set) with the correct URL to the public article!<br>If the code is broken, you can always refresh it by deleting the full content below and resubmit.'
   references: "References to support your conclusion (optional)"
-#medium_review/steps
+  #medium_review/steps
   reviewing_the_medium_title: "Reviewing the medium"
   assessing_medium_rel_title: "Assessing the medium's reliability"
 
   medium_is_blacklisted_q_short: "Check blacklist"
-  medium_failed_factcheck_before_q_short:	"Fact-check history"
-  medium_has_poor_security_q_short:	"Technical security"
-  medium_whois_info_discrepency_q_short:	"Whois discrepancy"
-  medium_hosting_discrepency_q_short:	"Contact/address discrepancy"
-  medium_is_biased_q_short:	"Known bias"
-  medium_is_poorly_ranked_q_short:	"Poor ranking"
-  medium_is_not_liable_q_short:	"Lack of liability terms"
-  medium_lacks_flagging_means_q_short:	"Lack of flagging means"
-  medium_other_problems_q_short:	"Other problems"
+  medium_failed_factcheck_before_q_short: "Fact-check history"
+  medium_has_poor_security_q_short: "Technical security"
+  medium_whois_info_discrepency_q_short: "Whois discrepancy"
+  medium_hosting_discrepency_q_short: "Contact/address discrepancy"
+  medium_is_biased_q_short: "Known bias"
+  medium_is_poorly_ranked_q_short: "Poor ranking"
+  medium_is_not_liable_q_short: "Lack of liability terms"
+  medium_lacks_flagging_means_q_short: "Lack of flagging means"
+  medium_other_problems_q_short: "Other problems"
 
-  medium_is_blacklisted_q_long:	"Is the medium on any public list of fake news websites?"
-  medium_failed_factcheck_before_q_long:	"Has the medium failed a fact-check in the past?"
-  medium_has_poor_security_q_long:	"Does the medium have poor technical security/safety standards  (contains viruses, scams, malware, etc.) and lacks encrypted communication (SSL certificate)? "
-  medium_whois_info_discrepency_q_long:	"Does the information in the Whois entry (including company name, physical address, company status, etc.) raise any concerns?"
-  medium_hosting_discrepency_q_long:	"Is there a concern regarding the location where the physical data stored and the company managing its physical infrastructure and whether it is hosted along with other less websites? "
-  medium_is_biased_q_long:	"Is the medium known to have bias (political, social, religious, etc.)?"
-  medium_is_poorly_ranked_q_long:	"Is the medium ranked poorly by others?"
-  medium_is_not_liable_q_long:	"Is the medium avoiding any liability terms (e.g., because the content is user-generated)?"
-  medium_lacks_flagging_means_q_long:	"Does the medium lack means of flagging or reporting published content?"
-  medium_other_problems_q_long:	"Are there any other major problems that could make this medium unreliable? If Yes, explain more in the note below."
+  medium_is_blacklisted_q_long: "Is the medium on any public list of fake news websites?"
+  medium_failed_factcheck_before_q_long: "Has the medium failed a fact-check in the past?"
+  medium_has_poor_security_q_long: "Does the medium have poor technical security/safety standards  (contains viruses, scams, malware, etc.) and lacks encrypted communication (SSL certificate)? "
+  medium_whois_info_discrepency_q_long: "Does the information in the Whois entry (including company name, physical address, company status, etc.) raise any concerns?"
+  medium_hosting_discrepency_q_long: "Is there a concern regarding the location where the physical data stored and the company managing its physical infrastructure and whether it is hosted along with other less websites? "
+  medium_is_biased_q_long: "Is the medium known to have bias (political, social, religious, etc.)?"
+  medium_is_poorly_ranked_q_long: "Is the medium ranked poorly by others?"
+  medium_is_not_liable_q_long: "Is the medium avoiding any liability terms (e.g., because the content is user-generated)?"
+  medium_lacks_flagging_means_q_long: "Does the medium lack means of flagging or reporting published content?"
+  medium_other_problems_q_long: "Are there any other major problems that could make this medium unreliable? If Yes, explain more in the note below."
 
-  medium_is_blacklisted_options_yes:	"<b>Yes!</b> It is blacklisted or marked as a 'fake news website'"
-  medium_failed_factcheck_before_options_yes:	"<b>Yes!</b> It failed at least once before"
-  medium_has_poor_security_options_yes:	"<b>Yes!</b> It has some problems with security"
-  medium_whois_info_discrepency_options_yes:	"<b>Yes!</b> There are some problems or discrepancies"
-  medium_hosting_discrepency_options_yes:	"<b>Yes!</b> There is a problem with the location information"
-  medium_is_biased_options_yes:	"<b>Yes!</b> There seems to be some consistent bias"
-  medium_is_poorly_ranked_options_yes:	"<b>Yes!</b> It is ranked poorly"
-  medium_is_not_liable_options_yes:	"<b>Yes!</b> it clearly avoids liability"
-  medium_lacks_flagging_means_options_yes:	"<b>Yes!</b> It does lack a way to report/flag content"
-  medium_other_problems_options_yes:	"<b>Yes!</b> There are other problems too"
-  medium_review_verdict_options_yes:	""
-  medium_review_description_options_yes:	""
-  medium_is_blacklisted_options_no:	"<b>No!</b> It is not on any blacklist"
-  medium_failed_factcheck_before_options_no:	"<b>No!</b> It never failed a fact-check before"
-  medium_has_poor_security_options_no:	"<b>No!</b> It seems fully secure"
-  medium_whois_info_discrepency_options_no:	"<b>No!</b> It looks information matches expectations"
-  medium_hosting_discrepency_options_no:	"<b>No!</b> The location information seems OK"
-  medium_is_biased_options_no:	"<b>No!</b> There seems to be no consistent bias"
-  medium_is_poorly_ranked_options_no:	"<b>No!</b> It is not poorly ranked"
-  medium_is_not_liable_options_no:	"<b>No!</b> It claims liability"
-  medium_lacks_flagging_means_options_no:	"<b>No!</b> It does have a way to report/flag content"
-  medium_other_problems_options_no:	"<b>No!</b> There seems to be no other problems"
+  medium_is_blacklisted_options_yes: "<b>Yes!</b> It is blacklisted or marked as a 'fake news website'"
+  medium_failed_factcheck_before_options_yes: "<b>Yes!</b> It failed at least once before"
+  medium_has_poor_security_options_yes: "<b>Yes!</b> It has some problems with security"
+  medium_whois_info_discrepency_options_yes: "<b>Yes!</b> There are some problems or discrepancies"
+  medium_hosting_discrepency_options_yes: "<b>Yes!</b> There is a problem with the location information"
+  medium_is_biased_options_yes: "<b>Yes!</b> There seems to be some consistent bias"
+  medium_is_poorly_ranked_options_yes: "<b>Yes!</b> It is ranked poorly"
+  medium_is_not_liable_options_yes: "<b>Yes!</b> it clearly avoids liability"
+  medium_lacks_flagging_means_options_yes: "<b>Yes!</b> It does lack a way to report/flag content"
+  medium_other_problems_options_yes: "<b>Yes!</b> There are other problems too"
+  medium_review_verdict_options_yes: ""
+  medium_review_description_options_yes: ""
+  medium_is_blacklisted_options_no: "<b>No!</b> It is not on any blacklist"
+  medium_failed_factcheck_before_options_no: "<b>No!</b> It never failed a fact-check before"
+  medium_has_poor_security_options_no: "<b>No!</b> It seems fully secure"
+  medium_whois_info_discrepency_options_no: "<b>No!</b> It looks information matches expectations"
+  medium_hosting_discrepency_options_no: "<b>No!</b> The location information seems OK"
+  medium_is_biased_options_no: "<b>No!</b> There seems to be no consistent bias"
+  medium_is_poorly_ranked_options_no: "<b>No!</b> It is not poorly ranked"
+  medium_is_not_liable_options_no: "<b>No!</b> It claims liability"
+  medium_lacks_flagging_means_options_no: "<b>No!</b> It does have a way to report/flag content"
+  medium_other_problems_options_no: "<b>No!</b> There seems to be no other problems"
 
-#src_review/steps
+  #src_review/steps
   reviewing_the_src_title: "Reviewing the source"
   assessing_src_rel_title: "Assessing the source's trustworthiness"
 
-  src_credentials_q_short:	"Source credentials"
-  src_factcheck_history_q_short:	"Fact-check history"
-  src_quality_of_writing_q_short:	"Quality of previous writing"
-  src_connected_to_biased_entities_q_short:	"Connected to biased entities"
-  src_difficulty_to_verify_auth_q_short:	"Difficulty to verify authenticity"
-  src_other_problems_q_short:	"Other problems"
+  src_credentials_q_short: "Source credentials"
+  src_factcheck_history_q_short: "Fact-check history"
+  src_quality_of_writing_q_short: "Quality of previous writing"
+  src_connected_to_biased_entities_q_short: "Connected to biased entities"
+  src_difficulty_to_verify_auth_q_short: "Difficulty to verify authenticity"
+  src_other_problems_q_short: "Other problems"
 
-  src_credentials_q_long:	"Does the source lack professional credentials?"
-  src_factcheck_history_q_long:	"Has the source failed a fact check in the past?"
-  src_quality_of_writing_q_long:	"Does the source have a history of poor statements, writings, posts and tweets, etc.?"
-  src_connected_to_biased_entities_q_long:	"Is the source's social media presence possibly a bot or supported by a network of bots?"
-  src_difficulty_to_verify_auth_q_long:	"Was it difficult to find information about the source using available local online yellow pages/directories?"
-  src_other_problems_q_long:	"Are there any other major problems that could make this source untrustworthy? If Yes, explain more in the note below."
+  src_credentials_q_long: "Does the source lack professional credentials?"
+  src_factcheck_history_q_long: "Has the source failed a fact check in the past?"
+  src_quality_of_writing_q_long: "Does the source have a history of poor statements, writings, posts and tweets, etc.?"
+  src_connected_to_biased_entities_q_long: "Is the source's social media presence possibly a bot or supported by a network of bots?"
+  src_difficulty_to_verify_auth_q_long: "Was it difficult to find information about the source using available local online yellow pages/directories?"
+  src_other_problems_q_long: "Are there any other major problems that could make this source untrustworthy? If Yes, explain more in the note below."
 
   src_credentials_q_options_yes: "<b>Yes!</b> the source lacks professional credentials"
   src_factcheck_history_q_options_yes: "<b>Yes!</b> it has failed fact-checks before"
@@ -439,32 +443,32 @@ en:
   src_difficulty_to_verify_auth_q_options_no: "<b>No!</b> information about the source is easily accessible"
   src_other_problems_q_options_no: "<b>No!</b> there are no other problems"
 
-#claim_review/steps
+  #claim_review/steps
   reviewing_img_claim_title: "Reviewing Image in the claim"
   reviewing_vid_claim_title: "Reviewing video in the claim"
   reviewing_txt_claim_title: "Reviewing the text content of the claim"
   calculating_score_claim_title: "Calculated score"
   assessing_claim_rel_title: "Assessing the claim's validity"
 
-  claim_img_review_started_q_short:	"Confirm image review"
-  claim_img_old_q_short:	"Misleading image context"
-  claim_img_forensic_discrepency_q_short:	"Image manipulation"
-  claim_img_metadata_discrepency_q_short:	"Metadata image discrepancy"
-  claim_img_logical_discrepency_q_short:	"Suspicious attributes"
-  claim_vid_review_started_q_short:	"Confirm video review"
-  claim_vid_old_q_short:	"Misleading context"
-  claim_vid_forensic_discrepency_q_short:	"Video manipulation"
-  claim_vid_metadata_discrepency_q_short:	"Metadata video discrepancy"
-  claim_vid_audio_discrepency_q_short:	"Audio manipulation"
-  claim_vid_logical_discrepency_q_short:	"Additional clues"
-  claim_txt_review_started_q_short:	"Confirm text review"
-  claim_txt_unreliable_news_content_q_short:	"Confirm seriousness"
-  claim_txt_insufficient_verifiable_srcs_q_short:	"Failed a fact-check"
-  claim_txt_has_clickbait_q_short:	"Clickbait title"
-  claim_txt_poor_language_q_short:	"Language quality"
-  claim_txt_crowds_distance_discrepency_q_short:	"Inaccuracies"
-  claim_txt_author_offers_little_evidence_q_short:	"Internal source confirmation"
-  claim_txt_reliable_sources_disapprove_q_short:	"Other problems"
+  claim_img_review_started_q_short: "Confirm image review"
+  claim_img_old_q_short: "Misleading image context"
+  claim_img_forensic_discrepency_q_short: "Image manipulation"
+  claim_img_metadata_discrepency_q_short: "Metadata image discrepancy"
+  claim_img_logical_discrepency_q_short: "Suspicious attributes"
+  claim_vid_review_started_q_short: "Confirm video review"
+  claim_vid_old_q_short: "Misleading context"
+  claim_vid_forensic_discrepency_q_short: "Video manipulation"
+  claim_vid_metadata_discrepency_q_short: "Metadata video discrepancy"
+  claim_vid_audio_discrepency_q_short: "Audio manipulation"
+  claim_vid_logical_discrepency_q_short: "Additional clues"
+  claim_txt_review_started_q_short: "Confirm text review"
+  claim_txt_unreliable_news_content_q_short: "Confirm seriousness"
+  claim_txt_insufficient_verifiable_srcs_q_short: "Failed a fact-check"
+  claim_txt_has_clickbait_q_short: "Clickbait title"
+  claim_txt_poor_language_q_short: "Language quality"
+  claim_txt_crowds_distance_discrepency_q_short: "Inaccuracies"
+  claim_txt_author_offers_little_evidence_q_short: "Internal source confirmation"
+  claim_txt_reliable_sources_disapprove_q_short: "Other problems"
 
   claim_img_review_started_q_long: "Since the claim contains an image, do you wish to review it?"
   claim_img_old_q_long: "Has the image been used before in a different context?"

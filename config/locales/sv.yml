@@ -1,5 +1,5 @@
 sv:
-# Views common
+#Views common
   add_new: "Lägg till"
   home_t: "Med Galileo blir du en expert på att faktagranska!"
   home_d: "Vetenskapliga metoder och effektiva checklistor för media och journalister"
@@ -10,7 +10,7 @@ sv:
   step_3: "3. Publicera säkert på blockkedjan"
   step_3_d: "När en faktragranskning delats på blockkedjan, kan ingen mixtra med den."
   get_started: "Gör en faktagranskning!"
-  or_browse: "Eller utforska hela databasen"
+  or_browse: "Eller utforska hela databasen" 
   claim_t: "Du lägger till ett påstående"
   resource_t: "Du lägger till en resurs"
   claim_r: "Du faktagranskar påståendet"
@@ -21,31 +21,32 @@ sv:
   tools_d: "Har vi missat några? Skicka en länk så lägger vi till verktyget här."
   db_t: "Utforska alla påståenden och faktakollar"
   db_d: "Här ser du tidigare faktakollar. Du kan också lägga till ett eget påstående som vem som helst kan hjälpa till att faktagranska."
-
+  
+  
 #specific for pagy (this section is not needed for en.yml):
   pagy:
-
+  
     item_name:
-      one: "resultat"
-      two: "resultat"
-      other: "resultat"
-
+    one: "resultat"
+    two: "resultat"
+    other: "resultat"
+  
     nav:
-      prev: "&lsaquo;&nbsp;Föregående"
-      next: "Nästa&nbsp;&rsaquo;"
-      gap: "&hellip;"
-
+    prev: "&lsaquo;&nbsp;Föregående"
+    next: "Nästa&nbsp;&rsaquo;"
+    gap: "&hellip;"
+  
     info:
-      no_items: "Inga %{item_name} hittade"
-      single_page: "Visar <b>%{count}</b> %{item_name}"
-      multiple_pages: "Visar %{item_name} <b>%{from}-%{to}</b> av <b>%{count}</b> totalt"
-
+    no_items: "Inga %{item_name} hittade"
+    single_page: "Visar <b>%{count}</b> %{item_name}"
+    multiple_pages: "Visar %{item_name} <b>%{from}-%{to}</b> av <b>%{count}</b> totalt"
+  
     combo_nav_js: "Sida %{page_input} av %{pages}"
     items_selector_js: "Visa %{items_input} %{item_name} per sida"
-
-# Views common
-
-  website_title: "Faktaassistenten"
+  
+#Views common
+  
+  website_title: "Galileo – faktaassistenten"
   claims: "Alla påståenden och faktakollar"
   media: "Medier"
   sources: "Källor"
@@ -67,22 +68,27 @@ sv:
   submit: "Skicka in"
   video_tutorial: "Videohandledning"
   video_tutorial: "Också, kolla in våra <a href='https://www.youtube.com/playlist?list=PLlUC5-5Z5z2uGN-yqC9w9IvslWwhlb_zX' target=_blank>instruktionsfilmer</a>"
-
-# Claims/index
-
+  
+#Claims/index
+  
   or: "eller"
-  import: "Importera"
-  export: "Exportera"
+  import: "importera"
+  export: "exportera"
   search: "Sök"
   no_results: "Inga resultat."
   tag_cloud: "Tag Cloud"
   show_all: "[Visa alla]"
   tags: "Taggar"
+  updated_at: "Uppdaterad vid"
   reviews: "Faktagranskningar"
   rate_false: "Falskt"
+  rate_totally_false: "Helt falskt"
   rate_mostly_false: "Mestadels falskt"
-  rate_mixed: "Delvis falskt"
+  rate_somewhat_false: "Aningen falskt"
+  rate_mixed: "Mixed"
+  rate_totally_true: "Helt sant"
   rate_mostly_true: "Mestadels sant"
+  rate_somewhat_true: "Aningen sant"
   rate_true: "Sant"
   true: "Sant"
   false: "Falkst"
@@ -92,13 +98,15 @@ sv:
   delete: "Radera"
   show: "Visa"
   add_review: "Lägg till faktagranskning"
+  edit_review: "Redigera faktagranskning"
+  del_review: "Radera faktagranskning"
   latest: "Senaste"
   confirm_del_q: "Är du säker?"
   warning_msg1: "Är du säker på att du vill gå vidare och ta bort %{type}?"
   warning_msg2: "Är du säker på att du vill gå vidare och ta bort %{type} och dess faktagranskningar?"
-
+  
 #Claim/new
-
+  
   add_new_claim: "Lägg till ett nytt påstående"
   give_claim_title: "Titel"
   assign_existing_tags: "Taggar"
@@ -128,10 +136,10 @@ sv:
   claim_option_include_review: "Inkludera den senaste associerade faktagranskningen automatiskt"
   claim_option_overwrite: "Skriv över tidigare påstående med samma titel"
   advanced_options: "avancerade alternativ"
-
+  
 #Claim/edit
   edit_a_claim: "Redigera ett påstående"
-
+  
 #Claim/show
   title_claim: "Titel"
   tags_claim: "Taggar"
@@ -151,10 +159,10 @@ sv:
   del_review: "Radera granskning "
   check_other_reviews: "Kontrollera andra granskningarna av "
   go_back: "Gå tillbaka"
-
+  
 #medium view:
 #Media/index
-
+  
   rate_totally_unreliable: "Helt opålitlig"
   rate_mostly_unreliable: "Mestadels opålitlig"
   rate_somewhat_unreliable: "Något opålitligt"
@@ -162,15 +170,15 @@ sv:
   rate_totally_reliable: "Helt pålitligt"
   rate_no_answer: "Inget svar / inte tillämpligt"
   rate_not_measurable: "Inte mätbart"
-
-# Regulator-barometer relaterade
-  score_is1: "Score is "
+  
+#Regulator-barometer relaterade
+  score_is1: "Poäng "
   score_is2: " och den maximala summan är "
   score_result1: "Baserat på dina svar på "
   score_result2: " frågor ur "
   score_result3: " bedömningen av "
   score_result4: " är "
-  score_result5: " och faller på barometern som visas nedan:"
+  score_result5: " och faller på skalan som visas nedan:"
   reliability: "tillförlitlighet"
   trustworthiness: "pålitlighet"
   validity: "giltighet"
@@ -183,65 +191,65 @@ sv:
   least: "Minst "
   most: "Mest "
   assessment_of: "Bedömning av "
-
+  
 #Medium/new
-
-  add_new_medium: "Lägg till ett nytt medie"
+  
+  add_new_medium: "Lägg till ett nytt medium"
   give_medium_title: "Vad heter mediet"
   medium_url: "URL (t.ex. https://twitter.com, https://facebook.com, https://telegram.org/, https://whatsapp.com)"
   medium_type: "Vilken typ är det här mediet?"
   share_medium: "Vill du dela detta medie med andra?"
-  more_notes_medium: "Ge mer information om detta medie (särskilt om du nämnde 'Annat' som typen)"
-
+  more_notes_medium: "Lägg till mer information om detta medie (särskilt om du angav 'annat' som typ)"
+  
 #Medium/show
-  claims_connected: "Påstående som är anslutna till "
-
+  claims_connected: "Påstående som är kopplade till "
+  
 #Src/new
-
+  
   add_new_src: "Lägg till en ny källa"
   give_src_title: "Vad heter källan"
   src_url: "URL (t.ex. officiell webbplats-URL, officiell Facebook-profil-URL, officiell Twitter-URL-profil, etc.)"
   src_type: "Vilken typ är den här källan?"
   share_src: "Vill du dela den här källan med andra medlemmar?"
   more_notes_src: "Ge mer information om den här källan (särskilt om du nämnde 'Annat' som typen)"
-
+  
 #Src/index
-
+  
   rate_totally_untrustworthy: "Helt otrovärdig"
   rate_mostly_untrustworthy: "Mestadels otrovärdig"
   rate_somewhat_untrustworthy: "Något otrovärdig"
   rate_mostly_trustworthy: "Mestadels trovärdig"
   rate_totally_trustworthy: "Helt trovärdig"
-
-# Resource/new
-
-  add_new_resource: "Lägg till en ny resurs"
+  
+#Resource/new
+  
+  add_new_resource: "Lägg till en ny resurs för faktakoll"
   give_resource_title: "Vad heter resursen"
   resource_url: "Resursens officiella URL"
   resource_tutorial_url: "En länk till handledning om hur du använder den (om någon)"
   resource_icon_url: "URL för ikonen (logotyp) som representerar denna resurs (om någon)"
-  more_notes_resource: "Ge mer information om den här resursen och vad den är användbar för:"
-  resource_reference1: "Referenskod (er) för steg (er) som denna resurs är kopplad till:"
+  more_notes_resource: "Ange mer information om den här resursen och vad den är användbar för:"
+  resource_reference1: "Referenskoder för steg som denna resurs är kopplad till:"
   resource_reference2: "(Använd kommatecken eller mellanslag för att lägga till flera referenser)"
   resource_import: "Importera resurs (er)"
   resource_import_note: "Här kan du ladda upp en json-fil för en resurs som tidigare exporterades via den 'exportera' funktionen"
   resource_select_file: "Välj json-fil och klicka sedan på import:"
   resource_select_url: "eller importera från URL:"
   resource_option_add_qs: "Kopplade resurser till frågor automatiskt"
-  resource_option_overwrite: "Skriv över dem tidigare resurserna med samma titlar"
+  resource_option_overwrite: "Kopplade resurser till frågor automatiskt"
   resource_note_imports: "Obs: Du kan hitta filer att importera på"
   resource_fca_page: "Faktaasisstentens sida för faktakontroll av resurser"
   resource_fca_page_url: "https://faktaassistenten.sh.se/?page_id=179&lang=sv"
-
+  
 #Resource/show
-
+  
   go_back_to_resources: "Återgå till resurssidan"
   tutorial: "Tutorial"
   export_this_resource: "Exportera den här resursen"
   export_this_claim: "Exportera det här påståendet"
   export_this_medium: "Exportera det här mediet"
   export_this_source: "Exportera den här källan"
-
+  
 #within helper:
   reverse_image_search: "Omvänd bildsökning"
   reverse_video_search:  "Omvänd sökning i videon"
@@ -250,20 +258,20 @@ sv:
   open_video:  "Öppna videon"
   download:  "Ladda ner"
   use_plugin:  " och använd webbläsarens plugin "
-  search_it:  "Sök om det"
+  search_it:  "Sök efter det"
   search_desc:  "Sökbeskrivning"
   check_blacklisted:  "Kontrollera om %{type} är svartlistad"
   check_rating:  "Kontrollera betyg på %{type}"
-  check_factchecked:  "Kontrollera om påstående faktiskt kontrollerades"
+  check_factchecked:  "Kontrollera om anspråk faktiskt kontrollerades"
   check_reputation:  "Kontrollera webbplatsens rykte"
   check_whois:  "Få domänens WHOIS-detaljer"
   check_domain_ranking:  "Få domänens ranking"
   info_on_domain:  "Få information om domänen"
   learn_more:  "Läs mer om %{type}"
   research_source:  "Undersök källan"
-  check_if_satire:  "Se om %{type} är satire eller verklig"
+  check_if_satire:  "Se om %{type} är satir eller verklig"
   read_tips:  "Läs tips"
-
+  
 #Claim_reviews
   assessment: "Bedömning"
   not_assessed: "Inte bedömts"
@@ -274,12 +282,12 @@ sv:
   new: "Ny"
   update: "Uppdatera"
   show_reviews: "Visa %{reviews} faktagranskningar"
-
-# Controllers
+  
+#Controllers
 #common for controllers:
-
+  
   claim: "påstående"
-  medium: "medie"
+  medium: "medium"
   source: "källa"
   src: "källa"
   resource: "resurs"
@@ -296,69 +304,69 @@ sv:
   this_src: "den här källan"
   this_resource: "den här resursen"
   this_review: "den här faktagranskningen"
-
+  
   warning_del_dependents:
-    one: "Om du tar bort den här raderas också en beroende faktagranskning."
-    other: "Om du tar bort den här raderas också %{count} beroende faktagranskningar."
+    one: "Om du tar bort den här raderas också en tillhörande faktagranskning."
+    other: "Om du tar bort den här raderas också %{count} tillhörande faktagranskningar."
   warning_del: "Är du säker på att du vill gå vidare och radera?"
-
+  
 #application_controller.rb
-
+  
   all: "Alla"
   you_created: " som du skapade"
   sort_by: "Sortera efter"
-  sort_by_time: "när den skapats (senast först)"
-  sort_by_review_time: "när den faktagranskats (senast först)"
-  sort_by_reviews: "faktagranskningar (mest faktagranskade först)"
+  sort_by_time: "när den skapats (senaste överst)"
+  sort_by_review_time: "när den faktagranskats (senaste överst)"
+  sort_by_reviews: "faktagranskningar (flest faktagranskningar överst)"
   sort_by_pos_reviews: "positiva faktagranskningar"
   sort_by_neg_reviews: "negativa faktagranskningar"
   been_reviewed: " som har faktagranskats"
   you_reviewed: " att du har faktagranskat"
   with_no_reviews: " med inga faktagranskningar ännu"
-  reviewed_by: "Faktagranskats av "
-  showing_reviews_for: "Visar faktagranskning för "
-
+  reviewed_by: "Faktagranskats av"
+  showing_reviews_for: "Visar faktagranskning för"
+  
 #claims_controller.rb
-
+  
   tags_added: "Taggar tillagda."
-  tag_added: " tillagd med framgång."
-  tag_exist: " har redan lagts till och finns i DB!"
+  tag_added: " tillagd."
+  tag_exist: " har redan lagts till och finns i databasen!"
   tag_could_not_add: "Kunde inte lägga till "
-
+  
   claim_imported_successly: " importerat lyckades."
   claim_imported: " importerat och ersatt äldre påstående med samma titel."
   claim_not_imported: " inte importerad (påstående med samma titel finns redan eller skapats av en annan användare)."
   claim_review_imported: " faktagranskning importerade och uppdaterade alla tidigare recensioner."
   claim_review_not_imported: " faktagranskning har inte importerats av någon anledning."
-
+  
 #medium_controller.rb
-
+  
   medium_type_social_media: "Sociala medier / nätverk"
   medium_type_news: "Nyhetswebbplats"
-  medium_type_im: "Direktmeddelanden / chatta"
+  medium_type_im: "Direktmeddelanden / chat"
   medium_type_video: "Webbplats för videodelning"
   medium_type_blog: "Bloggplattform"
   medium_type_other: "Övrigt"
-
+  
 #src_controller.rb
-
+  
   src_type_social_person: "Person"
-  src_type_establishment: "Etablering/Entity"
+  src_type_establishment: "Institution"
   src_type_website: "Hemsida"
   src_type_other: "Övrigt"
   src_type_not_sure: "Vet inte"
-
-# resources_controller.rb
-
+  
+#resources_controller.rb
+  
   rsrc_imported: "importerad och ersatt äldre resurs med samma namn."
-  rsrc_imported_successfully: " importerat lyckades."
+  rsrc_imported_successfully: " importerats."
   rsrc_not_imported: " inte importerad (resurs med samma namn finns redan)."
-
+  
 #X_review/steps
-
+  
 #general
-  note: "N.B."
-  note_provide_rationale: "Det rekommenderas starkt (men krävs inte) att du anger en grund för din bedömning i rutan nedan."
+  note: "Obs:"
+  note_provide_rationale: "Det rekommenderas starkt (men är ej obligatoriskt) att du anger en grund för din bedömning i rutan nedan."
   not_all_qs_needed: "Du behöver inte svara på alla frågor.<br>Om du är redo att bedöma påståendet, kan du gå direkt till 'Din bedömning' i menyn."
   add_additional_resource: "Lägg till en ytterligare resurs till denna fråga"
   check_current_resources1: "Du kan också kolla på tillgängliga "
@@ -366,29 +374,28 @@ sv:
   no_associated_resource: "Inga resurser har kopplats till denna fråga."
   add_resource_to_q: "Lägg till en resurs till denna fråga."
   associate_to_q: "Du kan också koppla en befintlig resurs som du har skapat till ovanstående fråga genom att lägga till följande referenskod till "
-  review_steps: "faktagranskningssteg"
+  review_steps: "Steg för faktagranskning"
   next_step: "Nästa steg"
   previous_step: "Föregående steg"
   finish: "Avsluta"
   reviewing: "Faktagranskning av"
   copy_url: "Kopiera URL"
-  optional_note: "Motivera och förklara ditt svar (valfritt)"
+  optional_note: "Ytterligare anteckningar"
   calculated_score: "Beräknad poäng"
   calculated_score_q_short: "Beräknad poäng"
   review_verdict_q_short: "Granskningsbedömning"
   review_description_q_short: "Din bedömning"
   calculated_score_q_long: "%{review_score}"
   review_verdict_q_long: "Med tanke på den givna poängen, vad är din bedömning?"
-  review_description_q_long: "Förklara din skäl till varför du har gett den här bedömningen."
+  review_description_q_long: "Förklara varför du har gjort den här bedömningen."
   review_sharing_mode_q_long: "Vill du dela din granskning?"
   claim_review_field: "ClaimReview-schema (inbäddat i offentlig artikel)"
   published_article_url: "Byt ut \"url \" -värdet under claimReviewed: raden nedan (om ännu inte angiven) med rätt URL till den offentliga artikeln!<br>Om koden är trasig kan du alltid uppdatera den genom att ta bort hela innehållet nedan och skicka igen."
-  references: "Referenser till stöd för din slutsats (valfritt)"
-
+  
 #medium_review/steps
   reviewing_the_medium_title: "Faktagranska mediet"
   assessing_medium_rel_title: "Utvärdering av mediets tillförlitlighet"
-
+  
   medium_is_blacklisted_q_short: "Kontrollera svartlista"
   medium_failed_factcheck_before_q_short: "Fact-check history"
   medium_has_poor_security_q_short: "Teknisk säkerhet"
@@ -399,18 +406,18 @@ sv:
   medium_is_not_liable_q_short: "Brist på ansvarsvillkor"
   medium_lacks_flagging_means_q_short: "Brist på flaggning betyder"
   medium_other_problems_q_short: "Andra problem"
-
-  medium_is_blacklisted_q_long: "Är mediet på någon offentlig lista med falska nyhetswebbplatser?"
+  
+  medium_is_blacklisted_q_long: "Finns mediet på någon offentlig lista med falska nyhetswebbplatser?"
   medium_failed_factcheck_before_q_long: "Har mediet misslyckats med en faktakontroll tidigare?"
-  medium_has_poor_security_q_long: "Har mediet dåliga tekniska säkerhets- / säkerhetsstandarder (innehåller virus, bedrägerier, skadlig programvara etc.) och saknar krypterad kommunikation (SSL-certifikat)?"
+  medium_has_poor_security_q_long: "Har mediet dåliga tekniska säkerhets- / säkerhetsstandarder (innehåller virus, bedrägerier, skadlig programvara etc.) eller saknar krypterad kommunikation (SSL-certifikat)?"
   medium_whois_info_discrepency_q_long: "Är informationen i Whois-posten (inklusive företagsnamn, fysisk adress, företagsstatus osv.) oroande?"
   medium_hosting_discrepency_q_long: "Finns det en oro för den plats där fysisk data lagras och företaget som hanterar sin fysiska infrastruktur och om det är värd tillsammans med andra mindre webbplatser?"
-  medium_is_biased_q_long: "Är mediet känt för att ha partiskhet (politiskt, socialt, religiöst, etc.)?"
-  medium_is_poorly_ranked_q_long: "Rangeras mediet dåligt av andra?"
+  medium_is_biased_q_long: "Är mediet känt för att vara partiskt (politiskt, socialt, religiöst, etc.)?"
+  medium_is_poorly_ranked_q_long: "Rankas mediet lågt i trovärdighet av andra?"
   medium_is_not_liable_q_long: "Undviker mediet några ansvarsvillkor (t.ex. eftersom innehållet är användargenererat)?"
   medium_lacks_flagging_means_q_long: "Saknar mediet medel för att flagga eller rapportera publicerat innehåll?"
-  medium_other_problems_q_long: "Finns det några andra stora problem som kan göra detta medium opålitligt? Om ja, förklar mer i anteckningen nedan."
-
+  medium_other_problems_q_long: "Finns det några andra stora problem som kan göra detta medium opålitligt? Om ja, förkla i anteckningen nedan."
+  
   medium_is_blacklisted_options_yes: "<b>Ja!</b> Den är svartlistad eller markerad som en 'falsk nyhetswebbplats'"
   medium_failed_factcheck_before_options_yes: "<b>Ja!</b> Det misslyckades minst en gång innan"
   medium_has_poor_security_options_yes: "<b>Ja!</b> Det har vissa problem med säkerheten"
@@ -433,46 +440,46 @@ sv:
   medium_is_not_liable_options_no: "<b>Nej!</b> Det krävs ansvar"
   medium_lacks_flagging_means_options_no: "<b>Nej!</b> Det har ett sätt att rapportera / flagga innehåll"
   medium_other_problems_options_no: "<b>Nej!</b> Det verkar inte vara några andra problem"
-
+  
 #src_review/steps
   reviewing_the_src_title: "Granska källan"
   assessing_src_rel_title: "Utvärdera källans pålitlighet"
-
+  
   src_credentials_q_short: "Källa-referenser"
-  src_factcheck_history_q_short: "Fact-check history"
+  src_factcheck_history_q_short: "Faktakolla historik"
   src_quality_of_writing_q_short: "Kvalitet på tidigare skrift"
   src_connected_to_biased_entities_q_short: "Ansluten till partiska enheter"
   src_difficulty_to_verify_auth_q_short: "Svårighet att verifiera äktheten"
   src_other_problems_q_short: "Andra problem"
-
-  src_credentials_q_long: "Saknar källan professionell legitimation?"
+  
+  src_credentials_q_long: "Saknar källan professionell affiliering?"
   src_factcheck_history_q_long: "Har källan misslyckats med en faktakontroll tidigare?"
   src_quality_of_writing_q_long: "Har källan en historia av dåliga uttalanden, skrifter, inlägg och tweets, etc.?"
-  src_connected_to_biased_entities_q_long: "Är källans närvaro på sociala medier kanske en bot eller stöds av ett nätverk av bots?"
-  src_difficulty_to_verify_auth_q_long: "Var det svårt att hitta information om källan med tillgängliga lokala gula sidor / kataloger online?"
-  src_other_problems_q_long: "Finns det några andra stora problem som kan göra denna källa opålitlig? Om ja, förklara mer i anmärkningen nedan."
-
-  src_credentials_q_options_yes: "<b>Ja!</b> Källan saknar professionell legitimation"
+  src_connected_to_biased_entities_q_long: "Är källans närvaro på sociala medier kanske en bot eller stöds av ett nätverk av botar?"
+  src_difficulty_to_verify_auth_q_long: "Var det svårt att hitta information om källan med tillgängliga kataloger online?"
+  src_other_problems_q_long: "Finns det några andra stora problem som kan göra denna källa opålitlig? Om ja, förklara mer i kommentaren nedan."
+  
+  src_credentials_q_options_yes: "<b>Ja!</b> Källan saknar professionell affiliering"
   src_factcheck_history_q_options_yes: "<b>Ja!</b> Det har misslyckats med faktakontroller tidigare"
   src_quality_of_writing_q_options_yes: "<b>Ja!</b> Dess skrifter är ganska dåliga"
   src_connected_to_biased_entities_q_options_yes: "<b>Ja!</b> Det verkar vara en bot eller dra nytta av bots i sociala medier"
   src_difficulty_to_verify_auth_q_options_yes: "<b>Ja!</b> Det var svårt att hitta information om källan"
   src_other_problems_q_options_yes: "<b>Ja!</b> det verkar finnas andra problem"
-
+  
   src_credentials_q_options_no: "<b>Nej!</b> Källan har professionella referenser"
-  src_factcheck_history_q_options_no: "<b>Nej!</b> Det verkar inte ha misslyckats med en faktagrankning tidigare"
-  src_quality_of_writing_q_options_no: "<b>Nej!</b> Källan verkar producera kvalitetsskrivningar"
-  src_connected_to_biased_entities_q_options_no: "<b>Nej!</b> Det verkar vara en riktig persons konto med organiskt stöd"
+  src_factcheck_history_q_options_no: "<b>Nej!</b> Det verkar inte ha misslyckats med en faktagranskning tidigare"
+  src_quality_of_writing_q_options_no: "<b>Nej!</b> Källan verkar producera kvalitativa texter"
+  src_connected_to_biased_entities_q_options_no: "<b>Nej!</b> Det verkar vara en riktig persons konto med naturligt stöd"
   src_difficulty_to_verify_auth_q_options_no: "<b>Nej!</b> Information om källan är lättillgänglig"
   src_other_problems_q_options_no: "<b>Nej!</b> Det finns inga andra problem"
-
+  
 #claim_review/steps
   reviewing_img_claim_title: "Granska bilden"
   reviewing_vid_claim_title: "Granska video"
   reviewing_txt_claim_title: "Granska textinnehållet"
   calculating_score_claim_title: "Beräknad poäng"
   assessing_claim_rel_title: "Din bedömning av påståendet"
-
+  
   claim_img_review_started_q_short: "Starta bildgranskning"
   claim_img_old_q_short: "Tidigare användning"
   claim_img_forensic_discrepency_q_short: "Bildmanipulation"
@@ -492,7 +499,7 @@ sv:
   claim_txt_crowds_distance_discrepency_q_short: "Felaktigheter"
   claim_txt_author_offers_little_evidence_q_short: "Källhänvisningar"
   claim_txt_reliable_sources_disapprove_q_short: "Andra problem"
-
+  
   claim_img_review_started_q_long: "Påståendet innehåller en bild, vill du granska den?"
   claim_img_old_q_long: "Har bilden använts tidigare i ett annat sammanhang?"
   claim_img_forensic_discrepency_q_long: "Har bilden doktorerats eller manipulerats (med hjälp av verktyg som Paint.Net eller Photoshop)?"
@@ -512,7 +519,7 @@ sv:
   claim_txt_crowds_distance_discrepency_q_long: "Inkluderar påståendet ett falskt uttalande om publikstorlekar eller avstånd, eller statistik, namn eller annan information som bara är sakligen fel?"
   claim_txt_author_offers_little_evidence_q_long: "Misslyckades författaren / producenten av detta påstående att tillhandahålla tillräckliga bevis för att bevisa det?"
   claim_txt_reliable_sources_disapprove_q_long: "Lider påståendet av andra problem?"
-
+  
   claim_img_review_started_q_options_yes: "<b>Ja!</b> Jag vill granska det"
   claim_img_old_q_options_yes: "<b>Ja!</b> Det har använts i ett annat sammanhang tidigare"
   claim_img_forensic_discrepency_q_options_yes: "<b>Ja!</b> Det verkar ha manipulerats"
@@ -532,7 +539,7 @@ sv:
   claim_txt_crowds_distance_discrepency_q_options_yes: "<b>Ja!</b> Det finns några sakliga felaktigheter"
   claim_txt_author_offers_little_evidence_q_options_yes: "<b>Ja!</b> Det finns inga tillräckliga bevis för att bevisa påståendet"
   claim_txt_reliable_sources_disapprove_q_options_yes: "<b>Ja!</b> Det fanns andra problem"
-
+  
   claim_img_review_started_q_options_no: "<b>Nej!</b> Jag vill hoppa över detta steg och bara göra en egen bedömning"
   claim_img_old_q_options_no: "<b>Nej!</b> Det verkar användas i rätt sammanhang"
   claim_img_forensic_discrepency_q_options_no: "<b>Nej!</b> Det verkar vara i dess manipulerade"
@@ -552,3 +559,4 @@ sv:
   claim_txt_crowds_distance_discrepency_q_options_no: "<b>Nej!</b> Jag bekräftade att det inte finns några sakliga felaktigheter"
   claim_txt_author_offers_little_evidence_q_options_no: "<b>Nej!</b> Kravet har tillräckligt med bevis"
   claim_txt_reliable_sources_disapprove_q_options_no: "<b>Nej!</b> Jag hittade inga andra problem i påståendet"
+  
