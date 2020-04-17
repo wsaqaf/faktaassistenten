@@ -42,12 +42,11 @@
       <br><h6><strong><%== t('calculating_score_claim_title') %></strong></h6>
 
       
-                  <li><big><b><font color=blue><%== t('calculated_score_q_long', review_score: @claim_review_score) %></font></b></big><br>
+                  <b><font color=blue><%== t('calculated_score_q_long', review_score: @claim_review_score) %></font></b><br>
                   <%= f.hidden_field :claim_review, :value => @claim_review %>
                   
                   <br>
                   
-                  </li>
           
       
                         <% if !@first_step.present? or @first_step!=step %>
@@ -60,5 +59,6 @@
     <div style='float:right'><%= link_to t('del_review'), claim_claim_review_path(@claim.id,@claim_review), style: '', method: :delete, data: { confirm: t('warning_del') } %></div>
     <% end %>
   </div>
+</div>
 </div>
               
