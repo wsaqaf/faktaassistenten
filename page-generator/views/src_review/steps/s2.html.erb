@@ -62,7 +62,7 @@
                           <div class="panel-collapse collapse" id="Resources">
                           	<div class="panel-body">
                             <% if (not @src.url.blank?) %>
-                              <small><%== t('src')[0].upcase+t('src')[1..-1]+" URL: <input type='text' id='url_link' value='"+@src.url.to_s+"' style='background-color:lightgrey;width:75%'> <button onclick=copyToClipboard('#url_link')>"+t('copy_url')+"</button>" %></small><br>
+                              <small><%== t('src')[0].upcase+t('src')[1..-1]+" URL: <input type='text' id='url_link' value='"+@src.url.to_s+"' style='background-color:lightgrey;width:75%'> <button onclick=copyToClipboard('#url_link')>"+t('copy_url')+"</button>" %></small><br><br>
                             <% end %>                            
                             <% if not has_resources.blank? %>
                                   <ul>
