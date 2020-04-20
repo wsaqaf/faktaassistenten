@@ -32,7 +32,7 @@
         <div class="card-body">
           <h5><center>
             <% if resource.url.blank? %>
-              <a href="<%== config.relative_url_root.to_s+"/"+resource_path(resource) %>" style="text-decoration:none; color: #696969"><%= resource.name %></a>
+              <a href="<%== resource_path(resource) %>" style="text-decoration:none; color: #696969"><%= resource.name %></a>
             <% else %>
               <a href="<%== resource.url %>" style="text-decoration:none; color: #696969" target=_blank><%= resource.name %></a>
             <% end %>
@@ -43,7 +43,7 @@
             <% end %>
             <%= resource.description %>
             <% if !resource.url.blank? %>
-              <p><center><a href="<%= config.relative_url_root.to_s+"/"+resource_path(resource) %>"><%= t('resource_about') %></a></center></p>
+              <p><center><a href="<%= resource_path(resource) %>"><%= t('resource_about') %></a></center></p>
             <% end %>
             <h4>
               <!-- <% if resource.url_preview.present? %>
