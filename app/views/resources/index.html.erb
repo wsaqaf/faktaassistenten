@@ -75,5 +75,5 @@
   <% if @total_count>10 then %> <%== pagy_bootstrap_nav(@pagy) %> <% end %>
 </div>
 <div class="container text-left p2">
-  <%= link_to t('add')+" "+t('or')+" "+t('import')+" "+t('resource'), new_resource_path,:class=>'btn btn btn-secondary',:style=>'' %>
+  <%= link_to t('add')+" "+t('or')+" "+t('import')+" "+t('resource').capitalize, new_resource_path,:class=>'btn btn btn-secondary',:style=>'' %>
 </div>
