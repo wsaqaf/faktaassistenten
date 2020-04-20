@@ -22,7 +22,10 @@ sv:
   tools_d: "Har vi missat några? Skicka en länk så lägger vi till verktyget här."
   db_t: "Utforska alla påståenden och faktakollar"
   db_d: "Här ser du tidigare faktakollar. Du kan också lägga till ett eget påstående som vem som helst kan hjälpa till att faktagranska."
-
+  db_t_media: "Kolla på granskningar av online medier"
+  db_d_media: "Här kan du se hur faktagranskare utvärderade vissa plattformar (vi kallar 'medier') när det gäller deras tillförlitlighet."
+  db_t_srcs: "Kolla på granskningar av källor"
+  db_d_srcs: "Här kan du se hur faktagranskare bedömde vissa källor som publicerar på nätet (t.ex. sociala mediekonton) när det gäller deras trovärdighet."
 
 #specific for pagy (this section is not needed for en.yml):
   pagy:

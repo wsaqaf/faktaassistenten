@@ -24,6 +24,10 @@ en:
   tools_d: "Did we miss any? Feel free to add or import a resource through the button at the end of this page."
   db_t: "Browse the existing fact-checks"
   db_d: "Here you can see previous fact-checks by the community. You can also add your own claim that anyone can fact-check."
+  db_t_media: "Browse reviews of online media"
+  db_d_media: "Here you can see how fact-checkers evaluated some platforms (we call 'media') in terms of their reliability."
+  db_t_srcs: "Browse reviews of sources"
+  db_d_srcs: "Here you can see how fact-checkers assessed some individuals/entities that publish on media platforms (we call them 'sources') in terms of their credibility."
 
   website_title: "Galileo – The Fact Check Assistant"
   claims: "Claims"
