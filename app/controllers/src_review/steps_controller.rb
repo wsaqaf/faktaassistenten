@@ -2,6 +2,7 @@ class SrcReview::StepsController < ApplicationController
   include Wicked::Wizard
   before_action :find_src
   helper_method :is_visible
+  skip_before_action :verify_authenticity_token
 
   steps *SrcReview.form_steps
 

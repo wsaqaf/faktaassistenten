@@ -3,6 +3,7 @@ class MediumReview::StepsController < ApplicationController
   before_action :find_medium
   before_action :check_if_signed_in
   helper_method :is_visible
+  skip_before_action :verify_authenticity_token
 
   steps *MediumReview.form_steps
 
