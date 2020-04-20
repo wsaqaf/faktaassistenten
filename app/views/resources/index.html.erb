@@ -26,21 +26,26 @@
   <% end %>
   <div class="container">
     <div class="card-columns">
-
       <% @resources.each do |resource| %>
-
       <div class="card" style="background-color: #D9FBFB">
         <!-- <img class="card-img-top" src="" alt="Card"> -->
         <div class="card-body">
-          <h5 class="card-title" style="text-align: center;><%= link_to resource.name, resource_path(resource) %></h5>
+          <h5><center>
+            <% if resource.url.blank? %>
+              <a href="<%== config.relative_url_root.to_s+"/"+resource_path(resource) %>" style="text-decoration:none; color: #696969"><%= resource.name %></a>
+            <% else %>
+              <a href="<%== resource.url %>" style="text-decoration:none; color: #696969" target=_blank><%= resource.name %></a>
+            <% end %>
+          </center></h5>
           <p class="card-text">
             <% if !resource.icon.blank? %>
              <div style="text-align: center"><img src='<%= resource.icon %>' width=150></div>
             <% end %>
             <%= resource.description %>
+            <% if !resource.url.blank? %>
+              <p><center><a href="<%= config.relative_url_root.to_s+"/"+resource_path(resource) %>"><%= t('resource_about') %></a></center></p>
+            <% end %>
             <h4>
-
-
               <!-- <% if resource.url_preview.present? %>
             <br><%== resource.url_preview.gsub('\"','"').gsub("\\'", "'") %>
             <% end %> -->

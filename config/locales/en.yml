@@ -219,6 +219,7 @@ en:
   export_this_claim: "Export this claim"
   export_this_medium: "Export this medium"
   export_this_source: "Export this source"
+  resource_about: "About this resource"
 
   #within helper:
   reverse_image_search: "Reverse image search"

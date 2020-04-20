@@ -59,7 +59,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.action_controller.asset_host = "localhost:3000"
-  config.relative_url_root = ""
+  config.relative_url_root = ENV["RELATIVE_URL"] 
 
   config.institution = "Test Server"
 
