@@ -33,7 +33,6 @@ class MediumReview::StepsController < ApplicationController
     end;
     confidence=(100*(total.to_f/max_total)).to_i
     relative_score=t('score_is1')+score.to_s+t('score_is2')+max_total.to_s
-#    puts("\n\nResult:"+relative_score+"\n\n")
     if (score==-1*max_total)
       relative_score=t('rate_totally_'+adj2)
     elsif (score<=-0.5*max_total)

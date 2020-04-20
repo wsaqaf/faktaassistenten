@@ -26,7 +26,7 @@ en:
   db_d: "Here you can see previous fact-checks by the community. You can also add your own claim that anyone can fact-check."
 
   website_title: "Galileo – The Fact Check Assistant"
-  claims: "Claims & fact checks"
+  claims: "Claims"
   media: "Media"
   sources: "Sources"
   srcs: "Sources"

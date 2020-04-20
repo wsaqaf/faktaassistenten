@@ -36,6 +36,9 @@ class SrcsController < ApplicationController
         end
         tmp=Src.joins(:src_reviews).where("(srcs.sharing_mode=1 OR srcs.user_id="+current_user.id.to_s+") AND srcs.id=src_reviews.src_id and src_reviews.src_review_sharing_mode=1 and src_reviews.src_review_verdict IS NOT NULL"+remove_unsure).group("srcs.id").order(Arel.sql(sort_statement("src",params[:sort])))
         @total_count=tmp.count.length
+      elsif  (params[:sort]=="rt")
+        tmp=Src.joins(:src_reviews).where("srcs.id=src_reviews.src_id and (srcs.sharing_mode=1 OR srcs.user_id="+current_user.id.to_s+") and src_reviews.src_review_sharing_mode=1 and src_reviews.src_review_verdict IS NOT NULL").group("srcs.id,src_reviews.updated_at,src_reviews.created_at").order(Arel.sql(sort_statement("src",params[:sort])))
+        @total_count=tmp.count.length
       else
         if qry.nil? then qry="srcs.sharing_mode=1 OR srcs.user_id="+current_user.id.to_s; end
         tmp=Src.where(qry).order(Arel.sql("created_at DESC"))

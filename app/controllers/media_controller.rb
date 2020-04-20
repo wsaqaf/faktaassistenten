@@ -36,6 +36,9 @@ class MediaController < ApplicationController
         end
         tmp=Medium.joins(:medium_reviews).where("(media.sharing_mode=1 OR media.user_id="+current_user.id.to_s+") AND media.id=medium_reviews.medium_id and medium_reviews.medium_review_sharing_mode=1 and medium_reviews.medium_review_verdict IS NOT NULL"+remove_unsure).group("media.id").order(Arel.sql(sort_statement("medium",params[:sort])))
         @total_count=tmp.count.length
+      elsif  (params[:sort]=="rt")
+        tmp=Medium.joins(:medium_reviews).where("media.id=medium_reviews.medium_id and (media.sharing_mode=1 OR media.user_id="+current_user.id.to_s+") and medium_reviews.medium_review_sharing_mode=1 and medium_reviews.medium_review_verdict IS NOT NULL").group("media.id,medium_reviews.updated_at,medium_reviews.created_at").order(Arel.sql(sort_statement("medium",params[:sort])))
+        @total_count=tmp.count.length
       else
         if qry.nil? then qry="media.sharing_mode=1 OR media.user_id="+current_user.id.to_s; end
         tmp=Medium.where(qry).order(Arel.sql("created_at DESC"))
