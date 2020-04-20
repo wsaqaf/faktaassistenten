@@ -34,7 +34,8 @@
 </h6>
 <p><%= t('added_by') %>: <%= User.find(@medium.user_id).name %>
 <br><%= t('created_at') %>: <%= @medium.created_at %>
-<br><%= t('updated_at') %>: <%= @medium.updated_at %></p>
+<br><%= t('updated_at') %>: <%= @medium.updated_at %>
+<br><%= link_to t('export_this_medium'), export_medium_path(@medium), method: :post %></p>
 
 <hr><%= link_to t('claims_connected')+" "+t('this_medium'), claims_path(:m => @medium.id) %>
 <br><br>

@@ -79,16 +79,133 @@ class SrcsController < ApplicationController
   end
 
   def create
-    @src = current_user.srcs.build(src_params)
+    start_review=0
+    if (!params[:src].nil?)
+      start_review=params[:src][:start_review]
+      params[:src].delete(:start_review)
+    end
+    @import_note=""
+    if (params[:srcs_json].present?)
+      massport
+    elsif (!params[:src].nil? && (params[:src][:url] || params[:src][:file]))
+      if (params[:src][:include_review].present?)
+        if (params[:src][:file].present?)
+          myfile=params[:src][:file]
+          file_contents=myfile.read
+        else
+          myfile=params[:src][:url]
+          require 'open-uri'
+          begin
+            file_contents= open(myfile) {|f| f.read }
+          rescue
+            file_contents=""
+          end
+        end
+        if (!file_contents.nil?)
+         if (file_contents.length>0)
+            src_list = JSON.parse(file_contents)
+            src_list.each do |clm|
+              @src = Src.where("name= ?",clm['name']).first
+              if (!@src.nil?)
+                if (params[:src][:overwrite]=="1" && @src.user_id==current_user.id)
+                  if (params[:src][:include_review]=="1" && !clm['src_review'].blank?)
+                    @src_review = SrcReview.where("src_id=? AND user_id=?",@src.id,current_user.id).first
+                    if (not @src_review.blank?)
+                      @src_review=SrcReview.find(@src_review.id)
+                      @src_review.update(clm['src_review'])
+                      @import_note=@import_note+clm['name']+t('src_review_imported')+"<br>"
+                    else
+                      current_user.src_reviews.build(clm['src_review'])
+                    end
+                  else
+                    clm.delete('src_review')
+                    if (@src.update(clm))
+                      @import_note=@import_note+clm['name']+t('src_imported')+"<br>"
+                    else
+                      @import_note=@import_note+clm['name']+t('src_not_imported')+"<br>"
+                    end
+                  end
+                else
+                  @import_note=@import_note+clm['name']+t('src_not_imported')+"<br>"
+                end
+              else
+                c_rev=clm['src_review']
+                clm.delete('src_review')
+                @src = current_user.srcs.build(clm)
+                if @src.save
+                  @import_note=@import_note+clm['name']+t('src_imported')+"<br>"
+                  if (!c_rev.blank?)
+                    c_rev["src_id"]= { "src_id" => @src.id }
+                    @src_review = SrcReview.new
+                    @src_review.src_id=@src.id
+                    @src_review.user_id=current_user.id
 
-    begin
+                    @src_review.src_review_started= c_rev["src_review_started"]
+                    @src_review.src_lacks_proper_credentials= c_rev["src_lacks_proper_credentials"]
+                    @src_review.src_failed_factcheck_before= c_rev["src_failed_factcheck_before"]
+                    @src_review.src_has_poor_writing_history= c_rev["src_has_poor_writing_history"]
+                    @src_review.src_supported_by_trolls= c_rev["src_supported_by_trolls"]
+                    @src_review.src_difficult_to_locate= c_rev["src_difficult_to_locate"]
+                    @src_review.src_other_problems= c_rev["src_other_problems"]
+                    @src_review.src_review_verdict= c_rev["src_review_verdict"]
+                    @src_review.src_review_description= c_rev["src_review_description"]
+                    @src_review.src_review_sharing_mode= c_rev["src_review_sharing_mode"]
+                    @src_review.src_review_is_completed= c_rev["src_review_is_completed"]
+                    @src_review.note_src_lacks_proper_credentials= c_rev["note_src_lacks_proper_credentials"]
+                    @src_review.note_src_failed_factcheck_before= c_rev["note_src_failed_factcheck_before"]
+                    @src_review.note_src_has_poor_writing_history= c_rev["note_src_has_poor_writing_history"]
+                    @src_review.note_src_supported_by_trolls= c_rev["note_src_supported_by_trolls"]
+                    @src_review.note_src_difficult_to_locate= c_rev["note_src_difficult_to_locate"]
+                    @src_review.note_src_other_problems= c_rev["note_src_other_problems"]
+                    @src_review.note_src_review_verdict= c_rev["note_src_review_verdict"]
+                    @src_review.note_src_review_description= c_rev["note_src_review_description"]
+                    @src_review.note_src_review_sharing_mode= c_rev["note_src_review_sharing_mode"]
+
+                    if (@src_review.save)
+                      @import_note=@import_note+clm['name']+t('src_review_imported')+"<br>"
+                    else
+                      @import_note=@import_note+clm['name']+t('src_review_not_imported')+"<br>"
+                    end
+                  end
+                else
+                  @import_note=@import_note+clm['name']+t('src_not_imported')+"<br>"
+                end
+              end
+            end
+         end
+         render 'show'
+        end
+      else
+        @src = current_user.srcs.build(src_params)
+        if @src.save
+            if start_review=="1"
+              @src_review = SrcReview.new
+              @src_review.src_id=@src.id
+              @src_review.user_id=current_user.id
+              @src_review.save(validate: false)
+              redirect_to src_src_review_step_path(@src,@src_review, SrcReview.form_steps.first)
+            else
+              redirect_to srcs_path
+            end
+        else
+            render 'new'
+        end
+      end
+    else
+      @src = current_user.srcs.build(src_params)
       if @src.save
+        if start_review==1
+          @src_review = SrcReview.new
+          @src_review.src_id=@src.id
+          @src_review.user_id=current_user.id
+          @src_review.save(validate: false)
+          redirect_to src_src_review_step_path(@src,@src_review, SrcReview.form_steps.first)
+        else
           redirect_to srcs_path
+        end
       else
           render 'new'
       end
-    rescue
-      render 'new'
     end
   end
 
@@ -117,10 +234,81 @@ class SrcsController < ApplicationController
     redirect_to srcs_path
   end
 
+  def export
+      if (!params[:id].blank?)
+          clm=Src.find(params[:id])
+          result_json=[]
+          src_rev={}
+          clm_review = SrcReview.where("src_id=? AND src_review_sharing_mode=1",clm.id).first
+          if (!clm_review.blank?)
+            src_rev={
+            "src_review_started" => clm_review.src_review_started,
+            "src_lacks_proper_credentials" => clm_review.src_lacks_proper_credentials,
+            "src_failed_factcheck_before" => clm_review.src_failed_factcheck_before,
+            "src_has_poor_writing_history" => clm_review.src_has_poor_writing_history,
+            "src_supported_by_trolls" => clm_review.src_supported_by_trolls,
+            "src_difficult_to_locate" => clm_review.src_difficult_to_locate,
+            "src_other_problems" => clm_review.src_other_problems,
+            "src_review_verdict" => clm_review.src_review_verdict,
+            "src_review_description" => clm_review.src_review_description,
+            "src_review_sharing_mode" => clm_review.src_review_sharing_mode,
+            "src_review_is_completed" => clm_review.src_review_is_completed,
+            "note_src_lacks_proper_credentials" => clm_review.note_src_lacks_proper_credentials,
+            "note_src_failed_factcheck_before" => clm_review.note_src_failed_factcheck_before,
+            "note_src_has_poor_writing_history" => clm_review.note_src_has_poor_writing_history,
+            "note_src_supported_by_trolls" => clm_review.note_src_supported_by_trolls,
+            "note_src_difficult_to_locate" => clm_review.note_src_difficult_to_locate,
+            "note_src_other_problems" => clm_review.note_src_other_problems,
+            "note_src_review_verdict" => clm_review.note_src_review_verdict,
+            "note_src_review_description" => clm_review.note_src_review_description,
+            "note_src_review_sharing_mode" => clm_review.note_src_review_sharing_mode
+              }
+          end
+          src_json = {
+            "name" => clm.name,
+            "url" => clm.url,
+            "url_preview" => clm.url_preview,
+            "description" => clm.description,
+            "src_type" => clm.src_type,
+            "sharing_mode" => clm.sharing_mode,
+            "src_review" => src_rev
+          }
+          result_json << src_json
+          send_data result_json.to_json,
+            :type => 'text/json; charset=UTF-8;',
+            :disposition => "attachment; filename=src"+params[:id].to_s+".json"
+     end
+  end
+
   private
 
+    def massport
+      srcs_json=params[:srcs_json]
+      send_data srcs_json,
+        :type => 'text/json; charset=UTF-8;',
+        :disposition => "attachment; filename=srcs.json"
+    end
+
+    def get_all_json
+      @srcs_json = []
+      @tmp.all.each do |clm|
+        clm_json = {
+          "name" => clm.name,
+          "description" => clm.description,
+          "url" => clm.url,
+          "url_preview" => clm.url_preview,
+          "src_type" => clm.src_type,
+          "sharing_mode" => 1,
+          "src_review" => src_rev
+        }
+        @srcs_json << clm_json
+      end
+      @srcs_json = @srcs_json.to_json
+      @srcs_json=@srcs_json.to_s;
+    end
+
     def src_params
-      params.require(:src).permit(:name, :url, :src_type, :description, :sharing_mode, :url_preview)
+      params.require(:src).permit(:name, :url, :src_type, :description, :sharing_mode, :url_preview, :start_review)
     end
 
     def find_src

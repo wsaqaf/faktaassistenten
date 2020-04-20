@@ -16,6 +16,7 @@ sv:
   claim_r: "Du faktagranskar påståendet"
   medium_r: "Du faktagranskar mediet"
   source_r: "Du faktagranskar källan"
+  src_r: "Du faktagranskar källan"
   claim_d: "Tack för att du bidrar till en faktabaserad värld"
   tools_t: "Vi har samlat några av de bästa verktygen"
   tools_d: "Har vi missat några? Skicka en länk så lägger vi till verktyget här."
@@ -50,6 +51,7 @@ sv:
   claims: "Alla påståenden och faktakollar"
   media: "Medier"
   sources: "Källor"
+  srcs: "Källor"
   resources_for_verification: "Verktyg"
   resources: "Resurser"
   sign_out: "Logga ut"
@@ -130,11 +132,26 @@ sv:
   yes_share: "Ja, dela med alla"
   no_share: "Nej, håll det privat för mig"
   claim_import: "Importera ett påstående"
-  claim_import_note: "Här kan du ladda upp en json-fil för ett påstående som tidigare exporterades via den 'exportera påstående' funktionen"
+  claim_import_note: "Här kan du ladda upp en json-fil för ett påstående som tidigare exporterades via den 'exportera' funktionen"
   claim_select_file: "Välj json-fil och klicka sedan på import:"
   claim_select_url: "eller importera från URL:"
   claim_option_include_review: "Inkludera den senaste associerade faktagranskningen automatiskt"
   claim_option_overwrite: "Skriv över tidigare påstående med samma titel"
+
+  medium_import: "Importera ett medie"
+  medium_import_note: "Här kan du ladda upp en json-fil för ett medie som tidigare exporterades via den 'exportera' funktionen"
+  medium_select_file: "Välj json-fil och klicka sedan på import:"
+  medium_select_url: "eller importera från URL:"
+  medium_option_include_review: "Inkludera den senaste associerade faktagranskningen automatiskt"
+  medium_option_overwrite: "Skriv över tidigare medie med samma titel"
+
+  src_import: "Importera en källa"
+  src_import_note: "Här kan du ladda upp en json-fil för en källa som tidigare exporterades via den 'exportera' funktionen"
+  src_select_file: "Välj json-fil och klicka sedan på import:"
+  src_select_url: "eller importera från URL:"
+  src_option_include_review: "Inkludera den senaste associerade faktagranskningen automatiskt"
+  src_option_overwrite: "Skriv över tidigare källa med samma titel"
+
   advanced_options: "avancerade alternativ"
 
 #Claim/edit

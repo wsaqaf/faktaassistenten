@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
             if key==filter_option then f[key]="selected"; end
         end
         return "<div class='form-group'>
-        <label for=''>Filter</label><select class='form-control' id='filter'><option value='"+page1+"' "+f['a']+">"+t('all')+" "+t(page2.downcase)+"</option><option value='?filter=m' "+f['m']+">"+t(page2.downcase)+t('you_created')+"</option><option value='?filter=r' "+f['r']+">"+t(page2.downcase)+t('been_reviewed')+"</option><option value='?filter=u' "+f['u']+">"+t(page2.downcase)+t('you_reviewed')+"</option><option value='?filter=n' "+f['n']+">"+t(page2.downcase)+t('with_no_reviews')+"</option></select></div>\n<script>$(function(){$('#filter').on('change',function(){{window.location=$(this).val();}return false;});});</script>"
+        <label for=''>Filter</label><select class='form-control' id='filter'><option value='"+page1+"' "+f['a']+">"+t('all')+" "+t(page2.downcase)+"</option><option value='?filter=r' "+f['r']+">"+t(page2.downcase)+t('been_reviewed')+"</option><option value='?filter=n' "+f['n']+">"+t(page2.downcase)+t('with_no_reviews')+"</option><option value='?filter=m' "+f['m']+">"+t(page2.downcase)+t('you_created')+"</option><option value='?filter=u' "+f['u']+">"+t(page2.downcase)+t('you_reviewed')+"</option></select></div>\n<script>$(function(){$('#filter').on('change',function(){{window.location=$(this).val();}return false;});});</script>"
       end
 
       def sort_statement(page,sorting)

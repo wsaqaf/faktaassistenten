@@ -16,8 +16,9 @@ en:
   src_t: "You're adding a source"
   resource_t: "You're adding a resource"
   claim_r: "You're reviewing the claim"
-  medium_r: "You're reviwing the medium"
+  medium_r: "You're reviewing the medium"
   source_r: "You're reviewing the source"
+  src_r: "You're reviewing the source"
   claim_d: "Thanks for contributing to a fact-based world"
   tools_t: "We collected some of the best fact-checking tools"
   tools_d: "Did we miss any? Feel free to add or import a resource through the button at the end of this page."
@@ -28,6 +29,7 @@ en:
   claims: "Claims & fact checks"
   media: "Media"
   sources: "Sources"
+  srcs: "Sources"
   resources_for_verification: "Fact-checking tools"
   resources: "Resources"
   sign_out: "Sign out"
@@ -103,12 +105,29 @@ en:
   share_claim: "Do you want to share this claim with other members?"
   yes_share: "Yes share with everyone"
   no_share: "No keep it private to me only"
+
   claim_import: "Import a claim"
   claim_import_note: "Here you can upload a json file of a claim that was exported previously via the 'export claim' feature"
   claim_select_file: "Select json file and then click import:"
   claim_select_url: "or import from URL:"
   claim_option_include_review: "Include the last associated review automatically"
   claim_option_overwrite: "Overwrite any earlier claim with the same title"
+
+  medium_import: "Import a medium"
+  medium_import_note: "Here you can upload a json file of a medium that was exported previously via the 'export medium' feature"
+  medium_select_file: "Select json file and then click import:"
+  medium_select_url: "or import from URL:"
+  medium_option_include_review: "Include the last associated review automatically"
+  medium_option_overwrite: "Overwrite any earlier medium with the same title"
+
+  src_import: "Import a source"
+  src_import_note: "Here you can upload a json file of a source that was exported previously via the 'export' feature"
+  src_select_file: "Select json file and then click import:"
+  src_select_url: "or import from URL:"
+  src_option_include_review: "Include the last associated review automatically"
+  src_option_overwrite: "Overwrite any earlier source with the same title"
+
+
   advanced_options: "advanced options"
 
   #Claim/show

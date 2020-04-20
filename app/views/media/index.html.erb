@@ -68,7 +68,7 @@
            - <b><%= link_to t('edit_review'), medium_medium_reviews_path(medium.id), method: :create %></b>,
            - <%= link_to t('del_review'), medium_medium_review_path(medium.id,@my_review), method: :delete, data: { confirm: t('confirm_del_q')} %>
         <% end %>
-         </small>
+          - <%= link_to t('export'), export_medium_path(medium), method: :post %></small>
          <%
            if !medium.url_preview.present?
               url_prev='<br><div id="final_url_preview" class="fragment">'
@@ -102,6 +102,7 @@
         <%= link_to t('edit'), edit_medium_path(medium) %> -
         <%= link_to t('delete'), medium_path(medium), method: :delete, data: { confirm: warning_msg } %>
       <% end %>
+      <hr>
     <% end %>
     </ul>
 <% if @total_count>10 then %> <%== pagy_bootstrap_nav(@pagy) %> <% end %>

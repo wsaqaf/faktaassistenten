@@ -31,12 +31,18 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :srcs do
+    member do
+      post :export
+    end
     resources :src_reviews do
       resources :steps, only: [:show, :update], controller: 'src_review/steps'
     end
   end
 
   resources :media do
+    member do
+      post :export
+    end
     resources :medium_reviews do
       resources :steps, only: [:show, :update], controller: 'medium_review/steps'
     end

@@ -8,9 +8,7 @@ class ClaimsController < ApplicationController
     else
       @import_note=""
     end
-
     order=""
-
     if (params[:sort].present?)
       @sort_msg=sort_bar("Claims",params[:sort])
     else
@@ -440,7 +438,10 @@ class ClaimsController < ApplicationController
       @claims_json = []
       @tmp.all.each do |clm|
         clm_json = {
+          "title" => clm.title,
           "description" => clm.description,
+          "url" => clm.url,
+          "url_preview" => clm.url_preview,
           "has_image" => clm.has_image,
           "has_video" => clm.has_video,
           "has_text" => clm.has_text,

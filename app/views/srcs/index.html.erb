@@ -67,7 +67,7 @@
          - <b><%= link_to t('edit_review'), src_src_reviews_path(src.id), method: :create %></b>,
          - <%= link_to t('del_review'), src_src_review_path(src.id,@my_review), method: :delete, data: { confirm: t('confirm_del_q')} %>
       <% end %>
-       </small>
+      - <%= link_to t('export'), export_src_path(src), method: :post %></small>
        <%
          if !src.url_preview.present?
             url_prev='<div id="final_url_preview" class="fragment">'
@@ -100,7 +100,9 @@
     %>
       <%= link_to t('edit'), edit_src_path(src) %> -
       <%= link_to t('delete'), src_path(src), method: :delete, data: { confirm: warning_msg } %>
-    <% end %>  <% end %>
+    <% end %>
+    <hr>
+  <% end %>
   </ul>
 <% if @total_count>10 then %> <%== pagy_bootstrap_nav(@pagy) %> <% end %>
 </div>
