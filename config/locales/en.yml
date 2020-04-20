@@ -275,6 +275,7 @@ en:
   for: "for"
   new: "New"
   update: "Update"
+  show_review: "Show review"
   show_reviews: "Show %{reviews} reviews"
 
   # Controllers

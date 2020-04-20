@@ -101,7 +101,11 @@
         <% if (@total_reviews>0) %>
           <% if !result1.empty? %>
             <%= result1 %>
-            <%= link_to "(" + t('show_reviews', reviews: @total_reviews), claim_claim_reviews_path(claim.id) %> |
+            <% if (@total_reviews>1) %>
+              <%= link_to "(" + t('show_reviews', reviews: @total_reviews), claim_claim_reviews_path(claim.id) %> |
+            <% else %>
+              <%= link_to "(" + t('show_review'), claim_claim_reviews_path(claim.id) %> |
+            <% end %>
             <% if @revtype == "Add" %>
                 <%= link_to t('add_review'), claim_claim_reviews_path(claim.id), method: :create %> )
             <% else %>

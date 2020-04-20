@@ -302,7 +302,8 @@ sv:
   for: "för"
   new: "Ny"
   update: "Uppdatera"
-  show_reviews: "Visa %{reviews} faktagranskningar"
+  show_review: "Visa granskning"
+  show_reviews: "Visa %{reviews} granskninger"
 
 #Controllers
 #common for controllers:

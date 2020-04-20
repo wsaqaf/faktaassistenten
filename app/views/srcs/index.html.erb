@@ -95,7 +95,11 @@
         <% if (@total_reviews>0) %>
           <% if !result1.empty? %>
             <%= result1 %>
-            <%= link_to "(" + t('show_reviews', reviews: @total_reviews), src_src_reviews_path(src.id) %> |
+            <% if (@total_reviews>1) %>
+              <%= link_to "(" + t('show_reviews', reviews: @total_reviews), src_src_reviews_path(src.id) %> |
+            <% else %>
+              <%= link_to "(" + t('show_review'),src_src_reviews_path(src.id) %> |
+            <% end %>
             <% if @revtype == "Add" %>
                 <%= link_to t('add_review'), src_src_reviews_path(src.id), method: :create %> )
             <% else %>
