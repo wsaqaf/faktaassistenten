@@ -241,7 +241,7 @@ en:
   export_this_resource: "Export this resource"
   export_this_claim: "Export this claim"
   export_this_medium: "Export this medium"
-  export_this_source: "Export this source"
+  export_this_src: "Export this source"
   resource_about: "About this resource"
 
   #within helper:

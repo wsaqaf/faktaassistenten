@@ -268,7 +268,7 @@ sv:
   export_this_resource: "Exportera den här resursen"
   export_this_claim: "Exportera det här påståendet"
   export_this_medium: "Exportera det här mediet"
-  export_this_source: "Exportera den här källan"
+  export_this_src: "Exportera den här källan"
   resource_about: "Mer om resursen"
 
 #within helper:
