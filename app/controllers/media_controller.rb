@@ -116,27 +116,27 @@ class MediaController < ApplicationController
                     if (not @medium_review.blank?)
                       @medium_review=MediumReview.find(@medium_review.id)
                       @medium_review.update(clm['medium_review'])
-                      @import_note=@import_note+clm['name']+t('medium_review_imported')+"<br>"
+                      @import_note=@import_note+t('medium_review_imported')+"<br>"
                     else
                       current_user.medium_reviews.build(clm['medium_review'])
                     end
                   else
                     clm.delete('medium_review')
                     if (@medium.update(clm))
-                      @import_note=@import_note+clm['name']+t('medium_imported')+"<br>"
+                      @import_note=@import_note+t('medium_imported')+"<br>"
                     else
-                      @import_note=@import_note+clm['name']+t('medium_not_imported')+"<br>"
+                      @import_note=@import_note+t('medium_not_imported')+"<br>"
                     end
                   end
                 else
-                  @import_note=@import_note+clm['name']+t('medium_not_imported')+"<br>"
+                  @import_note=@import_note+t('medium_not_imported')+"<br>"
                 end
               else
                 c_rev=clm['medium_review']
                 clm.delete('medium_review')
                 @medium = current_user.media.build(clm)
                 if @medium.save
-                  @import_note=@import_note+clm['name']+t('medium_imported')+"<br>"
+                  @import_note=@import_note+t('medium_imported')+"<br>"
                   if (!c_rev.blank?)
                     c_rev["medium_id"]= { "medium_id" => @medium.id }
                     @medium_review = MediumReview.new
@@ -172,13 +172,13 @@ class MediaController < ApplicationController
                     @medium_review.medium_review_sharing_mode= c_rev["medium_review_sharing_mode"]
 
                     if (@medium_review.save)
-                      @import_note=@import_note+clm['name']+t('medium_review_imported')+"<br>"
+                      @import_note=@import_note+t('medium_review_imported')+"<br>"
                     else
-                      @import_note=@import_note+clm['name']+t('medium_review_not_imported')+"<br>"
+                      @import_note=@import_note+t('medium_review_not_imported')+"<br>"
                     end
                   end
                 else
-                  @import_note=@import_note+clm['name']+t('medium_not_imported')+"<br>"
+                  @import_note=@import_note+t('medium_not_imported')+"<br>"
                 end
               end
             end

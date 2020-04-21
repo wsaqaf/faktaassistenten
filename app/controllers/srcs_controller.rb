@@ -116,27 +116,27 @@ class SrcsController < ApplicationController
                     if (not @src_review.blank?)
                       @src_review=SrcReview.find(@src_review.id)
                       @src_review.update(clm['src_review'])
-                      @import_note=@import_note+clm['name']+t('src_review_imported')+"<br>"
+                      @import_note=@import_note+t('src_review_imported')+"<br>"
                     else
                       current_user.src_reviews.build(clm['src_review'])
                     end
                   else
                     clm.delete('src_review')
                     if (@src.update(clm))
-                      @import_note=@import_note+clm['name']+t('src_imported')+"<br>"
+                      @import_note=@import_note+t('src_imported')+"<br>"
                     else
-                      @import_note=@import_note+clm['name']+t('src_not_imported')+"<br>"
+                      @import_note=@import_note+t('src_not_imported')+"<br>"
                     end
                   end
                 else
-                  @import_note=@import_note+clm['name']+t('src_not_imported')+"<br>"
+                  @import_note=@import_note+t('src_not_imported')+"<br>"
                 end
               else
                 c_rev=clm['src_review']
                 clm.delete('src_review')
                 @src = current_user.srcs.build(clm)
                 if @src.save
-                  @import_note=@import_note+clm['name']+t('src_imported')+"<br>"
+                  @import_note=@import_note+t('src_imported')+"<br>"
                   if (!c_rev.blank?)
                     c_rev["src_id"]= { "src_id" => @src.id }
                     @src_review = SrcReview.new
@@ -165,13 +165,13 @@ class SrcsController < ApplicationController
                     @src_review.note_src_review_sharing_mode= c_rev["note_src_review_sharing_mode"]
 
                     if (@src_review.save)
-                      @import_note=@import_note+clm['name']+t('src_review_imported')+"<br>"
+                      @import_note=@import_note+t('src_review_imported')+"<br>"
                     else
-                      @import_note=@import_note+clm['name']+t('src_review_not_imported')+"<br>"
+                      @import_note=@import_note+t('src_review_not_imported')+"<br>"
                     end
                   end
                 else
-                  @import_note=@import_note+clm['name']+t('src_not_imported')+"<br>"
+                  @import_note=@import_note+t('src_not_imported')+"<br>"
                 end
               end
             end

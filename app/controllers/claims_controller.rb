@@ -209,27 +209,27 @@ class ClaimsController < ApplicationController
                     if (not @claim_review.blank?)
                       @claim_review=ClaimReview.find(@claim_review.id)
                       @claim_review.update(clm['claim_review'])
-                      @import_note=@import_note+clm['title']+t('claim_review_imported')+"<br>"
+                      @import_note=@import_note+t('claim_review_imported')+"<br>"
                     else
                       current_user.claim_reviews.build(clm['claim_review'])
                     end
                   else
                     clm.delete('claim_review')
                     if (@claim.update(clm))
-                      @import_note=@import_note+clm['title']+t('claim_imported')+"<br>"
+                       @import_note=@import_note+t('claim_imported')+"<br>"
                     else
-                      @import_note=@import_note+clm['title']+t('claim_not_imported')+"<br>"
+                       @import_note=@import_note+t('claim_not_imported')+"<br>"
                     end
                   end
                 else
-                  @import_note=@import_note+clm['title']+t('claim_not_imported')+"<br>"
+                  @import_note=@import_note+t('claim_not_imported')+"<br>"
                 end
               else
                 c_rev=clm['claim_review']
                 clm.delete('claim_review')
                 @claim = current_user.claims.build(clm)
                 if @claim.save
-                  @import_note=@import_note+clm['title']+t('claim_imported')+"<br>"
+                  @import_note=@import_note+t('claim_imported')+"<br>"
                   if (!c_rev.blank?)
                     c_rev["claim_id"]= { "claim_id" => @claim.id }
                     @claim_review = ClaimReview.new
@@ -276,13 +276,13 @@ class ClaimsController < ApplicationController
                     @claim_review.review_sharing_mode= c_rev["review_sharing_mode"]
 
                     if (@claim_review.save)
-                      @import_note=@import_note+clm['title']+t('claim_review_imported')+"<br>"
+                      @import_note=@import_note+t('claim_review_imported')+"<br>"
                     else
-                      @import_note=@import_note+clm['title']+t('claim_review_not_imported')+"<br>"
+                      @import_note=@import_note+t('claim_review_not_imported')+"<br>"
                     end
                   end
                 else
-                  @import_note=@import_note+clm['title']+t('claim_not_imported')+"<br>"
+                  @import_note=@import_note+t('claim_not_imported')+"<br>"
                 end
               end
             end

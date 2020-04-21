@@ -27,7 +27,7 @@ en:
   db_t_media: "Browse reviews of online media"
   db_d_media: "Here you can see how fact-checkers evaluated some platforms (we call 'media') in terms of their reliability."
   db_t_srcs: "Browse reviews of sources"
-  db_d_srcs: "Here you can see how fact-checkers assessed some individuals/entities that publish on media platforms (we call them 'sources') in terms of their credibility."
+  db_d_srcs: "Here you find fact-checkers assessing the trustworthiness of entities (called 'sources') publishing on media."
 
   website_title: "Galileo – The Fact Check Assistant"
   claims: "Claims"
@@ -331,8 +331,8 @@ en:
   claim_imported_successfully: " imported successfully."
   claim_imported: " imported and replaced older claim with the same name."
   claim_not_imported: " not imported (claim with the same name already exists or created by another user)."
-  claim_review_imported: " review imported and updated any earlier reviews."
-  claim_review_not_imported: " review not imported for some reason."
+  claim_review_imported: " fact check imported and updated any earlier ones."
+  claim_review_not_imported: " fact check not imported for some reason."
 
   #medium_controller.rb
 
@@ -343,6 +343,12 @@ en:
   medium_type_blog: "Blogging platform"
   medium_type_other: "Other"
 
+  medium_imported_successfully: " imported successfully."
+  medium_imported: " imported and replaced older medium with the same name."
+  medium_not_imported: " not imported (medium with the same name already exists or created by another user)."
+  medium_review_imported: " review imported and updated any earlier reviews."
+  medium_review_not_imported: " review not imported for some reason."
+
   #src_controller.rb
 
   src_type_social_person: "Person"
@@ -350,6 +356,12 @@ en:
   src_type_website: "Website"
   src_type_other: "Other"
   src_type_not_sure: "Not sure"
+
+  src_imported_successfully: " imported successfully."
+  src_imported: " imported and replaced older source with the same name."
+  src_not_imported: " not imported (source with the same name already exists or created by another user)."
+  src_review_imported: " review imported and updated any earlier reviews."
+  src_review_not_imported: " review not imported for some reason."
 
   #resources_controller.rb
 

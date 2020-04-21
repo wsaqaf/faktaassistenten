@@ -142,11 +142,11 @@ sv:
   claim_option_overwrite: "Skriv över tidigare påstående med samma titel"
 
   medium_import: "Importera ett medie"
-  medium_import_note: "Här kan du ladda upp en json-fil för ett medie som tidigare exporterades via den 'exportera' funktionen"
+  medium_import_note: "Här kan du ladda upp en json-fil för ett medium som tidigare exporterades via den 'exportera' funktionen"
   medium_select_file: "Välj json-fil och klicka sedan på import:"
   medium_select_url: "eller importera från URL:"
   medium_option_include_review: "Inkludera den senaste associerade faktagranskningen automatiskt"
-  medium_option_overwrite: "Skriv över tidigare medie med samma titel"
+  medium_option_overwrite: "Skriv över tidigare medium med samma titel"
 
   src_import: "Importera en källa"
   src_import_note: "Här kan du ladda upp en json-fil för en källa som tidigare exporterades via den 'exportera' funktionen"
@@ -218,8 +218,8 @@ sv:
   give_medium_title: "Vad heter mediet"
   medium_url: "URL (t.ex. https://twitter.com, https://facebook.com, https://telegram.org/, https://whatsapp.com)"
   medium_type: "Vilken typ är det här mediet?"
-  share_medium: "Vill du dela detta medie med andra?"
-  more_notes_medium: "Lägg till mer information om detta medie (särskilt om du angav 'annat' som typ)"
+  share_medium: "Vill du dela detta medium med andra?"
+  more_notes_medium: "Lägg till mer information om detta medium (särskilt om du angav 'annat' som typ)"
 
 #Medium/show
   claims_connected: "Påstående som är kopplade till "
@@ -355,11 +355,11 @@ sv:
   tag_exist: " har redan lagts till och finns i databasen!"
   tag_could_not_add: "Kunde inte lägga till "
 
-  claim_imported_successly: " importerat lyckades."
-  claim_imported: " importerat och ersatt äldre påstående med samma titel."
-  claim_not_imported: " inte importerad (påstående med samma titel finns redan eller skapats av en annan användare)."
-  claim_review_imported: " faktagranskning importerade och uppdaterade alla tidigare recensioner."
-  claim_review_not_imported: " faktagranskning har inte importerats av någon anledning."
+  claim_imported_successfully: "Import av påståendet lyckades."
+  claim_imported: "Påståendet importerat och ersatte det äldre påståendet med samma titel."
+  claim_not_imported: "Inte importerad! Ett påstående med samma titel finns redan eller skapats av en annan användare."
+  claim_review_imported: "Import av påståendet och faktagranskningen lyckades."
+  claim_review_not_imported: "Faktagranskningen har inte importerats av någon anledning."
 
 #medium_controller.rb
 
@@ -370,6 +370,12 @@ sv:
   medium_type_blog: "Bloggplattform"
   medium_type_other: "Övrigt"
 
+  medium_imported_successfully: "Import av mediet lyckades."
+  medium_imported: "Import och ersatte äldre medium med samma namn."
+  medium_not_imported: "Inte importerad! Ett medium med samma namn finns redan eller skapats av en annan användare."
+  medium_review_imported: "Import av mediet och faktagranskningen lyckades."
+  medium_review_not_imported: "Mediet har inte importerats av någon anledning."
+
 #src_controller.rb
 
   src_type_social_person: "Person"
@@ -377,6 +383,12 @@ sv:
   src_type_website: "Hemsida"
   src_type_other: "Övrigt"
   src_type_not_sure: "Vet inte"
+
+  src_imported_successfully: "Import av källan lyckades."
+  src_imported: "Källan importerat och ersatte den äldre källan med samma namn."
+  src_not_imported: "Inte importerad! En källa med samma namn finns redan eller skapats av en annan användare)."
+  src_review_imported: "Import av källan och faktagranskningen lyckades."
+  src_review_not_imported: "Källan har inte importerats av någon anledning."
 
 #resources_controller.rb
 

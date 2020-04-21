@@ -1,11 +1,10 @@
-<div class="text-center mb-5">
-  <div class="col-12 col-md-10 col-lg-8 mx-auto">
-    <h1><%= t('db_t_srcs') %></h1>
-    <p><%= t('db_d_srcs') %></p>
-  </div>
+<div class="mb-5">
+<% if user_signed_in? %>
+<div class="text-center col-12 col-md-10 col-lg-8 mx-auto">
+  <h2><%= t('db_t_srcs') %></h2>
+  <p><%= t('db_d_srcs') %></p>
 </div>
 <div class="container">
-<% if user_signed_in? %>
   <div class="form-row">
     <div class="col-md-4">
       <!-- Filter -->
@@ -28,6 +27,9 @@
       </div>
     </div>
   </div>
+</div>
+<div class="container text-center p2">
+  <%= link_to t('add')+" "+t('or')+" "+t('import')+" "+t('src').capitalize, new_src_path,:class=>'btn btn btn-secondary',:style=>'' %>
 </div>
 <hr>
 <% @srcs.each do |src| %>
@@ -150,24 +152,17 @@
   <hr>
 </div>
 <% end %>
-
 <div class="container">
-
-
   <% if @total_count>10 then %> <%== pagy_bootstrap_nav(@pagy) %> <% end %>
-  <% else %>
-
-  <h4><%= t('welcome_msg') %></h4>
-  <br>
-  <hr><br>
+  <hr>
+  <div class="container text-center p2">
+    <%= link_to t('add')+" "+t('or')+" "+t('import')+" "+t('src').capitalize, new_src_path,:class=>'btn btn btn-secondary',:style=>'' %>
+  </div>
+</div>
+<% else %>
   <%= t('go_sign_in_part1') %> <b><%= link_to t('sign_in'), new_user_session_path %></b>.
   <br>
   <br>
   <%= t('go_sign_up_part1') %> <b><%= link_to t('sign_up'), new_user_registration_path %></b>.
-  <% end %>
-</div>
-
-<hr>
-<div class="container text-center p2">
-  <%= link_to t('add')+" "+t('or')+" "+t('import')+" "+t('src').capitalize, new_src_path,:class=>'btn btn btn-secondary',:style=>'' %>
+<% end %>
 </div>
