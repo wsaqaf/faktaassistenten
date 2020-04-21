@@ -14,6 +14,16 @@ en:
   about_galileo_txt: "The Galileo prototype is an outcome of the Faktaassistenten research project funded by Vinnova and developed in cooperation between 'Future Journalism' and Södertörn University"
   future_of_journalism_txt: "<h6><b>Future of Journalism</b></h6><p>Future of Journalism is a consortium of Swedish media companies working towards new and innovative solutions for newsrooms.</p>"
 
+  tools_for_journalists: "Tools for journalists"
+  become_factchecker: "Become a professional fact checker"
+  collection_tools: "A collection of the world’s best fact-checking tools"
+  for_developers: "For developers and news media"
+  coming_soon_msg: "Coming soon: Use the API to show fact checks on your website"
+  developer_api: "Developer and API documentation"
+
+
+
+
 # Views common
   add_new: "Add new claim"
   home_t: "Galileo helps you separate facts from fiction"

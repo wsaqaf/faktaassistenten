@@ -14,6 +14,13 @@ sv:
   about_galileo_txt: "Prototypen av Galileo är ett resultat av Faktaassistenten forskningsprojekt som finansieras av Vinnova och utvecklats i samarbete mellan Framtidens Journalistik och Södertörns högskola."
   future_of_journalism_txt: "<h6><b>Framtidens Journalistik</b></h6><p>Future of Journalism är ett konsortium av svenska medieföretag som arbetar för nya och innovativa lösningar för nyhetslokaler.</p>"
 
+  tools_for_journalists: "Verktyg för journalister"
+  become_factchecker: "Bli en professionell faktagranskare"
+  collection_tools: "En samling av världens bästa faktakontrollverktyg"
+  for_developers: "För utvecklare och nyhetsmedier"
+  coming_soon_msg: "Kommer snart: Använd API för att visa faktagranskningar på din webbplats"
+  developer_api: "Dokument för utvecklare och API"
+
 #Views common
   add_new: "Lägg till"
   home_t: "Med Galileo blir du en expert på att faktagranska!"
