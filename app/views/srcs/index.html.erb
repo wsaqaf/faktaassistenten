@@ -73,7 +73,7 @@
       if (@reviews.blank?) then @total_reviews=0; @results2=""
       else
         @total_reviews=@reviews.size
-        assessments={"1"=>t('rate_false'),"2"=>t('rate_mostly_false'),"3"=>t('rate_mixed'),"4"=>t('rate_mostly_true'),"5"=>t('rate_true'),"0"=>t('rate_no_decision')}
+        assessments={"1"=>t('rate_totally_untrustworthy'),"2"=>t('rate_mostly_untrustworthy'),"3"=>t('rate_mixed'),"4"=>t('rate_mostly_trustworthy'),"5"=>t('rate_totally_trustworthy'),"0"=>t('rate_no_decision')}
         assessments2={"1"=>0,"2"=>0,"3"=>0,"4"=>0,"5"=>0,"0"=>0}
         @reviews.each do |rev|
           if rev.src_review_verdict.present? then
