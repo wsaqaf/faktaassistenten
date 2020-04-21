@@ -7,6 +7,9 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-md-8 offset-md-2">
+      <% if params[:import_err].present? %>
+        <center><font color="red"><%== t('invalid_json') %></font></center><br>
+      <% end %>
       <fieldset>
         <div class="form-claim">
           <%= form_for @claim, :html => { :onsubmit => "do_submit('claim')" } do |f| %>

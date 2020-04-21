@@ -8,7 +8,6 @@ class ClaimsController < ApplicationController
     else
       @import_note=""
     end
-    order=""
     if (params[:sort].present?)
       @sort_msg=sort_bar("Claims",params[:sort])
     else
@@ -108,10 +107,10 @@ class ClaimsController < ApplicationController
             end
             output=output+"\n<h4><a href=\""+params[:url]+"\" target=_blank>"+titl+"</a></h4><br><i>"+domain_name.to_s+"</i><br><p class=\"text\">"+desc+"</p></div></div>"
           end
-      end
+        end
         render json: output;
         return
-      else
+    else
         @filter_msg=filter_bar("Claims","a")
         if params[:tag]
           tmp=Claim.tagged_with(params[:tag])
@@ -135,28 +134,28 @@ class ClaimsController < ApplicationController
         end
         @pagy, @claims = pagy(tmp, items: 10)
         return
-      end
-      if params[:tag]
+    end
+    if params[:tag]
         tmp=Claim.tagged_with(params[:tag])
         @total_count=tmp.count
-      elsif (params[:sort]=="r" or params[:sort]=="rp" or params[:sort]=="rn")
+    elsif (params[:sort]=="r" or params[:sort]=="rp" or params[:sort]=="rn")
         remove_unsure="";
         if (params[:sort]!="r")
           remove_unsure=" AND src_reviews.src_review_verdict!=0 "
         end
         tmp=Claim.joins(:claim_reviews).where("claims.id=claim_reviews.claim_id and (claims.sharing_mode=1 OR claims.user_id="+current_user.id.to_s+") and claim_reviews.review_sharing_mode=1 and claim_reviews.review_verdict IS NOT NULL"+remove_unsure).group("claims.id").order(Arel.sql(sort_statement("claim",params[:sort])))
         @total_count=tmp.count.length
-      elsif  (params[:sort]=="rt")
+    elsif  (params[:sort]=="rt")
         tmp=Claim.joins(:claim_reviews).where("claims.id=claim_reviews.claim_id and (claims.sharing_mode=1 OR claims.user_id="+current_user.id.to_s+") and claim_reviews.review_sharing_mode=1 and claim_reviews.review_verdict IS NOT NULL").group("claims.id,claim_reviews.updated_at,claim_reviews.created_at").order(Arel.sql(sort_statement("claim",params[:sort])))
         @total_count=tmp.count.length
-      elsif !user_signed_in?
+    elsif !user_signed_in?
           return
-      else
+    else
         if qry.nil? then qry="claims.sharing_mode=1 OR claims.user_id="+current_user.id.to_s; end
         tmp=Claim.where(qry).order(Arel.sql("created_at DESC"))
-      end
-      @total_count=tmp.count
-      @pagy, @claims = pagy(tmp, items: 10)
+    end
+    @total_count=tmp.count
+    @pagy, @claims = pagy(tmp, items: 10)
   end
 
   def show
@@ -199,6 +198,7 @@ class ClaimsController < ApplicationController
         end
         if (!file_contents.nil?)
          if (file_contents.length>0)
+           begin
             claim_list = JSON.parse(file_contents)
             claim_list.each do |clm|
               @claim = Claim.where("title= ?",clm['title']).first
@@ -286,6 +286,10 @@ class ClaimsController < ApplicationController
                 end
               end
             end
+           rescue
+             redirect_to new_claim_path(:import_err => 1)
+             return
+           end
          end
          render 'show'
         end
@@ -412,8 +416,7 @@ class ClaimsController < ApplicationController
           send_data result_json.to_json,
             :type => 'text/json; charset=UTF-8;',
             :disposition => "attachment; filename=claim"+params[:id].to_s+".json"
-
-     end
+      end
   end
 
   private

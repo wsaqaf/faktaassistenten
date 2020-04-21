@@ -110,6 +110,7 @@ en:
   yes_share: "Yes share with everyone"
   no_share: "No keep it private to me only"
 
+  invalid_json: "The file you tried to import does not appear to be valid. Please ensure that you only import files that have been exported through the system by using the 'Export' link."
   claim_import: "Import a claim"
   claim_import_note: "Here you can upload a json file of a claim that was exported previously via the 'export claim' feature"
   claim_select_file: "Select json file and then click import:"

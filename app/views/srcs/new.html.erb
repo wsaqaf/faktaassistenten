@@ -7,6 +7,9 @@
    <div class="container">
     <div class="row">
       <div class="col-12 col-md-8 offset-md-2">
+        <% if params[:import_err].present? %>
+          <center><font color="red"><%== t('invalid_json') %></font></center><br>
+        <% end %>
         <fieldset>
           <legend>&nbsp;<%= t('add_new_src') %></legend>
           <%= form_for @src, :html => { :onsubmit => "do_submit('source')" } do |f| %>
@@ -42,7 +45,7 @@
           </li>
           <li>
             <b><%= f.check_box :start_review, :checked => true %> <%= t('start_review') %></b><br><br>
-          </li>          
+          </li>
               <%= f.submit t('submit'), :class => 'btn btn btn-primary', id: 'submit' %>
           </ul>
           <% end %>

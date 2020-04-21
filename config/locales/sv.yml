@@ -134,6 +134,8 @@ sv:
   share_claim: "Vill du dela detta publikt?"
   yes_share: "Ja, dela med alla"
   no_share: "Nej, håll det privat för mig"
+
+  invalid_json: "Filen som du försökte importera verkar inte vara giltig. Se till att du bara importerar filer som har exporterats via systemet genom den 'Exportera' länken."
   claim_import: "Importera ett påstående"
   claim_import_note: "Här kan du ladda upp en json-fil för ett påstående som tidigare exporterades via den 'exportera' funktionen"
   claim_select_file: "Välj json-fil och klicka sedan på import:"

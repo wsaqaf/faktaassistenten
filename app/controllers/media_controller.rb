@@ -46,7 +46,7 @@ class MediaController < ApplicationController
       end
        @pagy, @media = pagy(tmp, items: 10)
        return
-     end
+    end
    if (params[:sort]=="r" or params[:sort]=="rp" or params[:sort]=="rn")
      remove_unsure="";
      if (params[:sort]!="r")
@@ -106,6 +106,7 @@ class MediaController < ApplicationController
         end
         if (!file_contents.nil?)
          if (file_contents.length>0)
+           begin
             medium_list = JSON.parse(file_contents)
             medium_list.each do |clm|
               @medium = Medium.where("name= ?",clm['name']).first
@@ -182,6 +183,10 @@ class MediaController < ApplicationController
                 end
               end
             end
+           rescue
+              redirect_to new_medium_path(:import_err => 1)
+              return
+           end
          end
          render 'show'
         end
@@ -295,7 +300,7 @@ class MediaController < ApplicationController
           send_data result_json.to_json,
             :type => 'text/json; charset=UTF-8;',
             :disposition => "attachment; filename=medium"+params[:id].to_s+".json"
-     end
+      end
   end
 
   private
