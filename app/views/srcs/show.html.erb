@@ -37,7 +37,7 @@
 <br><%= t('updated_at') %>: <%= @src.updated_at %>
 <br><br><%= link_to t('export_this_src'), export_src_path(@src), method: :post %></p>
 
-<hr><%= link_to t('claims_connected')+" "+t('this_src'), claims_path(:m => @src.id) %>
+<hr><%= link_to t('claims_connected')+" "+t('this_src'), claims_path(:s => @src.id) %>
 <br><br>
 <h6>
   <%
