@@ -125,9 +125,9 @@
     if !medium.url_preview.present?
       url_prev='<div id="final_url_preview" class="fragment">'
       url_prev=url_prev+'<div style="text-align: left"><img src="'+config.relative_url_root.to_s+'/assets/medium.png" id="cimg" height=75 />'
-      if (!medium.url.nil?) then url=medium.url; else url=""; end
-      if (!medium.description.nil?) then description=medium.description; else description=""; end
-      url_prev=url_prev+"\n<h4><a href=\""+url+"\" target=_blank>"+medium.name+"</a></h4><p class=\"text\">"+description+"</p><br></div></div>"
+      if (!medium.url.blank?) then url=medium.url; else url=medium_path(medium); end
+      if (!medium.description.blank?) then description=medium.description; else description=""; end
+      url_prev=url_prev+"\n<h4><a href=\""+url+"\">"+medium.name+"</a></h4><br><p class=\"text\">"+description+"</p><br></div></div>"
   else
     url_prev=medium.url_preview.delete('\\\\"')
   end

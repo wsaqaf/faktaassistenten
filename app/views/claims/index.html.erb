@@ -128,9 +128,9 @@
     if !claim.url_preview.present?
       url_prev='<div id="final_url_preview" class="fragment">'
       url_prev=url_prev+'<div style="text-align: left"><img src="'+config.relative_url_root.to_s+'/assets/claim.png" id="cimg" height=75 />'
-      if (!claim.url.nil?) then url=claim.url; else url=""; end
-      if (!claim.description.nil?) then description=claim.description; else description=""; end
-      url_prev=url_prev+"\n<h4><a href=\""+url+"\" target=_blank>"+claim.title+"</a></h4><p class=\"text\">"+description+"</p><br></div></div>"
+      if (!claim.url.blank?) then url=claim.url; else url=claim_path(claim); end
+      if (!claim.description.blank?) then description=claim.description; else description=""; end
+      url_prev=url_prev+"\n<h4><a href=\""+url+"\">"+claim.title+"</a></h4><br><p class=\"text\">"+description+"</p><br></div></div>"
   else
     url_prev=claim.url_preview.delete('\\\\"')
   end

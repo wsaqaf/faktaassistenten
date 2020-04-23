@@ -125,9 +125,9 @@
     if !src.url_preview.present?
       url_prev='<div id="final_url_preview" class="fragment">'
       url_prev=url_prev+'<div style="text-align: left"><img src="'+config.relative_url_root.to_s+'/assets/src.png" id="cimg" height=75 />'
-      if (!src.url.nil?) then url=src.url; else url=""; end
-      if (!src.description.nil?) then description=src.description; else description=""; end
-      url_prev=url_prev+"\n<h4><a href=\""+url+"\" target=_blank>"+src.name+"</a></h4><p class=\"text\">"+description+"</p><br></div></div>"
+      if (!src.url.blank?) then url=src.url; else url=src_path(src); end
+      if (!src.description.blank?) then description=src.description; else description=""; end
+      url_prev=url_prev+"\n<h4><a href=\""+url+"\">"+src.name+"</a></h4><br><p class=\"text\">"+description+"</p><br></div></div>"
   else
     url_prev=src.url_preview.delete('\\\\"')
   end
