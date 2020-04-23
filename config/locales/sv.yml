@@ -42,7 +42,7 @@ sv:
   claim_d: "Tack för att du bidrar till en faktabaserad värld"
   tools_t: "Vi har samlat några av de bästa verktygen"
   tools_d: "Har vi missat några? Skicka en länk så lägger vi till verktyget här."
-  db_t: "Utforska alla påståenden och faktakollar"
+  db_t: "Utforska alla påståenden"
   db_d: "Här ser du tidigare faktakollar. Du kan också lägga till ett eget påstående som vem som helst kan hjälpa till att faktagranska."
   db_t_media: "Kolla på granskningar av online medier"
   db_d_media: "Här kan du se hur faktagranskare utvärderade vissa plattformar (vi kallar 'medier') när det gäller deras tillförlitlighet."
@@ -73,7 +73,7 @@ sv:
 #Views common
 
   website_title: "Galileo – faktaassistenten"
-  claims: "Alla påståenden och faktakollar"
+  claims: "Alla påståenden"
   media: "Medier"
   sources: "Källor"
   srcs: "Källor"

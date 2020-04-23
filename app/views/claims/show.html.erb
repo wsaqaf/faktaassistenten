@@ -3,7 +3,7 @@
     <font color="blue"><%== @import_note %></font>
     <hr>
   <% end %>
-<h3><%= t('title_claim') %>: <%= @claim.title %></h3>
+<h4><%= t('title_claim') %>: <%= @claim.title %></h4>
 <% if @claim.tag_list.size>0 %>
     <%= t('tags_claim') %>: <%= raw @claim.tags.map(&:claim_name).map { |t| link_to t, tag_path(t) }.join(', ') %>
 <% end %>
