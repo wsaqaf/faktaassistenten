@@ -186,6 +186,9 @@ sv:
 
 #Claim/show
   title_claim: "Titel"
+  title_claim: "Titel av påståendet"
+  title_medium: "Namn av mediet"
+  title_src: "Name av källan"
   tags_claim: "Taggar"
   url: "URL"
   not_provided: "N/A"

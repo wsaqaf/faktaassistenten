@@ -162,7 +162,9 @@ en:
   advanced_options: "advanced options"
 
   #Claim/show
-  title_claim: "Title"
+  title_claim: "Title of claim"
+  title_medium: "Name of medium"
+  title_src: "Name of source"
   tags_claim: "Tags"
   url: "URL"
   not_provided: "N/A"
