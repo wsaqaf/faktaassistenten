@@ -85,7 +85,7 @@
                 <label> <%= t('medium_claim') %></label>
                 <%= f.text_field :medium_name, data: {autocomplete_source: media_path }, :onchange => "NewMedium('"+config.relative_url_root.to_s+"',1,'medium','media','media')", class: 'field-long', :autocomplete=>"off" %>
               </li>
-              <div id="medium_claim_note"></div>
+              <div id="medium_note"></div>
               <li>
                 <br>
                 <label>
