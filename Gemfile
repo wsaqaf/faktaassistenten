@@ -33,7 +33,8 @@ gem 'htmlbeautifier'
 gem 'prettier'
 gem 'popper_js'
 gem 'react-rails'
-gem "actionview", ">= 5.2.4.2"
+gem "actionview", ">= 5.2.4.3"
+gem "activesupport", ">= 5.2.4.3"
 
 gem 'spring', '>= 2.1.0'
 
